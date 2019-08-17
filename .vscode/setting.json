@@ -1,0 +1,17 @@
+{
+  "editor.formatOnSave": true,
+  "eslint.enable": true,
+  "eslint.autoFixOnSave": true,
+  "prettier.eslintIntegration": true,
+  "prettier.stylelintIntegration": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "minapp-vscode.reserveTags": [
+    "text"
+  ],
+  "files.associations": {
+    "*.tpl": "html",
+    "*.wxml": "html",
+    "*.wxss": "css",
+    "*.wxs": "javascript"
+  }
+}

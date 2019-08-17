@@ -1,0 +1,53 @@
+{
+  "name": "wxapp-typescript-starter",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "watch": "gulp watch",
+    "watch-dev": "gulp watch --env=dev",
+    "watch-qa": "gulp watch --env=qa",
+    "watch-prod": "gulp watch --env=prod",
+    "build": "gulp build",
+    "build-dev": "gulp build --env=dev",
+    "build-qa": "gulp build --env=qa",
+    "build-prod": "gulp build --env=prod",
+    "prettier": "prettier --write --config .prettierrc src/**/*.{ts,js}"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^2.0.0",
+    "@typescript-eslint/parser": "^2.0.0",
+    "autoprefixer": "^9.6.1",
+    "eslint": "^6.1.0",
+    "eslint-config-prettier": "^6.0.0",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-prettier": "^3.1.0",
+    "gulp": "^4.0.2",
+    "gulp-changed": "^4.0.0",
+    "gulp-clean": "^0.4.0",
+    "gulp-clean-css": "^4.2.0",
+    "gulp-eslint": "^6.0.0",
+    "gulp-htmlmin": "^5.0.1",
+    "gulp-imagemin": "^6.0.0",
+    "gulp-jsonminify2": "^1.0.2",
+    "gulp-less": "^4.0.1",
+    "gulp-load-plugins": "^2.0.1",
+    "gulp-plumber": "^1.2.1",
+    "gulp-postcss": "^8.0.0",
+    "gulp-rename": "^1.4.0",
+    "gulp-sourcemaps": "^2.6.5",
+    "gulp-typescript": "^5.0.1",
+    "gulp-uglify": "^3.0.2",
+    "gulp-watch": "^5.0.1",
+    "gulp-wxa-copy-npm": "^0.1.4",
+    "imagemin-pngquant": "^8.0.0",
+    "minimist": "^1.2.0",
+    "prettier": "^1.18.2",
+    "typescript": "^3.5.3",
+    "uglify-es": "^3.3.9"
+  },
+  "dependencies": {
+    "async-validator": "^3.0.3"
+  }
+}

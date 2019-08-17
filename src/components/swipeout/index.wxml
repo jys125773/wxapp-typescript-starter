@@ -1,0 +1,13 @@
+<view class="swipeout">
+  <view class="swipeout__view custom-class" bind:touchstart="{{ disabled ? '' : 'bindTouchStart' }}" bind:touchmove="{{ disabled ? '' : 'bindTouchMove' }}" bind:touchend="{{ disabled ? '' : 'bindTouchEnd' }}" style="-webkit-transform:translateX({{ -offsetX }}px);transform:translateX({{ -offsetX }}px);{{ touchMoving ? '' : 'transition:transform ' + transitionDration + 'ms;' + '-webkit-transition:transform ' + transitionDration + 'ms;'  }}">
+    <view catch:tap="noop" class="swipeout__left">
+      <slot name="left"></slot>
+    </view>
+    <view class="swipeout__content" bind:tap="close">
+      <slot></slot>
+    </view>
+    <view catch:tap="noop" class="swipeout__right">
+      <slot name="right"></slot>
+    </view>
+  </view>
+</view>

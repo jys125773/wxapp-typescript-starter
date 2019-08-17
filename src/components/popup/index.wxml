@@ -1,0 +1,10 @@
+<view class="popup__mask" wx:if="{{ inited && mask || maskClosable }}" hidden="{{ hidden }}" catch:touchmove="noop" catch:tap="bindTapMask" style="{{ animationStyle.mask }}z-index:{{ zIndex - 1 }};position:{{ fixed ? 'fixed' : 'absolute' }};background-color:{{ maskColor }};{{ maskStyle }}"></view>
+<view 
+  class="custom-class popup__content popup__content--{{ position }}" 
+  bind:animationend="bindAnimationend"
+  catch:touchmove="{{ forbidScroll ? 'noop' : '' }}"
+  wx:if="{{ inited }}" 
+  hidden="{{ hidden }}" 
+  style="{{ animationStyle.content }}z-index:{{ zIndex }};position:{{ fixed ? 'fixed' : 'absolute' }};">
+  <slot></slot>
+</view>

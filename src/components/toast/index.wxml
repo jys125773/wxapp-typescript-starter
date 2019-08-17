@@ -1,0 +1,13 @@
+<popup 
+  custom-class="toast--{{ position }}"
+  show="{{show}}" 
+  z-index="{{ zIndex }}" 
+  mask="{{ mask }}" 
+  mask-color="rgba(0,0,0,0)"
+  duration="{{ animateDuration }}"
+  mask-closable="{{ maskClosable }}"
+  bind:close="hide">
+  <view class="toast">
+    <view class="toast__text">{{ text }}</view>
+  </view>
+</popup>
