@@ -1,4 +1,5 @@
 Component({
+  useStore: false,
   options: {
     multipleSlots: true,
   },
@@ -22,7 +23,7 @@ Component({
     },
     duration: {
       type: Number,
-      value: 400,
+      value: 300,
     },
     // -1,左边打开；0，关闭；1，右边打开
     status: {
@@ -105,7 +106,9 @@ Component({
             transitionDration: duration * ratio,
             touchMoving: false,
           });
-          this.triggerEvent('change', { status: 1 });
+          if (this.startOffsetX !== rightWidth) {
+            this.triggerEvent('change', { status: 1 });
+          }
         } else {
           ratio = offsetX / rightWidth;
           this.setData({
@@ -126,7 +129,9 @@ Component({
             transitionDration: duration * ratio,
             touchMoving: false,
           });
-          this.triggerEvent('change', { status: -1 });
+          if (this.startOffsetX !== -leftWidth) {
+            this.triggerEvent('change', { status: -1 });
+          }
         } else {
           ratio = -offsetX / leftWidth;
           this.setData({
@@ -139,10 +144,13 @@ Component({
       }
     },
     open(direction: 'left' | 'right' = 'right') {
-      const { leftWidth, rightWidth, duration } = this.data;
+      const { leftWidth, rightWidth, duration, touchMoving } = this.data;
+      if (touchMoving) {
+        return;
+      }
       const update: any = {
-        touchMoving: false,
         transitionDration: this.mounted ? duration : 0,
+        touchMoving: false,
       };
       if (direction === 'left') {
         update.offsetX = -leftWidth;
@@ -158,10 +166,13 @@ Component({
     },
     close() {
       const { duration } = this.data;
+      // if (touchMoving) {
+      //   return;
+      // }
       this.setData({
-        touchMoving: false,
         transitionDration: this.mounted ? duration : 0,
         offsetX: 0,
+        touchMoving: false,
       });
       this.triggerEvent('change', { status: 0 });
     },
