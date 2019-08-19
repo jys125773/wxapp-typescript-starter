@@ -10,6 +10,8 @@ declare type Required<T> = {
   [P in keyof T]-?: T[P];
 };
 
+declare type InstanceType<T extends new (...args: any) => any> = T extends new (...args: any) => infer R ? R : any;
+
 declare type IAnyObject = Record<string, any>
 
 declare type KVInfer<T> = {
