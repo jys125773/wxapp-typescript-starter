@@ -41,4 +41,4 @@ export type TRequestInitOptions = {
     response?: TRequestMiddleware[];
     error?: TRequestMiddleware[];
   };
-};
+} & TWxRequestOptions;

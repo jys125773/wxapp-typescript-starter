@@ -1,5 +1,6 @@
 import Storage from '../storage';
 import Onion from './onion';
+import { merge } from '../util';
 import {
   TWxRequestOptions,
   TRequestConfig,
@@ -16,28 +17,47 @@ class Request {
 
   public cache = new Storage();
 
+  private defaultRequestOptions: TWxRequestOptions = {
+    data: {},
+    dataType: 'json',
+    responseType: 'text',
+    header: {},
+  };
+
   constructor(options: TRequestInitOptions) {
-    const { middlewares } = options;
+    const { middlewares, ...initRequestOptions } = options;
     this.middlewares = {
       request: new Onion(middlewares && middlewares.request),
       response: new Onion(middlewares && middlewares.response),
       error: new Onion(middlewares && middlewares.error),
     };
+    this.defaultRequestOptions = merge(
+      this.defaultRequestOptions,
+      initRequestOptions,
+    );
   }
 
-  public get(url: string, options: TWxRequestOptions, config?: TRequestConfig) {
+  public get(
+    url: string,
+    options: TWxRequestOptions = {},
+    config?: TRequestConfig,
+  ) {
     return this.http(url, { ...options, method: 'GET' }, config);
   }
 
   public post(
     url: string,
-    options: TWxRequestOptions,
+    options: TWxRequestOptions = {},
     config?: TRequestConfig,
   ) {
     return this.http(url, { ...options, method: 'POST' }, config);
   }
 
-  public put(url: string, options: TWxRequestOptions, config?: TRequestConfig) {
+  public put(
+    url: string,
+    options: TWxRequestOptions = {},
+    config?: TRequestConfig,
+  ) {
     return this.http(url, { ...options, method: 'PUT' }, config);
   }
 
@@ -50,7 +70,7 @@ class Request {
     const { expiration } = config;
     const useCache = typeof expiration === 'number' && expiration >= 0;
     const ctx: TRequestContext = {
-      req: { options, url },
+      req: { url, options: merge(this.defaultRequestOptions, options) },
       config,
       cache,
     };

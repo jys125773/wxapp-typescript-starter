@@ -1,1 +1,0 @@
-<view hidden="{{hidden}}" class="parabola-ball" style="left:{{left}}px;top:{{top}}px;"></view>

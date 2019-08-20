@@ -1,9 +1,9 @@
 import Request from './request';
-import { checkStatus } from './middlewares';
+import { checkStatus, checkAuth } from './middlewares';
 
 const request = new Request({
   middlewares: {
-    request: [],
+    request: [checkAuth],
     response: [checkStatus],
     error: [],
   },
