@@ -1,4 +1,5 @@
 Component({
+  externalClasses: ['custom-class'],
   data: {
     left: 0,
     top: 0,

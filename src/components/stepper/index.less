@@ -1,0 +1,75 @@
+@import '../common/styles/var.less';
+
+.stepper {
+  background: @white;
+  border: 1px solid @border-color;
+  border-radius: 4px;
+  height: 50rpx;
+  display: flex;
+
+  &__minus {
+    width: 46rpx;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &--hover {
+      background-color: @gray-light;
+    }
+
+    &::before {
+      content: ' ';
+      display: block;
+      width: 22rpx;
+      height: 4rpx;
+      background-color: #C4C4C4;
+      border-radius: 2rpx;
+    }
+  }
+
+  &__input {
+    border-left: 1px solid @border-color;
+    border-right: 1px solid @border-color;
+    padding: 0;
+    margin: 0;
+    text-align: center;
+    height: 100%;
+    width: 68rpx;
+    color: @text-color;
+    font-weight: 600;
+    line-height: 50rpx;
+  }
+
+  &__plus {
+    width: 46rpx;
+    height: 100%;
+    position: relative;
+
+    &--hover {
+      background-color: @gray-light;
+    }
+
+    &::before,
+    &::after {
+      content: ' ';
+      display: block;
+      background-color: #646464;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate3d(-50%, -50%, 0);
+      border-radius: 2rpx;
+    }
+
+    &::before {
+      width: 22rpx;
+      height: 4rpx;
+    }
+
+    &::after {
+      width: 4rpx;
+      height: 22rpx;
+    }
+  }
+}

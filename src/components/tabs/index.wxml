@@ -1,0 +1,20 @@
+<view class="tabs custom-class">
+  <scroll-view class="tabs__nav" scroll-left="{{ scrollLeft }}" scroll-with-animation="{{ !skipAnimation }}" scroll-x="{{true}}">
+    <view class="tabs__nav-track" style="width:{{ children.length > srollableThreshold ? children.length * 100 / srollableThreshold : 100 }}%;">
+      <view wx:for="{{children}}" wx:key="index" bind:tap="bindTap" data-index="{{ index }}" class="tabs__nav-item tabs__nav-item-{{index}}">
+        <text class="tabs__nav-text tab-class tabs__nav-text-{{ index }} {{ current === index ? 'tabs__nav-text--active tab-active-class' : '' }}">{{item.title}}</text>
+      </view>
+      <view class="tabs__nav-line line-class" style="{{ lineStyle }}"/>
+    </view>
+  </scroll-view>
+  <view wx:if="{{swipable}}" class="tabs__content" bind:touchstart="bindTouchStart" bind:touchmove="bindTouchMove" bind:touchend="bindTouchEnd">
+    <view style="{{trackStyle}}" class="tabs__content-track">
+      <slot></slot>
+    </view>
+  </view>
+  <view wx:else class="tabs__content">
+    <view style="{{trackStyle}}" class="tabs__content-track">
+      <slot></slot>
+    </view>
+  </view>
+</view>

@@ -1,3 +1,27 @@
-<view class="" hover-class="none" hover-stop-propagation="false">
-  home
+<view class="container">
+  <tabs current="{{ current }}" bind:change="bindChange" animate="{{true}}" srollableThreshold="{{5}}">
+    <tab title="one">
+      <view style="height:300rpx;display:flex;justify-content:center;align-items:center;">
+        <stepper></stepper>
+      </view>
+    </tab>
+    <tab title="two">
+      <view style="height:300rpx;">tab2</view>
+    </tab>
+    <tab title="three">
+      <view style="height:300rpx;">tab3</view>
+    </tab>
+    <tab title="four">
+      <view style="height:300rpx;">tab4</view>
+    </tab>
+    <tab title="five">
+      <view style="height:300rpx;">tab5</view>
+    </tab>
+    <tab title="six">
+      <view style="height:300rpx;">tab6</view>
+    </tab>
+    <tab title="seven">
+      <view style="height:300rpx;">tab7</view>
+    </tab>
+  </tabs>
 </view>
