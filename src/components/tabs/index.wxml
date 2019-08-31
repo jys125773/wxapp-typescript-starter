@@ -7,7 +7,7 @@
       <view class="tabs__nav-line line-class" style="{{ lineStyle }}"/>
     </view>
   </scroll-view>
-  <view wx:if="{{swipable}}" class="tabs__content" bind:touchstart="bindTouchStart" bind:touchmove="bindTouchMove" bind:touchend="bindTouchEnd">
+  <view wx:if="{{swipable}}" class="tabs__content" bind:touchstart="bindTouchStart" bind:touchend="bindTouchEnd">
     <view style="{{trackStyle}}" class="tabs__content-track">
       <slot></slot>
     </view>

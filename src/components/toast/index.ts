@@ -7,7 +7,7 @@ Component({
     maskClosable: false,
     zIndex: 0,
     position: '',
-    animateDuration: 0,
+    duration: 0,
   },
   methods: {
     show(options) {

@@ -1,0 +1,6 @@
+{
+  "component": true,
+  "usingComponents": {
+    "parabola": "../../../../components/parabola/index"
+  }
+}

@@ -1,0 +1,3 @@
+<view bind:tap="dropDown" class="parabola-demo" style="height:100%;">
+  <parabola id="parabola"/>
+</view>

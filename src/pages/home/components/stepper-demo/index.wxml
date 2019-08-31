@@ -1,0 +1,3 @@
+<view class="stepper-demo">
+  <stepper max="{{10}}" bind:minus="bindMinus" bind:plus="bindPlus" bind:blur="bindBlur" bind:overlimit="bindOverlimit" value="{{value}}" />
+</view>

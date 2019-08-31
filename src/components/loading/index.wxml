@@ -1,0 +1,33 @@
+<view class="loading custom-class {{ 'loading--' + type }}" style="width:{{ size }};height:{{ size }};color:{{ color }};">
+  <view wx:if="{{ type === 'line' }}" class="loading__dot" style="border-width:{{ lineWidth }}" />
+  <block wx:elif="{{ type === 'double-bounce' }}">
+    <view class="loading__dot" />
+    <view class="loading__dot" />
+  </block>
+  <block wx:elif="{{ type === 'three-bounce' }}">
+    <view class="loading__dot" />
+    <view class="loading__dot" />
+    <view class="loading__dot" />
+  </block>
+  <block wx:elif="{{ type === 'wave' }}">
+    <view class="loading__dot" />
+    <view class="loading__dot" />
+    <view class="loading__dot" />
+    <view class="loading__dot" />
+    <view class="loading__dot" />
+  </block>
+  <block wx:elif="{{ type === 'circle' || type === 'fading-circle' }}">
+    <view class="loading__dot" />
+    <view class="loading__dot" />
+    <view class="loading__dot" />
+    <view class="loading__dot" />
+    <view class="loading__dot" />
+    <view class="loading__dot" />
+    <view class="loading__dot" />
+    <view class="loading__dot" />
+    <view class="loading__dot" />
+    <view class="loading__dot" />
+    <view class="loading__dot" />
+    <view class="loading__dot" />
+  </block>
+</view>

@@ -1,5 +1,5 @@
 <view class="stepper custom-class">
   <view catchtap="{{ disabled ? '' : 'bindMinus' }}" class="stepper__minus" hover-class="stepper__minus--hover" hover-start-time="80" />
   <input value="{{ value }}" catchinput="bindInput" catchblur="bindBlur" disabled="{{disabled}}" class="stepper__input" type="number" />
-  <view catchtap="{{ disabled ? '' : 'bindPlus' }}" class="stepper__plus" hover-class="stepper__minus--hover" hover-start-time="80" />
+  <view catchtap="{{ disabled ? '' : 'bindPlus' }}" class="stepper__plus" hover-class="stepper__minus--hover" hover-start-time="80"/>
 </view>

@@ -1,0 +1,9 @@
+<view class="loading-demo">
+  <loading type="circle" color="#f44" />
+  <loading type="fading-circle" color="#1989fa" />
+  <loading type="double-bounce" color="#ff976a" />
+  <loading type="three-bounce" color="#ed6a0c" />
+  <loading type="pulse" color="#07c160" />
+  <loading type="wave" color="#1989fa" />
+  <loading type="line" />
+</view>

@@ -2,16 +2,12 @@ interface IData {
   current: number;
 }
 
-interface IMethods {
-  bindChange(e: any): void;
-}
-
-Page({
+Page<IData, any>({
   data: {
     current: 0,
   },
   bindChange(e) {
     const { current } = e.detail;
-    this.setData({ current });
+    this.setData({ current }, () => {});
   },
 });

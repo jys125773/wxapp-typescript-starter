@@ -4,7 +4,7 @@
   z-index="{{ zIndex }}" 
   mask="{{ mask }}" 
   mask-color="rgba(0,0,0,0)"
-  duration="{{ animateDuration }}"
+  duration="{{ duration }}"
   mask-closable="{{ maskClosable }}"
   bind:close="hide">
   <view class="toast">

@@ -7,8 +7,8 @@ interface ToastOptions {
   zIndex?: number;
   context?: any;
   position?: string;
-  animateDuration?: number;
-  duration?: number;
+  duration?: number | { enter: number; leave: number };
+  stayTime?: number;
   selector?: string;
   onClose?: () => void;
 }
@@ -20,10 +20,10 @@ const defaultOptions: ToastOptions = {
   mask: true,
   maskClosable: true,
   zIndex: 1000,
-  animateDuration: 100,
-  duration: 3000,
+  duration: { enter: 60, leave: 100 },
+  stayTime: 2000,
   position: 'middle',
-  selector: '#toast',
+  selector: '#custom-toast',
   onClose: () => {},
 };
 
@@ -40,7 +40,7 @@ function toast(options: ToastOptions | string) {
     };
   }
 
-  const { onClose, duration, selector } = options;
+  const { onClose, stayTime, selector } = options;
   const context = options.context || getCurrentPages().pop();
   const toast = context && context.selectComponent(selector);
 
@@ -61,13 +61,13 @@ function toast(options: ToastOptions | string) {
   toast.onClose = onClose;
   toast.show(options);
 
-  if (duration && duration > 0) {
+  if (stayTime && stayTime > 0) {
     toast.timer = setTimeout(() => {
       toast.hide();
       if (onClose) {
         onClose();
       }
-    }, duration);
+    }, stayTime);
   }
 }
 

@@ -1,5 +1,5 @@
 Component({
-  externalClasses: ['custom-class'],
+  externalClasses: ['custom-class', 'mask-style'],
   properties: {
     show: {
       type: Boolean,
@@ -30,7 +30,7 @@ Component({
       value: 'center',
     },
     duration: {
-      type: Object,
+      type: [Object, Number],
       value: { enter: 300, leave: 200 },
     },
     timingFunction: {
@@ -49,7 +49,6 @@ Component({
       type: String,
       value: 'rgba(0,0,0,0.5)',
     },
-    maskStyle: String,
     destroyOnClose: {
       type: Boolean,
       value: false,
@@ -58,6 +57,8 @@ Component({
       type: Boolean,
       value: true,
     },
+    maskStyle: String,
+    popupStyle: String,
   },
   data: {
     inited: false,

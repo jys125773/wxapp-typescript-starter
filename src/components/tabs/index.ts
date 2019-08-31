@@ -89,24 +89,22 @@ Component({
       this.startX = touch.clientX;
       this.startY = touch.clientY;
     },
-    bindTouchMove(e) {
-      const { startX, startY } = this;
-      const touch = e.touches[0];
-      this.deltaX = startX - touch.clientX;
-      this.deltaY = startY - touch.clientY;
-    },
-    bindTouchEnd() {
+    bindTouchEnd(e) {
       const {
-        deltaX,
-        deltaY,
+        startX,
+        startY,
         data: { touchThreshold, current, children },
       } = this;
+      const touch = e.changedTouches[0];
+      const deltaX = touch.clientX - startX;
+      const deltaY = touch.clientY - startY;
+
       if (Math.abs(deltaX / deltaY) > 1) {
-        if (deltaX < -touchThreshold) {
+        if (deltaX > touchThreshold) {
           this.triggerEvent('change', {
             current: current >= 1 ? current - 1 : 0,
           });
-        } else if (deltaX > touchThreshold) {
+        } else if (deltaX < -touchThreshold) {
           const len = children.length;
           this.triggerEvent('change', {
             current: current <= len - 2 ? current + 1 : len - 1,

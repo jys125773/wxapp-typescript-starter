@@ -1,27 +1,32 @@
 <view class="container">
-  <tabs current="{{ current }}" bind:change="bindChange" animate="{{true}}" srollableThreshold="{{5}}">
-    <tab title="one">
-      <view style="height:300rpx;display:flex;justify-content:center;align-items:center;">
-        <stepper></stepper>
+  <tabs custom-class="tabs" current="{{ current }}" bind:change="bindChange" srollable-threshold="{{4}}">
+    <tab title="parabola">
+      <view class="tab-item">
+        <parabola-demo />
       </view>
     </tab>
-    <tab title="two">
-      <view style="height:300rpx;">tab2</view>
+    <tab title="loading">
+      <view class="tab-item">
+        <loading-demo />
+      </view>
+    </tab>
+    <tab title="stepper">
+      <view class="tab-item">
+        <stepper-demo />
+      </view>
     </tab>
     <tab title="three">
-      <view style="height:300rpx;">tab3</view>
+      <view class="tab-item">tab3</view>
     </tab>
     <tab title="four">
-      <view style="height:300rpx;">tab4</view>
+      <view class="tab-item">tab4</view>
     </tab>
     <tab title="five">
-      <view style="height:300rpx;">tab5</view>
+      <view class="tab-item">tab5</view>
     </tab>
     <tab title="six">
-      <view style="height:300rpx;">tab6</view>
-    </tab>
-    <tab title="seven">
-      <view style="height:300rpx;">tab7</view>
+      <view class="tab-item">tab6</view>
     </tab>
   </tabs>
 </view>
+<toast id="custom-toast" />
