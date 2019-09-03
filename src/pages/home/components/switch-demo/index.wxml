@@ -1,0 +1,7 @@
+<view class="switch-demo">
+  <switch bindchange="bindChange" checked="{{checked}}"/> 
+  <switch size="100rpx" bindchange="bindChange" checked="{{checked}}"/> 
+  <switch checked="{{true}}"/> 
+  <switch checked="{{true}}" loading="{{true}}"/>
+  <switch loading="{{true}}" disabled="{{true}}"/>
+</view>

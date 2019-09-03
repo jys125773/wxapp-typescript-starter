@@ -30,7 +30,8 @@ Component({
       value: 'center',
     },
     duration: {
-      type: [Object, Number],
+      // type: [Object, Number],
+      type: Object,
       value: { enter: 300, leave: 200 },
     },
     timingFunction: {

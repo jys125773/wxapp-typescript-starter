@@ -1,8 +1,8 @@
 <view class="container">
   <tabs custom-class="tabs" current="{{ current }}" bind:change="bindChange" srollable-threshold="{{4}}">
-    <tab title="parabola">
+    <tab title="switch">
       <view class="tab-item">
-        <parabola-demo />
+        <switch-demo />
       </view>
     </tab>
     <tab title="loading">

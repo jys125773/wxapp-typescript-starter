@@ -1,0 +1,5 @@
+<view bind:tap="bindTap" class="switch switch--{{checked?'on':'off'}} {{disabled?'switch--disabled':''}} custom-class" style="font-size:{{size}};">
+  <view class="switch__node node-class">
+    <loading wx:if="{{loading}}" size="50%" custom-class="switch__loading" />
+  </view>
+</view>

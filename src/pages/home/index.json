@@ -5,6 +5,6 @@
     "toast": "../../components/toast/index",
     "loading-demo": "./components/loading-demo/index",
     "stepper-demo": "./components/stepper-demo/index",
-    "parabola-demo": "./components/parabola-demo/index"
+    "switch-demo": "./components/switch-demo/index"
   }
 }

@@ -1,0 +1,46 @@
+@import '../common/styles/var.less';
+.switch {
+  display: inline-block;
+  position: relative;
+  width: 2em;
+  border: 2rpx solid rgba(0, 0, 0, .1);
+  border-radius: 1em;
+  box-sizing: initial;
+  transition: background-color .3s;
+}
+
+.switch,
+.switch__node {
+  height: 1em;
+  background-color: @white;
+}
+
+.switch__node {
+  top: 0;
+  left: 0;
+  position: absolute;
+  border-radius: 100%;
+  width: 1em;
+  z-index: 1;
+  transition: .3s;
+  box-shadow: 0 6rpx 2rpx 0 rgba(0, 0, 0, .05), 0 4rpx 4rpx 0 rgba(0, 0, 0, .1), 0 6rpx 6rpx 0 rgba(0, 0, 0, .05);
+}
+
+.switch__loading {
+  top: 25%;
+  left: 25%;
+  position: absolute !important;
+}
+
+.switch--on {
+  background-color: @green;
+}
+
+.switch--on .switch__node {
+  -webkit-transform: translateX(1em);
+  transform: translateX(1em);
+}
+
+.switch--disabled {
+  opacity: 0.4;
+}
