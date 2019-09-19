@@ -1,0 +1,40 @@
+.prize-wheel {
+  border: 2rpx solid red;
+  border-radius: 50%;
+  position: relative;
+
+  &__pie {
+    width: 100%;
+    height: 100%;
+    position: relative;
+  }
+
+  &__pie-slice {
+    position: absolute;
+    top: 0;
+    text-align: center;
+    transform-origin: 50% 100%;
+  }
+
+  &__slice-content {
+    padding-top: 30rpx;
+  }
+
+  &__divide {
+    position: absolute;
+    top: 0;
+    width: 2rpx;
+    background-color: red;
+    transform-origin: 50% 100%;
+  }
+
+  &__poniter {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate3d(-50%, -50%, 0);
+    width: 60rpx;
+    height: 60rpx;
+    background-color: orange;
+  }
+}

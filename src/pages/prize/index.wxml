@@ -1,0 +1,3 @@
+<view class="container">
+  <prizewheel duration="{{4000}}" dataList="{{prizeDataList}}" />
+</view>

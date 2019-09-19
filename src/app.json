@@ -1,5 +1,6 @@
 {
   "pages":[
+    "pages/prize/index",
     "pages/home/index"
   ],
   "window":{

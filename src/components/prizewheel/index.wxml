@@ -1,0 +1,9 @@
+<view class="prize-wheel" style="width:{{size}}rpx;height:{{size}}rpx;">
+  <view class="prize-wheel__pie" bind:transitionend="bindAnimationEnd" animation="{{animationData}}">
+    <view class="prize-wheel__pie-slice" wx:for="{{items}}" wx:key="id" style="transform:rotate({{item.sliceAngle}}deg);width:{{item.sliceWidth}}rpx;height:{{size/2}}rpx;left:{{item.sliceLeft}}rpx;">
+      <view class="prize-wheel__slice-content">{{item.name}}</view>
+    </view>
+    <view class="prize-wheel__divide" wx:for="{{items}}" wx:key="id" style="transform:rotate({{item.divideAngle}}deg);height:{{size/2}}rpx;left:{{(size-2)/2}}rpx;" />
+  </view>
+  <view class="prize-wheel__poniter" bind:tap="start"></view>
+</view>
