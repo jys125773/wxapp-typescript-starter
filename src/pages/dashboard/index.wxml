@@ -1,0 +1,10 @@
+<view class="dashboard-page">
+  <view class="cate-section" wx:for="{{cateList}}" wx:key="index" wx:for-item="cateItem">
+    <view class="cate-title hairline--bottom">{{cateItem.name}}</view>
+    <view class="component-items">
+      <view data-url="{{item.path}}" bind:tap="jumpUrl" hover-class="component-item--hover" class="component-item" wx:for="{{cateItem.items}}" wx:key="index">
+        <view class="{{ index < cateItem.items.length-1 ? 'hairline--bottom':'' }}">{{item.name}}</view>
+      </view>
+    </view>
+  </view>
+</view>

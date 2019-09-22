@@ -1,23 +1,28 @@
+@import '../common/styles/var.less';
+
 .swipeout {
+  position: relative;
   overflow: hidden;
 
-  &__view {
-    position: relative;
+  &__content {
+    background-color: @white;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    position: absolute;
+    z-index: 1;
   }
 
   &__left {
     position: absolute;
-    top: 0;
-    bottom: 0;
+    height: 100%;
     left: 0;
-    transform: translateX(-100%);
   }
 
   &__right {
     position: absolute;
-    top: 0;
-    bottom: 0;
+    height: 100%;
     right: 0;
-    transform: translateX(100%);
   }
 }

@@ -1,6 +1,8 @@
 {
   "pages":[
-    "pages/prize/index",
+    "pages/dashboard/index",
+    "pages/popup/index",
+    "pages/prizewheel/index",
     "pages/home/index"
   ],
   "window":{

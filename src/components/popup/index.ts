@@ -1,5 +1,5 @@
 Component({
-  externalClasses: ['custom-class', 'mask-style'],
+  externalClasses: ['custom-class', 'mask-class'],
   properties: {
     show: {
       type: Boolean,
@@ -54,12 +54,12 @@ Component({
       type: Boolean,
       value: false,
     },
-    forbidScroll: {
+    preventScroll: {
       type: Boolean,
       value: true,
     },
     maskStyle: String,
-    popupStyle: String,
+    contentStyle: String,
   },
   data: {
     inited: false,

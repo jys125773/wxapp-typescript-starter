@@ -1,0 +1,45 @@
+<view class="popup-page">
+  <view class="demo-block">
+    <view class="demo-block__title">基础用法</view>
+    <view>
+      <button data-position="center" bind:tap="toggle">居中弹出popup</button>
+    </view>
+  </view>
+  <view class="demo-block">
+    <view class="demo-block__title">弹出位置</view>
+    <view>
+      <button data-position="bottom" bind:tap="toggle">底部弹出</button>
+      <button data-position="top" bind:tap="toggle">顶部弹出</button>
+      <button data-position="right" bind:tap="toggle">右侧弹出</button>
+      <button data-position="left" bind:tap="toggle">左侧弹出</button>
+      <button data-position="customPosition" bind:tap="toggle">自定义位置弹出popup</button>
+    </view>
+  </view>
+  <view class="demo-block">
+    <view class="demo-block__title">自定义动画</view>
+    <view>
+      <button data-position="customAnimation" bind:tap="toggle">自定义动画弹出</button>
+    </view>
+  </view>
+  <popup data-position="center" bind:close="toggle" show="{{centerShow}}">
+    <view class="popup-slot">content</view>
+  </popup>
+  <popup custom-class="custom-position-popup" data-position="customPosition" bind:close="toggle" show="{{customPositionShow}}">
+    <view class="popup-slot">content</view>
+  </popup>
+  <popup content-style="width:20%" bind:close="toggle" data-position="left" position="left" show="{{leftShow}}">
+    <view></view>
+  </popup>
+  <popup content-style="width:50%" bind:close="toggle" data-position="right" position="right" show="{{rightShow}}">
+    <view></view>
+  </popup>
+  <popup bind:close="toggle" data-position="top" position="top" show="{{topShow}}">
+    <view style="height:400rpx;"></view>
+  </popup>
+  <popup bind:close="toggle" data-position="bottom" position="bottom" show="{{bottomShow}}">
+    <view style="height:400rpx;"></view>
+  </popup>
+  <popup transition="scale" data-position="customAnimation" bind:close="toggle" show="{{customAnimationShow}}">
+    <view class="popup-slot">content</view>
+  </popup>
+</view>
