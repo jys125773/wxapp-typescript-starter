@@ -1,11 +1,11 @@
-const { toString } = Object.prototype;
+const _toString = Object.prototype.toString;
 
 function isObject(value: any) {
-  return toString.call(value) === '[object Object]';
+  return _toString.call(value) === '[object Object]';
 }
 
 function isArray(value: any) {
-  return toString.call(value) === '[object Array]';
+  return _toString.call(value) === '[object Array]';
 }
 
 function isFunction(value: any) {
@@ -21,7 +21,11 @@ function isNumer(value: any) {
 }
 
 function isNull(value: any) {
-  return toString.call(value) === '[object Null]';
+  return _toString.call(value) === '[object Null]';
+}
+
+function isBoolean(value: any) {
+  return typeof value === 'boolean';
 }
 
 function get(source: any, paths: string[] | string, defaultValue: any) {
@@ -73,6 +77,7 @@ export {
   isNaN,
   isNumer,
   isNull,
+  isBoolean,
   get,
   merge,
   throttle,
