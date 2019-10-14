@@ -1,6 +1,33 @@
+import { isBoolean, isFunction } from '../utils/util';
 import combineMixins from './combineMixins';
-function wxPage(target: any) {
-  return Page(combineMixins(new target()));
+import diff from './diff';
+
+const commonMixins = [];
+
+function wxPage(PageInstance: any) {
+  const instance = new PageInstance();
+  const originalSetData = instance.prototype.setData;
+  const originalMixins = instance.prototype.mixins;
+  instance.prototype.setData = function (
+    updates: IAnyObject,
+    callback: Function | boolean,
+    doDiff: boolean = false
+  ) {
+    if (isBoolean(callback)) {
+      doDiff = callback as boolean;
+    }
+    if (doDiff) {
+      const { data } = this;
+      const diffs = diff(Object.assign({}, data, updates), data);
+      originalSetData(diffs, () => {
+        isFunction(callback) && (callback as Function)(diffs);
+      });
+    } else {
+      originalSetData(updates, callback);
+    }
+  };
+  instance.prototype.mixins = originalMixins.concat(commonMixins);
+  return Page(combineMixins(instance));
 }
 export default wxPage;
 
