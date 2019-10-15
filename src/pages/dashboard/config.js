@@ -50,8 +50,8 @@ export default [
         path: '/pages/parabola/index',
       },
       {
-        name: 'Prize-wheel 大转盘抽奖',
-        path: '/pages/prizewheel/index',
+        name: 'Recycle-view 测试',
+        path: '/pages/recycle-view/index',
       },
     ],
   },

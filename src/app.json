@@ -2,8 +2,7 @@
   "pages":[
     "pages/dashboard/index",
     "pages/popup/index",
-    "pages/prizewheel/index",
-    "pages/home/index"
+    "pages/recycle-view/index"
   ],
   "window":{
     "backgroundTextStyle":"light",

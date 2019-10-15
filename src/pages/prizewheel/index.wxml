@@ -1,3 +1,0 @@
-<view class="prizewheel-page">
-  <prizewheel duration="{{4000}}" dataList="{{prizeDataList}}" />
-</view>
