@@ -28,7 +28,7 @@ function isBoolean(value: any) {
   return typeof value === 'boolean';
 }
 
-function get(source: any, paths: string[] | string, defaultValue: any) {
+function get(source: any, paths: string[] | string, defaultValue?: any) {
   if (typeof paths === 'string') {
     paths = paths
       .replace(/\[/g, '.')
