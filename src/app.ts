@@ -1,3 +1,4 @@
+require('./utils/validator');
 
 App({
   onLaunch() { },
