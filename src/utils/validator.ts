@@ -92,6 +92,9 @@ type TDescriptor = {
   [prop: string]: TFieldRule & { fields?: TDescriptor }
   | Array<TFieldRule & { fields?: TDescriptor }>;
 }
+type TErrorsMap = {
+  [prop: string]: Array<{ rule: string, message: string }>
+}
 
 const RULES: TRules = {
   required(value, rule, _source, options, callback) {
@@ -255,9 +258,12 @@ const RULES: TRules = {
 
 class Validator {
   private descriptor: TDescriptor = {};
+  private useMap = false;
+  public errorsMap: TErrorsMap = {};
 
-  constructor(descriptor: TDescriptor) {
+  constructor(descriptor: TDescriptor, options?: { useMap: boolean }) {
     this.descriptor = descriptor;
+    this.useMap = options ? options.useMap : false;
   }
 
   private getValidateMethod(rule: TFieldRule, methodName: string) {
@@ -330,10 +336,27 @@ class Validator {
                     source,
                     { field: key, fullField, label },
                     (error) => {
+                      const errorsMapItem = that.errorsMap[fullField];
                       if (error) {
                         errors.push(error);
+                        if (that.useMap) {
+                          if (!errorsMapItem) {
+                            that.errorsMap[fullField] = [
+                              { rule: methodName, message: error.message }
+                            ];
+                          } else if (!errorsMapItem.find(i => i.message === error.message)) {
+                            errorsMapItem.push({
+                              rule: methodName, message: error.message
+                            });
+                          }
+                        }
                         if (firstField === true || firstField === fullField) {
                           return reject();
+                        }
+                      } else if (that.useMap && errorsMapItem) {
+                        const index = errorsMapItem.findIndex(i => i.rule === methodName);
+                        if (index !== -1) {
+                          errorsMapItem.splice(index, 1);
                         }
                       }
                       resolve();
@@ -410,7 +433,7 @@ var descriptor: TDescriptor = {
   }
 }
 
-var validator = new Validator(descriptor);
+var validator = new Validator(descriptor, { useMap: true });
 validator.validate(
   {
     address: {
@@ -422,11 +445,12 @@ validator.validate(
   // { firstField: true }
 ).then((errors) => {
   console.log('errors', errors)
+  console.log('errorsMap', validator.errorsMap)
 });
 
-validator.validate(
-  1,
-  { fullField: 'address.street' }
-).then((errors) => {
-  console.log('errors', errors)
-});
+// validator.validate(
+//   1,
+//   { fullField: 'address.street' }
+// ).then((errors) => {
+//   console.log('errors', errors)
+// });
