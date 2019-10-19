@@ -1,5 +1,4 @@
 Component({
-  useStore: false,
   options: {
     multipleSlots: true,
   },

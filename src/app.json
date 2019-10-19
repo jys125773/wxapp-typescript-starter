@@ -1,8 +1,7 @@
 {
   "pages":[
     "pages/dashboard/index",
-    "pages/popup/index",
-    "pages/recycle-view/index"
+    "pages/popup/index"
   ],
   "window":{
     "backgroundTextStyle":"light",

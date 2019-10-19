@@ -1,11 +1,11 @@
-const _toString = Object.prototype.toString;
+const toStr = Object.prototype.toString;
 
 function isObject(value: any) {
-  return _toString.call(value) === '[object Object]';
+  return toStr.call(value) === '[object Object]';
 }
 
 function isArray(value: any) {
-  return _toString.call(value) === '[object Array]';
+  return toStr.call(value) === '[object Array]';
 }
 
 function isFunction(value: any) {
@@ -21,7 +21,7 @@ function isNumer(value: any) {
 }
 
 function isNull(value: any) {
-  return _toString.call(value) === '[object Null]';
+  return toStr.call(value) === '[object Null]';
 }
 
 function isBoolean(value: any) {
@@ -59,6 +59,21 @@ function merge(target: IAnyObject, source: IAnyObject) {
   return target;
 }
 
+function compose(funcs: Function[]) {
+  if (funcs.length === 0) {
+    return (arg: any) => arg;
+  }
+  if (funcs.length === 1) {
+    return funcs[0];
+  }
+  return funcs.reduce((a, b) => (...args: any[]) => a(b(...args)));
+}
+
+function getType(source: any) {
+  const match = toStr.call(source).match(/\[object\s(\w+)\]/);
+  return match && match[1] ? match[1].toLowerCase() : '';
+}
+
 function throttle(func: Function, wait = 100) {
   const last = 0;
   return function throttled(this: any) {
@@ -80,6 +95,8 @@ export {
   isBoolean,
   get,
   merge,
+  compose,
+  getType,
   throttle,
 };
 
@@ -92,5 +109,7 @@ export default {
   isNull,
   get,
   merge,
+  compose,
+  getType,
   throttle,
 };

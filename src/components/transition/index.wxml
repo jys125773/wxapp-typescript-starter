@@ -1,0 +1,3 @@
+<view wx:if="{{ }}" class="transition {{ animateClass }}">
+  <slot></slot>
+</view>

@@ -17,7 +17,7 @@ function syncDiff(
   to: any,
   from: any,
   result: TAnyObject = {},
-  path: string = ''
+  path: string = '',
 ) {
   //全等 => 跳过
   if (to === from) {
@@ -52,10 +52,15 @@ function syncDiff(
         toItem = to[toKey];
         if (_hasOwnProperty.call(from, toKey)) {
           //都是对象，新老对象都有的属性 => 逐项 diff、按路径更新
-          syncDiff(toItem, from[toKey], result, (path ? `${path}.${toKey}` : toKey));
+          syncDiff(
+            toItem,
+            from[toKey],
+            result,
+            path ? `${path}.${toKey}` : toKey,
+          );
         } else {
           //都是对象，新增字段 => 使用新值
-          setDiff(result, (path ? `${path}.${toKey}` : toKey), toItem);
+          setDiff(result, path ? `${path}.${toKey}` : toKey, toItem);
         }
       }
     }
@@ -67,13 +72,13 @@ function syncDiff(
     } else {
       for (let i = 0; i < toArrayLen; i++) {
         //都是数组、新数组长度大于等于旧数组的长度 => 逐项 diff、按路径更新
-        syncDiff(to[i], from[i], result, (path ? `${path}[${i}]` : `[${i}]`));
+        syncDiff(to[i], from[i], result, path ? `${path}[${i}]` : `[${i}]`);
       }
     }
   }
 }
 
-export default function diff(to: any, from: any, ) {
+export default function diff(to: any, from: any) {
   const result: TAnyObject = {};
   syncDiff(to, from, result);
   return result;

@@ -8,10 +8,10 @@ function wxPage(PageInstance: any) {
   const instance = new PageInstance();
   const originalSetData = instance.setData;
   const originalMixins = isArray(instance.mixins) ? instance.mixins : [];
-  instance.setData = function (
+  instance.setData = function(
     updates: IAnyObject,
     callback: Function | boolean,
-    doDiff: boolean = false
+    doDiff: boolean = false,
   ) {
     if (isBoolean(callback)) {
       doDiff = callback as boolean;

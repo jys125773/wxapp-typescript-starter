@@ -11,17 +11,19 @@ const pageLifeTimesMap = {
   onShareAppMessage: true,
   onPageScroll: true,
   onResize: true,
-  onTabItemTap: true
+  onTabItemTap: true,
 };
 
 function compose(...funcs: Function[]) {
-  return function (this: any) {
+  return function(this: any) {
     const ctx = this;
     const args = arguments;
-    return funcs.slice(1).reduce(
-      (acc, func) => acc.then(() => func.apply(ctx, args)),
-      Promise.resolve(funcs[0].apply(ctx, args))
-    );
+    return funcs
+      .slice(1)
+      .reduce(
+        (acc, func) => acc.then(() => func.apply(ctx, args)),
+        Promise.resolve(funcs[0].apply(ctx, args)),
+      );
   };
 }
 
@@ -43,11 +45,11 @@ function combineMixins<D, T>(options: WxPage<D, T>) {
         }
       }
       //mixin与Page中的data深度合并
-      if (propName === "data" && isObject(propValue)) {
+      if (propName === 'data' && isObject(propValue)) {
         finalOptions.data = merge(finalOptions.data || {}, propValue);
       }
       //mixin其他的属性，后面覆盖前面的
-      if (!pageLifeTimesMap[propName] && propName !== "data") {
+      if (!pageLifeTimesMap[propName] && propName !== 'data') {
         finalOptions[propName] = propValue;
       }
     });
