@@ -2,9 +2,10 @@
 
 ### 引入
 在`app.json`或`index.json`中引入组件
+
 ```json
 "usingComponents": {
-  "mo-popup": "path/to/moore/popup/index"
+  "ui-popup": "path/to/components/popup/index"
 }
 ```
 
@@ -14,7 +15,7 @@
 `popup`默认从中间弹出
 
 ```html
-<mo-popup bind:close="close" show="{{show}}">content</mo-popup>
+<ui-popup bind:close="close" show="{{show}}">content</ui-popup>
 ```
 
 ```javascript
@@ -33,19 +34,19 @@ Page({
 通过`position`属性设置 popup 弹出位置
 
 ```html
-<mo-popup
+<ui-popup
   show="{{ show }}"
   position="top"
   bind:close="close"
 >
   content
-</mo-popup>
-<mo-popup 
+</ui-popup>
+<ui-popup 
   bind:close="close" 
   show="{{ show }}" 
   content-style="transform:none;left:100rpx;top:200rpx;">
   content
-</mo-popup>
+</ui-popup>
 ```
 
 ### Props
@@ -54,7 +55,7 @@ Page({
 |-----------|-----------|-----------|-------------|
 | show | 是否显示弹出层 | `Boolean` | `false` |
 | fixed | 是否是fixed定位，否则是absolute定位 | `Boolean` | `true` |
-| transition | 可选值为 `fade` `scale` | `String` | `fade` |
+| transition | 可选值为 `fade` `scale` | `String` | `` |
 | z-index | z-index 层级 | `Number` | `10` |
 | position | 可选值为 `center` `top` `bottom` `right` `left` | `String` | `center` |
 | duration | 动画时长，单位为毫秒 | `Number | Object` | `300` |
@@ -66,6 +67,9 @@ Page({
 | prevent-scroll | 是否阻止滑动穿透事件 | `Boolean` | `true` |
 | content-style | 自定义弹出层样式 | `String` | `` |
 | mask-style | 自定义背景蒙层样式 | `String` | `` |
+| safe-area-inset-bottom | 是否为iPhoneX留出底部安全距离 | `Boolean` | `true` | 
+| safe-area-inset-top | 是否留出顶部安全距离（状态栏高度） | `Boolean` | `false` |
+| safe-tabbar | 是否位于tabbar页面 | `Boolean` | `false` |
 
 ### Events
 

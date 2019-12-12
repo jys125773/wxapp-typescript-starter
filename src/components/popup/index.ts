@@ -18,19 +18,17 @@ Component({
     },
     transition: {
       type: String,
-      value: 'fade',
+      value: '',
     },
     zIndex: {
       type: Number,
       value: 10,
     },
-    // center,left,right,top,bottom
     position: {
       type: String,
       value: 'center',
     },
     duration: {
-      // type: [Object, Number],
       type: Object,
       value: { enter: 300, leave: 200 },
     },
@@ -60,18 +58,29 @@ Component({
     },
     maskStyle: String,
     contentStyle: String,
+    safeAreaInsetBottom: {
+      type: Boolean,
+      value: true
+    },
+    safeAreaInsetTop: {
+      type: Boolean,
+      value: false,
+    },
+    safeTabbar: {
+      type: Boolean,
+      value: false,
+    }
   },
   data: {
     inited: false,
     hidden: true,
-    mounted: false,
     animationStyle: {
       mask: '',
       content: '',
     },
   },
   ready() {
-    this.setData({ mounted: true });
+    this.mounted = true;
   },
   methods: {
     enter() {
@@ -87,18 +96,18 @@ Component({
       });
     },
     getAnimationStyle(show: boolean) {
-      const { position, transition, timingFunction, mounted } = this.data;
+      const { position, transition, timingFunction } = this.data;
       let { duration } = this.data;
-      if (!mounted) {
+      if (!this.mounted) {
         duration = 0;
       }
       const config = `${show ? 'enter' : 'leave'} ${
         duration.enter ? (show ? duration.enter : duration.leave) : duration
-      }ms ${timingFunction} both`;
+        }ms ${timingFunction} both`;
       const maskAnimationStyle = `fade-${config}`;
       const contentAnimationStyle = `${
-        position === 'center' ? transition : 'slide-' + position
-      }-${config}`;
+        transition || (position === 'center' ? 'fade' : 'slide-' + position)
+        }-${config}`;
       return {
         mask: `animation:${maskAnimationStyle};-webkit-animation:${maskAnimationStyle};`,
         content: `animation:${contentAnimationStyle};-webkit-animation:${contentAnimationStyle};`,
@@ -119,6 +128,6 @@ Component({
         this.triggerEvent('afterClose');
       }
     },
-    noop() {},
+    noop() { },
   },
 });

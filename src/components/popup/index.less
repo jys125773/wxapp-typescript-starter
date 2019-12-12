@@ -1,4 +1,7 @@
-.popup {
+@import "../styles/_var.less";
+.ui-popup {
+  position: fixed;
+  
   &__mask {
     position: fixed;
     left: 0;
@@ -7,45 +10,49 @@
     bottom: 0;
   }
 
-  &__content {
-    position: fixed;
-    background-color: #FFFFFF;
-  }
-
-  &__content--center {
+  &--center {
     left: 50%;
     top: 50%;
     transform: translate3d(-50%, -50%, 0);
   }
 
-  &__content--left {
+  &--left {
     left: 0;
     top: 0;
     bottom: 0;
     right: auto;
   }
 
-  &__content--right {
+  &--right {
     left: auto;
     top: 0;
     bottom: 0;
     right: 0;
   }
 
-  &__content--top {
+  &--top {
     left: 0;
     top: 0;
     bottom: auto;
     right: 0;
   }
 
-  &__content--bottom {
+  &--bottom {
     left: 0;
     top: auto;
     bottom: 0;
     right: 0;
   }
 
+  &--bottom&--safe-bottom {
+    padding-bottom: constant(safe-area-inset-bottom);
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+
+  &--safe-top {
+    padding-top: constant(safe-area-inset-top);
+    padding-top: env(safe-area-inset-top);
+  }
 }
 
 @keyframes fade-enter {

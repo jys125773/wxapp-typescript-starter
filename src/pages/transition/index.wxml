@@ -1,0 +1,7 @@
+<view class="container">
+  <button bind:tap="toggle">{{ in ? 'leave' : 'enter' }}</button>
+  <transition name="fade-up" show="{{ in }}">
+    <view class="box">
+    </view>
+  </transition>
+</view>

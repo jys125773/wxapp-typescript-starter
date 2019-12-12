@@ -1,3 +1,10 @@
-<view wx:if="{{ }}" class="transition {{ animateClass }}">
+<view 
+  wx:if="{{ inited }}"
+  hidden="{{ hidden }}" 
+  class="ui-transition custom-class {{ classes }}" 
+  bind:transitionend="binTransitionEnd" 
+  bind:animationend="binAnimationEnd" 
+  catch:touchmove="{{ preventScroll ? 'noop' : '' }}"
+  style="{{ durationStyle + customStyle }}">
   <slot></slot>
 </view>

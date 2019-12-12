@@ -1,0 +1,5 @@
+{
+  "usingComponents": {
+    "transition": "../../components/transition/index"
+  }
+}

@@ -1,105 +1,215 @@
-import { isObject, isNumer } from '../../utils/util';
+import { isNumer, isObject } from '../../utils/util';
 
-const ENTER_CLASS = 'enter-class';
-const ENTER_ACTIVE_CLASS = 'enter-active-class';
-const ENTER_TO_CLASS = 'enter-to-class';
-const LEAVE_CLASS = 'leave-class';
-const LEAVE_ACTIVE_CLASS = 'leave-active-class';
-const LEAVE_TO_CLASS = 'leave-to-class';
+const ENTER_CLASS = 'enter';
+const ENTER_ACTIVE_CLASS = 'enter-active';
+const ENTER_TO_CLASS = 'enter-to';
+const LEAVE_CLASS = 'leave';
+const LEAVE_ACTIVE_CLASS = 'leave-active';
+const LEAVE_TO_CLASS = 'leave-to';
 
-const STATUS_CLASS_MAP = {
-  enter: ENTER_CLASS,
-  entering: `${ENTER_CLASS} ${ENTER_ACTIVE_CLASS}`,
-  entered: ENTER_TO_CLASS,
-  leave: LEAVE_CLASS,
-  leaving: `${LEAVE_CLASS} ${LEAVE_ACTIVE_CLASS}`,
-  leaved: LEAVE_TO_CLASS,
+const ENTERING_STATUS = 1;
+const ENTERED_STATUS = 2;
+const LEAVEING_STATUS = 3;
+const LEAVED_STATUS = 4;
+
+function nextTick(callback) {
+  setTimeout(callback, 16);
 };
 
 Component({
-  externalClasses: [
-    ENTER_CLASS,
-    ENTER_ACTIVE_CLASS,
-    ENTER_TO_CLASS,
-    LEAVE_CLASS,
-    LEAVE_ACTIVE_CLASS,
-    LEAVE_TO_CLASS,
-  ],
+  externalClasses: ['custom-class'],
+  options: {
+    addGlobalClass: true,
+  },
   properties: {
-    in: {
+    show: {
       type: Boolean,
       value: false,
-    },
-    duration: {
-      // type: [Object,Number],
-      type: Object,
-      value: {
-        enter: 300,
-        leave: 300,
-      },
-    },
-    enter: {
-      type: Boolean,
-      value: true,
-    },
-    leave: {
-      type: Boolean,
-      value: true,
-    },
-    mountOnEnter: {
-      type: Boolean,
-      value: false,
-    },
-    unmountOnLeave: {
-      type: Boolean,
-      value: false,
+      observer(value) {
+        if (this.data.hasAttached) {
+          if (value) {
+            this.performEnter();
+          } else {
+            this.performLeave();
+          }
+        }
+      }
     },
     appear: {
       type: Boolean,
       value: false,
     },
+    name: {
+      type: String,
+      value: 'fade',
+    },
+    type: {
+      type: String,
+      value: 'transition',
+    },
+    mode: {
+      type: String,
+      value: '',
+    },
+    duration: {
+      type: null,
+      value: 300,
+    },
+    customStyle: {
+      type: String,
+      value: '',
+    },
+    preventScroll: {
+      type: Boolean,
+      value: false,
+    },
+    mountOnEnter: {
+      type: Boolean,
+      value: true,
+    },
+    unMountOnLeave: {
+      type: Boolean,
+      value: false,
+    },
   },
   data: {
-    animateStatus: '',
-    animateClass: '',
-    mounted: false,
+    status: 0,
+    classes: '',
+    hidden: false,
+    inited: false,
+    durationStyle: '',
+    hasAttached: false,
   },
   attached() {
-
+    const { show, appear, mountOnEnter } = this.data;
+    const inited = show && mountOnEnter;
+    if (show && appear) {
+      this.setData({
+        inited,
+        hasAttached: true,
+        status: ENTERED_STATUS,
+        classes: this.getClasses(LEAVE_TO_CLASS),
+      }, () => {
+        nextTick(() => {
+          this.performEnter();
+        });
+      });
+    } else {
+      this.setData({
+        inited,
+        hidden: !show,
+        hasAttached: true,
+        status: show ? ENTERED_STATUS : LEAVED_STATUS,
+      });
+    }
   },
   methods: {
     performEnter() {
-
+      if (this.data.mode === 'in-out') {
+        this.performEntered();
+        return;
+      }
+      this.triggerEvent('before-enter');
+      this.setData({
+        hidden: false,
+        inited: true,
+        classes: this.getClasses(ENTER_CLASS, ENTER_ACTIVE_CLASS),
+        durationStyle: this.getDurationStyle(ENTERING_STATUS),
+        status: ENTERING_STATUS,
+      }, () => {
+        nextTick(() => {
+          if (this.data.status === ENTERING_STATUS) {
+            this.setData({
+              hidden: false,
+              classes: this.getClasses(ENTER_ACTIVE_CLASS, ENTER_TO_CLASS),
+            });
+          }
+        });
+      });
     },
     performEntered() {
-
+      this.triggerEvent('after-enter');
+      this.setData({
+        hidden: false,
+        classes: this.getClasses(ENTER_TO_CLASS),
+        durationStyle: '',
+        status: ENTERED_STATUS,
+      });
     },
     performLeave() {
-
+      if (this.data.mode === 'out-in') {
+        this.performLeaved();
+        return;
+      }
+      this.triggerEvent('before-leave');
+      this.setData({
+        hidden: false,
+        inited: true,
+        classes: this.getClasses(LEAVE_CLASS, LEAVE_ACTIVE_CLASS),
+        durationStyle: this.getDurationStyle(LEAVEING_STATUS),
+        status: LEAVEING_STATUS,
+      }, () => {
+        nextTick(() => {
+          if (this.data.status === LEAVEING_STATUS) {
+            this.setData({
+              classes: this.getClasses(LEAVE_ACTIVE_CLASS, LEAVE_TO_CLASS),
+            });
+          }
+        });
+      });
     },
     performLeaved() {
-
+      const { unMountOnLeave } = this.data;
+      this.triggerEvent('after-leave');
+      this.setData({
+        hidden: true,
+        inited: !unMountOnLeave,
+        classes: this.getClasses(LEAVE_TO_CLASS),
+        durationStyle: '',
+        status: LEAVED_STATUS,
+      });
     },
-    updateStatus() {
-
-    },
-    getClassNames() {
-
-    },
-    getDurations() {
-      const { duration } = this.data;
-      if (isObject(duration)) {
-        const { enter: _enter, leave: _leave } = duration;
-        return {
-          enter: isNumer(_enter) ? _enter : 0,
-          leave: isNumer(_leave) ? _leave : 0,
-        };
+    onAnimationEnd() {
+      switch (this.data.status) {
+        case ENTERING_STATUS:
+          this.performEntered();
+          break;
+        case LEAVEING_STATUS:
+          this.performLeaved();
+          break;
+        default:
+          break;
       }
-      const _duration = isNumer(duration) ? duration : 0;
-      return {
-        enter: _duration,
-        leave: _duration,
-      };
+    },
+    binAnimationEnd() {
+      if (this.data.type === 'animation') {
+        this.onAnimationEnd();
+      }
+    },
+    binTransitionEnd() {
+      if (this.data.type === 'transition') {
+        this.onAnimationEnd();
+      }
+    },
+    getClasses(...args) {
+      return args.map(arg => this.data.name + '-' + arg).join(' ');
+    },
+    getDurationStyle(status) {
+      const { duration, type } = this.data;
+      if (!duration) return '';
+      let current = -1;
+      if (isNumer(duration)) {
+        current = duration;
+      } else if (isObject(duration)) {
+        const { enter, leave } = duration;
+        if (status === 1 && isNumer(enter)) {
+          current = enter;
+        } else if (status === LEAVEING_STATUS && isNumer(leave)) {
+          current = leave;
+        }
+      }
+      if (current < 0) return '';
+      return `${type}-duration:${current}ms;-webkit-${type}-duration:${current}ms;`;
     },
     noop() { },
   },
