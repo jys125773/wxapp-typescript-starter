@@ -1,0 +1,4 @@
+<text 
+  class="ui-icon iconfont icon-{{ name }} custom-class" 
+  bindtap="bindTap" 
+  style="display:inline-block;color:{{ color }};font-size:{{ size }};{{ customStyle }}" />

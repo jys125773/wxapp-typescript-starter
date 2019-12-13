@@ -1,22 +1,61 @@
-.toast {
-  background-color: rgba(0, 0, 0, 0.8);
-  color: #FFF;
-  border-radius: 4rpx;
-  padding: 14rpx 20rpx;
-}
+@import '../common/styles/var.less';
 
-.toast__text {
-  font-size: 30rpx;
-  line-height: 40rpx;
-}
+.ui-toast {
+  background-color: @black;
+  opacity: 0.8;
+  color: @white;
+  padding: 14rpx 20rpx 18rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 
-.toast--top {
-  top: 20vh !important;
-  transform: translateX(-50%) !important;
-}
+  &__message {
+    font-size: 30rpx;
+    line-height: 40rpx;
+  }
 
-.toast--bottom {
-  top: auto !important;
-  bottom: 20vh !important;
-  transform: translateX(-50%) !important;
+  &--top,
+  &--middle,
+  &--bottom {
+    width: fit-content;
+    max-width: 600rpx;
+    border-radius: 8rpx;
+    overflow: hidden;
+  }
+
+  &--top {
+    top: 20vh !important;
+    transform: translateX(-50%) !important;
+  }
+
+  &--bottom {
+    top: auto !important;
+    bottom: 20vh !important;
+    transform: translateX(-50%) !important;
+  }
+
+  &--icon-type {
+    padding: 34rpx 50rpx 38rpx;
+  }
+
+  &--icon {
+    color: @white  !important;
+    font-size: 80rpx !important;
+    margin-bottom: 20rpx;
+  }
+
+  &--loading-type {
+    padding: 44rpx 50rpx 38rpx;
+
+    .ui-toast__message {
+      margin-top: 30rpx;
+    }
+  }
+
+  &--loading {
+    width: 70rpx !important;
+    height: 70rpx !important;
+    color: @white  !important;
+  }
 }

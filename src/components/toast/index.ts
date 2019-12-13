@@ -1,20 +1,19 @@
 Component({
   data: {
     show: false,
-    title: '',
-    text: '',
+    message: '',
     mask: false,
     maskClosable: false,
     zIndex: 0,
     position: '',
     duration: 0,
+    icon: '',
+    spinner: '',
+    maskColor: '',
   },
   methods: {
     show(options) {
-      this.setData({
-        ...options,
-        show: true,
-      });
+      this.setData({ ...options, show: true });
     },
     hide() {
       this.setData({ show: false });

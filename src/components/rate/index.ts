@@ -1,7 +1,7 @@
 import { rpx2px } from '../../utils/helper';
 
 Component({
-  externalClasses: ['custom-class'],
+  externalClasses: ['custom-class', 'star-class'],
   properties: {
     value: {
       type: Number,
@@ -62,7 +62,7 @@ Component({
       const touch = e.touches[0];
       const margin = rpx2px(_margin);
       const selQuery = this.createSelectorQuery();
-      selQuery.select('.mo-rate').boundingClientRect((rect: any) => {
+      selQuery.select('.ui-rate').boundingClientRect((rect: any) => {
         const { width, left } = rect;
         const starWidth = (width - (max - 1) * margin) / max;
         const offsetX = touch.pageX - left;

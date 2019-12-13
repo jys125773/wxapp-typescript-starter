@@ -1,0 +1,3 @@
+<view class="container">
+  <ui-rate value="{{ value }}" bind:change="change" />
+</view>

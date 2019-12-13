@@ -2,7 +2,12 @@
   "pages":[
     "pages/dashboard/index",
     "pages/popup/index",
-    "pages/transition/index"
+    "pages/transition/index",
+    "pages/countdown/index",
+    "pages/rate/index",
+    "pages/swipeout/index",
+    "pages/toast/index",
+    "pages/parabola/index"
   ],
   "window":{
     "backgroundTextStyle":"light",

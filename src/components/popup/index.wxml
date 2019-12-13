@@ -1,7 +1,7 @@
 <view 
   wx:if="{{ inited && mask || maskClosable }}" 
   hidden="{{ hidden }}" 
-  class="mo-popup__mask mask-class" 
+  class="ui-popup__mask mask-class" 
   catch:touchmove="noop" 
   catch:tap="bindTapMask" 
   style="{{ animationStyle.mask }}z-index:{{ zIndex - 1 }};position:{{ fixed ? 'fixed' : 'absolute' }};background-color:{{ maskColor }};{{ maskStyle }}"></view>

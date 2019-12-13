@@ -2,8 +2,9 @@
   class="ui-rate custom-class" 
   bind:touchmove="{{ !disabled && touchable ? 'onTouch' : '' }}" 
   bind:touchstart="{{ disabled ? '' : 'onTouch' }}">
-  <mo-icon 
+  <ui-icon 
     wx:for="{{ max }}" 
+    custom-class="star-class"
     wx:key="*this"
     size="{{ fontSize }}rpx" 
     color="{{ disabled ? disabledColor :( value - index > 0 ? activeColor : inactiveColor ) }}" 

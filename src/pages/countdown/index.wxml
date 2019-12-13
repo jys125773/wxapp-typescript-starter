@@ -1,0 +1,9 @@
+<view class="">
+  <ui-countdown 
+    custom-class="countdown"
+    format="dd天hh小时mm分ss秒SSS毫秒"
+    now-time="{{ timeNow }}" 
+    start-time="{{ timeStart }}" 
+    end-time="{{ timeEnd }}" 
+    warn-time="{{ timeWarn }}"/>
+</view>

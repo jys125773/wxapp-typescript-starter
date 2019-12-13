@@ -1,4 +1,4 @@
-export default function (delay, noTrailing, callback, debounceMode) {
+export default function(delay, noTrailing, callback, debounceMode) {
   var timeoutID;
   var cancelled = false;
   var lastExec = 0;
@@ -37,7 +37,10 @@ export default function (delay, noTrailing, callback, debounceMode) {
     if (debounceMode === undefined && elapsed > delay) {
       exec();
     } else if (noTrailing !== true) {
-      timeoutID = setTimeout(debounceMode ? clear : exec, debounceMode === undefined ? delay - elapsed : delay);
+      timeoutID = setTimeout(
+        debounceMode ? clear : exec,
+        debounceMode === undefined ? delay - elapsed : delay,
+      );
     }
   }
   wrapper.cancel = cancel;

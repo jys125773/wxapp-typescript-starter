@@ -1,0 +1,9 @@
+<view class="ui-countdown custom-class">
+  <block wx:if="{{ useText }}">{{ timeText }}</block>
+  <block wx:else>
+    <block wx:for="{{ timeList }}" wx:key="index">
+      <text class="digit digit-{{ item.match }}">{{ item.digit }}</text>
+      <text wx:if="{{ item.unit }}" class="unit unit-{{ item.match }}">{{ item.unit }}</text>
+    </block>
+  </block>
+</view>

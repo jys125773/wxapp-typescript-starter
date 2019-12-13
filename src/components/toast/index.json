@@ -1,6 +1,8 @@
 {
   "component": true,
   "usingComponents": {
-    "popup": "../popup/index"
+    "ui-popup": "../popup/index",
+    "ui-icon": "../icon/index",
+    "ui-loading": "../loading/index"
   }
 }

@@ -1,0 +1,3 @@
+<view bind:tap="animate" class="container" hover-class="none" hover-stop-propagation="false">
+  <ui-parabola id="ui-parabola" />
+</view>

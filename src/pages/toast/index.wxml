@@ -1,0 +1,29 @@
+<view class="container">
+  <view>
+    <view class="label">基础用法</view>
+    <view>
+      <button bind:tap="textToast">文字提示</button>
+      <button bind:tap="longTextToast">长文字提示</button>
+    </view>
+  </view>
+  <view>
+    <view class="label">加载提示</view>
+    <view>
+      <button bind:tap="loadToast">加载提示</button>
+    </view>
+  </view>
+  <view>
+    <view class="label">成功/失败提示</view>
+    <view>
+      <button bind:tap="successToast">成功提示</button>
+      <button bind:tap="failToast">失败提示</button>
+    </view>
+  </view>
+  <view>
+    <view class="label">高级用法</view>
+    <view>
+      <button bind:tap="asyncToast">3秒后关闭</button>
+    </view>
+  </view>
+  <toast id="custom-toast" />
+</view>

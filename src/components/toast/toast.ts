@@ -1,7 +1,8 @@
+import { getCurrentPage } from '../../utils/helper';
+
 interface ToastOptions {
   show?: boolean;
-  title?: string | number;
-  text?: string | number;
+  message?: string | number;
   mask?: boolean;
   maskClosable?: boolean;
   zIndex?: number;
@@ -10,13 +11,14 @@ interface ToastOptions {
   duration?: number | { enter: number; leave: number };
   stayTime?: number;
   selector?: string;
+  icon?: String;
+  spinner?: String;
+  maskColor?: String;
   onClose?: () => void;
 }
-
 const defaultOptions: ToastOptions = {
   show: true,
-  title: '',
-  text: '',
+  message: '',
   mask: true,
   maskClosable: true,
   zIndex: 1000,
@@ -24,14 +26,16 @@ const defaultOptions: ToastOptions = {
   stayTime: 2000,
   position: 'middle',
   selector: '#custom-toast',
-  onClose: () => {},
+  icon: '',
+  spinner: '',
+  maskColor: '',
+  onClose: () => { },
 };
-
 function toast(options: ToastOptions | string) {
   if (typeof options === 'string') {
     options = {
       ...defaultOptions,
-      text: options,
+      message: options,
     };
   } else {
     options = {
@@ -39,36 +43,31 @@ function toast(options: ToastOptions | string) {
       ...options,
     };
   }
-
   const { onClose, stayTime, selector } = options;
-  const context = options.context || getCurrentPages().pop();
-  const toast = context && context.selectComponent(selector);
-
-  if (!toast) {
+  const context = options.context || getCurrentPage();
+  const ref = context && context.selectComponent(selector);
+  if (!ref) {
     console.warn(`未找到id=${selector}的toast组件`);
     return;
   }
-
   delete options.onClose;
   delete options.context;
   delete options.selector;
-
-  if (toast.timer) {
-    clearTimeout(toast.timer);
-    toast.timer = null;
+  if (ref.timer) {
+    clearTimeout(ref.timer);
+    ref.timer = null;
   }
-
-  toast.onClose = onClose;
-  toast.show(options);
-
+  ref.onClose = onClose;
+  ref.show(options);
   if (stayTime && stayTime > 0) {
-    toast.timer = setTimeout(() => {
-      toast.hide();
+    ref.timer = setTimeout(() => {
+      ref.hide();
       if (onClose) {
         onClose();
       }
     }, stayTime);
   }
+  return ref;
 }
 
 export default toast;

@@ -1,0 +1,10 @@
+.container .label {
+  padding: 20rpx 0;
+  color: #333;
+}
+
+.container button {
+  display: inline-block;
+  margin-right: 20rpx;
+  margin-bottom: 20rpx;
+}

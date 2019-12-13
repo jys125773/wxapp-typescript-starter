@@ -1,13 +1,22 @@
-<popup 
-  custom-class="toast--{{ position }}"
+<ui-popup 
+  custom-class="ui-toast--{{ position }}"
   show="{{show}}" 
   z-index="{{ zIndex }}" 
   mask="{{ mask }}" 
-  mask-color="rgba(0,0,0,0)"
+  mask-color="{{ maskColor || 'rgba(0,0,0,0)'}}"
   duration="{{ duration }}"
   mask-closable="{{ maskClosable }}"
   bind:close="hide">
-  <view class="toast">
-    <view class="toast__text">{{ text }}</view>
+  <view class="ui-toast ui-toast--{{ icon ? 'icon' : ( spinner ? 'loading' : 'text' ) }}-type">
+    <ui-icon 
+      wx:if="{{ icon }}" 
+      custom-class="ui-toast--icon" 
+      name="{{ icon }}" />
+    <ui-loading 
+      wx:elif="{{ spinner }}" 
+      custom-class="ui-toast--loading" 
+      line-width="4rpx"
+      type="{{ spinner }}"/>
+    <text class="ui-toast__message">{{ message }}</text>
   </view>
-</popup>
+</ui-popup>
