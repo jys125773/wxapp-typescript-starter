@@ -1,5 +1,6 @@
 {
   "usingComponents": {
-    "swipeout": "../../components/swipeout/index"
+    "demo-block": "../common/components/demo-block/index",
+    "ui-swipeout": "../../components/swipeout/index"
   }
 }

@@ -1,0 +1,18 @@
+<view class="container">
+  <demo-block title="加载类型">
+    <view>
+      <ui-loading custom-class="type-loading" type="circle" />
+      <ui-loading custom-class="type-loading" type="fading-circle" />
+      <ui-loading custom-class="type-loading" type="double-bounce" />
+      <ui-loading custom-class="type-loading" type="three-bounce" />
+      <ui-loading custom-class="type-loading" type="pulse" />
+      <ui-loading custom-class="type-loading" type="wave" />
+      <ui-loading custom-class="type-loading" type="line" />
+    </view>
+  </demo-block>
+  <demo-block title="自定义颜色">
+    <view>
+      <ui-loading color="red" size="60rpx" type="wave" />
+    </view>
+  </demo-block>
+</view>

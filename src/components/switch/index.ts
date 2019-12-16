@@ -4,8 +4,18 @@ Component({
     checked: Boolean,
     loading: Boolean,
     disabled: Boolean,
-    activeColor: String,
-    inactiveColor: String,
+    activeColor: {
+      type: String,
+      value: '#07c160',
+    },
+    inactiveColor: {
+      type: String,
+      value: '#fff',
+    },
+    loadingColor: {
+      type: String,
+      value: '#ccc',
+    },
     size: {
       type: String,
       value: '50rpx',
@@ -13,8 +23,10 @@ Component({
   },
   methods: {
     bindTap() {
-      const { checked } = this.data;
-      this.triggerEvent('change', { checked: !checked });
+      const { checked, disabled } = this.data;
+      if (!disabled) {
+        this.triggerEvent('change', { checked: !checked });
+      }
     },
   },
 });

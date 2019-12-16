@@ -1,8 +1,8 @@
 <view 
-  bind:tap="bindTap" 
-  class="switch switch--{{ checked ? 'on' : 'off' }} {{ disabled ? 'switch--disabled' : '' }} custom-class" 
-  style="font-size:{{size}};">
-  <view class="switch__node node-class">
-    <ui-loading wx:if="{{loading}}" size="50%" custom-class="switch__loading" />
+  class="ui-switch ui-switch--{{ checked ? 'on' : 'off' }} {{ disabled ? 'ui-switch--disabled' : '' }} custom-class" 
+  style="font-size:{{size}};background-color:{{ checked ? activeColor : inactiveColor }};border-color:{{ checked ? activeColor : '#DFDFDF' }}"
+  bind:tap="bindTap">
+  <view class="ui-switch__node node-class">
+    <ui-loading wx:if="{{loading}}" size="50%" color="{{ loadingColor }}" custom-class="ui-switch__loading" />
   </view>
 </view>

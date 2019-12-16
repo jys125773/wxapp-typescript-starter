@@ -7,7 +7,8 @@
     "pages/rate/index",
     "pages/swipeout/index",
     "pages/toast/index",
-    "pages/parabola/index"
+    "pages/parabola/index",
+    "pages/switch/index"
   ],
   "window":{
     "backgroundTextStyle":"light",

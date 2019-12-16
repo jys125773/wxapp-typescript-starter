@@ -1,13 +1,13 @@
-@i-prefix: loading;
+@ui-prefix: ui-loading;
 
-.@{i-prefix} {
+.@{ui-prefix} {
   display: inline-block;
   vertical-align: middle;
- 
+
   &--double-bounce {
     position: relative;
 
-    .@{i-prefix}__dot {
+    .@{ui-prefix}__dot {
       width: 100%;
       height: 100%;
       border-radius: 100%;
@@ -25,12 +25,12 @@
   }
 
   &--three-bounce {
-    display: flex;
+    display: inline-flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
 
-    .@{i-prefix}__dot {
+    .@{ui-prefix}__dot {
       width: 30%;
       height: 30%;
       background-color: currentColor;
@@ -51,7 +51,7 @@
     .generate-circle(12);
     position: relative;
 
-    .@{i-prefix}__dot {
+    .@{ui-prefix}__dot {
       width: 100%;
       height: 100%;
       position: absolute;
@@ -75,7 +75,7 @@
     .generate-circle(12);
     position: relative;
 
-    .@{i-prefix}__dot {
+    .@{ui-prefix}__dot {
       width: 100%;
       height: 100%;
       position: absolute;
@@ -96,7 +96,7 @@
   }
 
   &--line {
-    .@{i-prefix}__dot {
+    .@{ui-prefix}__dot {
       width: 100%;
       height: 100%;
       border: 2rpx solid;
@@ -115,11 +115,11 @@
   }
 
   &--wave {
-    display: flex;
+    display: inline-flex;
     justify-content: space-between;
     align-items: center;
 
-    .@{i-prefix}__dot {
+    .@{ui-prefix}__dot {
       background-color: currentColor;
       height: 100%;
       width: 8%;
@@ -150,7 +150,7 @@
 }
 
 .generate-circle(@n, @i: 1) when (@i =< @n) {
-  .@{i-prefix}__dot:nth-of-type(@{i}) {
+  .@{ui-prefix}__dot:nth-of-type(@{i}) {
     transform: rotate(@i * 30deg);
 
     &:before {

@@ -1,9 +1,14 @@
-<view class="">
-  <ui-countdown 
-    custom-class="countdown"
-    format="dd天hh小时mm分ss秒SSS毫秒"
-    now-time="{{ timeNow }}" 
-    start-time="{{ timeStart }}" 
-    end-time="{{ timeEnd }}" 
-    warn-time="{{ timeWarn }}"/>
+<view class="container">
+  <demo-block title="基础用法">
+    <ui-countdown now-time="{{ timeNow }}" start-time="{{ timeStart }}" end-time="{{ timeEnd }}" warn-time="{{ timeWarn }}" />
+  </demo-block>
+  <demo-block title="自定义格式">
+    <ui-countdown format="dd天hh小时mm分ss秒SSS毫秒" now-time="{{ timeNow }}" start-time="{{ timeStart }}" end-time="{{ timeEnd }}" warn-time="{{ timeWarn }}" />
+  </demo-block>
+  <demo-block title="毫秒级">
+    <ui-countdown format="hh:mm:ss.SSS" now-time="{{ timeNow }}" start-time="{{ timeStart }}" end-time="{{ timeEnd }}" warn-time="{{ timeWarn }}" />
+  </demo-block>
+  <demo-block title="自定义样式">
+    <ui-countdown custom-class="countdown" format="hh:mm:ss" now-time="{{ timeNow }}" start-time="{{ timeStart }}" end-time="{{ timeEnd }}" warn-time="{{ timeWarn }}" />
+  </demo-block>
 </view>

@@ -4,4 +4,5 @@ page {
 
 .container {
   height: 100%;
+  background-color: seashell;
 }

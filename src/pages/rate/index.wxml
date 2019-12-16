@@ -1,3 +1,17 @@
 <view class="container">
-  <ui-rate value="{{ value }}" bind:change="change" />
+  <demo-block title="基础用法">
+    <ui-rate data-key="rate1" value="{{ rate1 }}" bind:change="change" />
+  </demo-block>
+  <demo-block title="半星">
+    <ui-rate allow-half data-key="rate2" value="{{ rate2 }}" bind:change="change" />
+  </demo-block>
+  <demo-block title="自定义数量">
+    <ui-rate allow-half data-key="rate3" value="{{ rate3 }}" bind:change="change" max="{{ 6 }}" />
+  </demo-block>
+  <demo-block title="禁用状态">
+    <ui-rate disabled data-key="rate4" value="{{ rate4 }}" bind:change="change" />
+  </demo-block>
+  <demo-block title="不可滑动">
+    <ui-rate touchable="{{ false }}" data-key="rate5" value="{{ rate5 }}" bind:change="change" />
+  </demo-block>
 </view>

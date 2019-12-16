@@ -1,1 +1,1 @@
-<view hidden="{{hidden}}" class="parabola custom-class" style="left:{{left}}px;top:{{top}}px;" />
+<view hidden="{{hidden}}" class="ui-parabola custom-class" style="left:{{left}}px;top:{{top}}px;" />

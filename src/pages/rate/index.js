@@ -1,9 +1,12 @@
 Page({
   data: {
-    value: 1.5
+    rate1: 0,
+    rate2: 1.5,
+    rate3: 3,
+    rate4: 2,
   },
   change(e) {
-    const { detail: { value } } = e;
-    this.setData({ value });
+    const { target: { dataset: { key } }, detail: { value } } = e;
+    this.setData({ [key]: value });
   }
 })

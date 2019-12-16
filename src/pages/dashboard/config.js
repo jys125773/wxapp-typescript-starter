@@ -31,6 +31,10 @@ export default [
         name: 'Rate 评分',
         path: '/pages/rate/index',
       },
+      {
+        name: 'Switch 开关选择器',
+        path: '/pages/switch/index',
+      },
     ],
   },
   {
@@ -43,6 +47,10 @@ export default [
       {
         name: 'Tost 轻提示',
         path: '/pages/toast/index',
+      },
+      {
+        name: 'Loading 加载中',
+        path: '/pages/loading/index',
       },
     ],
   },

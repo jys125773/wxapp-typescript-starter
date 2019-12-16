@@ -1,47 +1,64 @@
 @import '../common/styles/var.less';
 
-.switch {
+@ui-prefix: ui-switch;
+
+.@{ui-prefix} {
   display: inline-block;
   position: relative;
-  width: 2em;
-  border: 2rpx solid rgba(0, 0, 0, .1);
+  width: 1.7em;
+  height: 1em;
+  border-width: 2rpx;
+  border-style: solid;
   border-radius: 1em;
   box-sizing: initial;
-  transition: background-color .3s;
-}
-
-.switch,
-.switch__node {
-  height: 1em;
   background-color: @white;
-}
+  transition: background-color 0.1s, border 0.1s;
 
-.switch__node {
-  top: 0;
-  left: 0;
-  position: absolute;
-  border-radius: 100%;
-  width: 1em;
-  z-index: 1;
-  transition: .3s;
-  box-shadow: 0 6rpx 2rpx 0 rgba(0, 0, 0, .05), 0 4rpx 4rpx 0 rgba(0, 0, 0, .1), 0 6rpx 6rpx 0 rgba(0, 0, 0, .05);
-}
+  &::before {
+    content: " ";
+    display: block;
+    top: 0;
+    left: 0;
+    position: absolute;
+    height: 1em;
+    width: 1.7em;
+    border-radius: 1em;
+    background-color: @white;
+    transition: transform 0.3s cubic-bezier(0.45, 1, 0.4, 1);
+  }
 
-.switch__loading {
-  top: 25%;
-  left: 25%;
-  position: absolute !important;
-}
+  &__node {
+    height: 1em;
+    width: 1em;
+    background-color: @white;
+    top: 0;
+    left: 0;
+    position: absolute;
+    border-radius: 100%;
+    z-index: 1;
+    transition: .3s;
+    box-shadow: 0 6rpx 2rpx 0 fade(@black, 5%), 0 4rpx 4rpx 0 fade(@black, 10%), 0 6rpx 6rpx 0 fade(@black, 5%);
+    transition: transform 0.3s cubic-bezier(0.4, 0.4, 0.25, 1.35);
+  }
 
-.switch--on {
-  background-color: @green;
-}
+  &__loading {
+    top: 25%;
+    left: 25%;
+    position: absolute !important;
+  }
 
-.switch--on .switch__node {
-  -webkit-transform: translateX(1em);
-  transform: translateX(1em);
-}
+  &--on {
 
-.switch--disabled {
-  opacity: 0.4;
+    &::before {
+      transform: scale(0);
+    }
+
+    .@{ui-prefix}__node {
+      transform: translateX(0.7em);
+    }
+  }
+
+  &--disabled {
+    opacity: 0.4;
+  }
 }

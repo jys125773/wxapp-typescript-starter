@@ -1,5 +1,8 @@
 Component({
   externalClasses: ['custom-class'],
+  options: {
+    addGlobalClass: true,
+  },
   properties: {
     nowTime: {
       type: Number,
