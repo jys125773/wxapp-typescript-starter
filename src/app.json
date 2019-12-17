@@ -8,7 +8,9 @@
     "pages/swipeout/index",
     "pages/toast/index",
     "pages/parabola/index",
-    "pages/switch/index"
+    "pages/switch/index",
+    "pages/sticky/index",
+    "pages/dialog/index"
   ],
   "window":{
     "backgroundTextStyle":"light",

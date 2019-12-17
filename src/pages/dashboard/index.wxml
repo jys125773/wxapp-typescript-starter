@@ -1,4 +1,4 @@
-<view class="dashboard-page">
+<view class="container">
   <view class="cate-section" wx:for="{{cateList}}" wx:key="index" wx:for-item="cateItem">
     <view class="cate-title hairline--bottom">{{cateItem.name}}</view>
     <view class="component-items">

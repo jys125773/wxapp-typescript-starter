@@ -41,6 +41,10 @@ export default [
     name: '反馈组件',
     items: [
       {
+        name: 'Dialog 弹出框',
+        path: '/pages/dialog/index',
+      },
+      {
         name: 'Swipeout 滑动单元格',
         path: '/pages/swipeout/index',
       },
@@ -60,6 +64,10 @@ export default [
       {
         name: 'Countdown 倒计时',
         path: '/pages/countdown/index',
+      },
+      {
+        name: 'Sticky 吸顶容器',
+        path: '/pages/sticky/index',
       },
     ],
   },

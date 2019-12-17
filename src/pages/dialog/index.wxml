@@ -1,0 +1,3 @@
+<view class="container">
+  <ui-dialog></ui-dialog>
+</view>

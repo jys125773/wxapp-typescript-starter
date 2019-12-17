@@ -1,0 +1,5 @@
+<view class="ui-sticky custom-class" style="{{ containerStyle }}">
+  <view class="ui-sticky__content" style="{{ contentStyle }}">
+    <slot />
+  </view>
+</view>
