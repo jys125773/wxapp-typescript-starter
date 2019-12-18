@@ -1,0 +1,6 @@
+<block>
+  <view wx:if="{{ title }}" class="ui-cell-group__title">{{ title }}</view>
+  <view class="ui-cell-group custom-class {{ border ? 'ui-hairline--top-bottom' : '' }}">
+    <slot />
+  </view>
+</block>

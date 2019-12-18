@@ -4,65 +4,8 @@ page {
   background: #f2f3f5;
   min-height: 100vh;
   box-sizing: border-box;
-  padding: 0 20rpx 200rpx;
   -webkit-font-smoothing: antialiased;
   font-family: 'PingFang SC', Helvetica, 'STHeiti STXihei', 'Microsoft YaHei', Tohoma, Arial, sans-serif;
-}
-
-.hairline,
-.hairline--bottom,
-.hairline--left,
-.hairline--right,
-.hairline--surround,
-.hairline--top,
-.hairline--top-bottom {
-  position: relative
-}
-
-.hairline--bottom:after,
-.hairline--left:after,
-.hairline--right:after,
-.hairline--surround:after,
-.hairline--top-bottom:after,
-.hairline--top:after,
-.hairline:after {
-  position: absolute;
-  box-sizing: border-box;
-  -webkit-transform-origin: center;
-  transform-origin: center;
-  content: " ";
-  pointer-events: none;
-  top: -50%;
-  right: -50%;
-  bottom: -50%;
-  left: -50%;
-  border: 0 solid #eee;
-  -webkit-transform: scale(.5);
-  transform: scale(.5)
-}
-
-.hairline--top:after {
-  border-top-width: 1rpx;
-}
-
-.hairline--left:after {
-  border-left-width: 1rpx;
-}
-
-.hairline--right:after {
-  border-right-width: 1rpx;
-}
-
-.hairline--bottom:after {
-  border-bottom-width: 1rpx;
-}
-
-.hairline--top-bottom:after {
-  border-width: 1rpx;
-}
-
-.hairline--surround:after {
-  border-width: 1rpx;
 }
 
 button {

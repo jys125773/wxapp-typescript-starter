@@ -1,0 +1,46 @@
+<view class="container">
+  <demo-block padding="{{ false }}" title="基础用法">
+    <ui-cell-group>
+      <ui-cell required title="单元格" value="内容" />
+      <ui-cell title="单元格" value="内容" label="描述信息" border="{{ false }}" />
+    </ui-cell-group>
+  </demo-block>
+  <demo-block padding="{{ false }}" title="单元格大小">
+    <ui-cell-group>
+      <ui-cell title="单元格" value="内容" size="large" />
+      <ui-cell title="单元格" value="内容" size="large" use-label-slot border="{{ false }}">
+        <view slot="label">描述信息</view>
+      </ui-cell>
+    </ui-cell-group>
+  </demo-block>
+  <demo-block padding="{{ false }}" title="展示图标">
+    <ui-cell title="单元格" value="内容" icon="star-f" border="{{ false }}" />
+  </demo-block>
+  <demo-block padding="{{ false }}" title="展示箭头">
+    <ui-cell title="单元格" is-link />
+    <ui-cell title="单元格" value="内容" is-link />
+    <ui-cell title="单元格" is-link arrow-direction="down" value="内容" border="{{ false }}" />
+  </demo-block>
+  <demo-block padding="{{ false }}" title="页面跳转">
+    <ui-cell title="单元格" is-link url="/pages/dashboard/index" />
+    <ui-cell title="单元格" is-link url="/pages/dashboard/index" link-type="redirectTo" />
+  </demo-block>
+  <demo-block padding="{{ false }}" title="分组标题">
+    <ui-cell-group title="分组 1">
+      <ui-cell title="单元格" value="内容" />
+    </ui-cell-group>
+    <ui-cell-group title="分组 2">
+      <ui-cell title="单元格" value="内容" />
+    </ui-cell-group>
+  </demo-block>
+  <demo-block padding="{{ false }}" title="使用插槽">
+    <ui-cell value="内容" icon="star-f" is-link>
+      <view slot="title">
+        <view class="title">单元格</view>
+      </view>
+    </ui-cell>
+    <ui-cell title="单元格" border="{{ false }}">
+      <ui-icon slot="right-icon" name="search" />
+    </ui-cell>
+  </demo-block>
+</view>

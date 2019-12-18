@@ -4,7 +4,7 @@ Component({
     name: String,
     color: {
       type: String,
-      value: '#333',
+      value: '',
     },
     size: {
       type: String,

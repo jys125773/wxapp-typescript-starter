@@ -1,10 +1,21 @@
 Page({
   data: {
+    transitionName: '',
     in: false,
   },
-  toggle() {
+  animate(e) {
+    const { type } = e.target.dataset;
     this.setData({
-      in: !this.data.in
+      in: true,
+      transitionName: type,
     });
+  },
+  afterEnter() {
+    setTimeout(() => {
+      this.setData({ in: false });
+    }, 600);
+  },
+  afterLeave() {
+
   }
 });
