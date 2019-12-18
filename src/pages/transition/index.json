@@ -1,5 +1,7 @@
 {
   "usingComponents": {
-    "transition": "../../components/transition/index"
+    "transition": "../../components/transition/index",
+    "ui-cell": "../../components/cell/index",
+    "demo-block": "../common/components/demo-block/index"
   }
 }

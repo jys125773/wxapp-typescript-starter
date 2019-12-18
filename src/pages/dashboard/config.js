@@ -7,13 +7,13 @@ export default [
       //   path: '/pages/button/index',
       // },
       // {
-      //   name: 'Cell 单元格',
-      //   path: '/pages/cell/index',
-      // },
-      // {
       //   name: 'Icon 图标',
       //   path: '/pages/icon/index',
       // },
+      {
+        name: 'Cell 单元格',
+        path: '/pages/cell/index',
+      },
       {
         name: 'Transition 过渡',
         path: '/pages/transition/index',

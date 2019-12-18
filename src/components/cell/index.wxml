@@ -1,0 +1,19 @@
+<view class="ui-cell custom-class {{ size ? 'ui-cell--' + size : '' }} {{ center ? 'ui-cell--center' : '' }} {{ required ? 'ui-cell--required' : '' }} {{ border ? '' : 'ui-cell--borderless' }} {{ (isLink || clickable) ? 'ui-cell--clickable' : '' }}" hover-class="ui-cell--hover hover-class" hover-stay-time="{{ 70 }}" style="{{ customStyle }}" bind:tap="bindTap">
+  <ui-icon wx:if="{{ icon }}" name="{{ icon }}" class="ui-cell__left-icon-c" custom-class="ui-cell__left-icon" />
+  <slot wx:else name="icon" />
+  <view style="{{ titleWidth ? 'max-width:' + titleWidth + ';min-width:' + titleWidth : '' }}" class="ui-cell__title title-class">
+    <block wx:if="{{ title }}">{{ title }}</block>
+    <slot wx:else name="title" />
+    <view wx:if="{{ label || useLabelSlot }}" class="ui-cell__label label-class">
+      <slot wx:if="{{ useLabelSlot }}" name="label" />
+      <block wx:elif="{{ label }}">{{ label }}</block>
+    </view>
+  </view>
+  <view class="ui-cell__value value-class">
+    <block wx:if="{{ value || value === 0 }}">{{ value }}</block>
+    <slot wx:else />
+  </view>
+  <ui-icon wx:if="{{ isLink }}" name="{{ arrowDirection ? 'arrow' + '-' + arrowDirection : 'arrow-right' }}" class="ui-cell__right-icon-c right-icon-class" custom-class="ui-cell__right-icon" />
+  <slot wx:else name="right-icon" />
+  <slot name="extra" />
+</view>

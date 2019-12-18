@@ -1,7 +1,19 @@
 <view class="container">
-  <button bind:tap="toggle">{{ in ? 'leave' : 'enter' }}</button>
-  <transition name="slide-fade" duration="" show="{{ in }}">
-    <view class="box">
-    </view>
+  <demo-block title="内置动画" padding="{{false}}">
+    <ui-cell title="fade" data-type="fade" clickable is-link bind:click="animate" />
+    <ui-cell title="fade-up" data-type="fade-up" clickable is-link bind:click="animate" />
+    <ui-cell title="fade-down" data-type="fade-up" clickable is-link bind:click="animate" />
+    <ui-cell title="fade-left" data-type="fade-left" clickable is-link bind:click="animate" />
+    <ui-cell title="fade-right" data-type="fade-right" clickable is-link bind:click="animate" />
+    <ui-cell title="slide-up" data-type="slide-up" clickable is-link bind:click="animate" />
+    <ui-cell title="slide-down" data-type="slide-down" clickable is-link bind:click="animate" />
+    <ui-cell title="slide-left" data-type="slide-left" clickable is-link bind:click="animate" />
+    <ui-cell title="slide-right" data-type="slide-right" clickable is-link bind:click="animate" />
+  </demo-block>
+  <demo-block title="自定义动画" padding="{{false}}">
+    <ui-cell title="slide-fade" data-type="slide-fade" clickable is-link bind:click="animate" />
+  </demo-block>
+  <transition name="{{ transitionName }}" show="{{ in }}" bind:after-enter="afterEnter" bind:after-leave="afterLeave" custom-class="box-c">
+    <view class="box"></view>
   </transition>
 </view>
