@@ -1,3 +1,20 @@
 <view class="container">
-  <ui-dialog></ui-dialog>
+  <demo-block title="提示弹框">
+    <button class="button" bind:tap="alert">提示弹框</button>
+    <button class="button" bind:tap="noTitleAlert">提示弹框（无标题）</button>
+    <button class="button" bind:tap="closeIconComfirm">提示弹框（关闭icon）</button>
+  </demo-block>
+  <demo-block title="确认弹框">
+    <button class="button" bind:tap="comfirm">确认弹框</button>
+  </demo-block>
+  <demo-block title="异步关闭">
+    <button class="button" bind:tap="aysncComfirm">异步关闭</button>
+  </demo-block>
+   <demo-block title="垂直排列">
+    <button class="button" bind:tap="verticalShow">垂直排列</button>
+  </demo-block>
+   <demo-block title="高级用法">
+    <button class="button" bind:tap="advancedShow">高级用法</button>
+  </demo-block>
+  <ui-dialog id="custom-dialog" />
 </view>

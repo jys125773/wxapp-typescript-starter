@@ -1,7 +1,6 @@
 import { getCurrentPage } from '../../utils/helper';
 
 interface ToastOptions {
-  show?: boolean;
   message?: string | number;
   mask?: boolean;
   maskClosable?: boolean;
@@ -16,8 +15,7 @@ interface ToastOptions {
   maskColor?: String;
   onClose?: () => void;
 }
-const defaultOptions: ToastOptions = {
-  show: true,
+export const defaultToastOptions = {
   message: '',
   mask: true,
   maskClosable: true,
@@ -34,12 +32,12 @@ const defaultOptions: ToastOptions = {
 function toast(options: ToastOptions | string) {
   if (typeof options === 'string') {
     options = {
-      ...defaultOptions,
+      ...defaultToastOptions,
       message: options,
     };
   } else {
     options = {
-      ...defaultOptions,
+      ...defaultToastOptions,
       ...options,
     };
   }

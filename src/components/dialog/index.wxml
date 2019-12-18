@@ -9,13 +9,15 @@
   mask-color="{{ maskColor }}" 
   destroy-on-close="{{ destroyOnClose }}" 
   prevent-scroll="{{ preventScroll }}" 
-  content-style="border-radius:12rpx;overflow:hidden;width:600rpx;{{ popupStyle }}">
+  content-style="border-radius:12rpx;overflow:hidden;width:600rpx;{{ popupStyle }}"
+  bind:close="hide">
   <view class="ui-dialog custom-class">
     <ui-icon 
       wx:if="{{ closable }}" 
       custom-class="ui-dialog__close-icon" 
-      size="40rpx" 
-      name="close" />
+      size="36rpx" 
+      name="close" 
+      bind:tap="hide"/>
     <view wx:if="{{ title }}" class="ui-dialog__header header-class">{{ title }}</view>
     <slot wx:if="{{ useSlot }}" />
     <view wx:else class="ui-dialog__content content-class">{{ content }}</view>
@@ -25,8 +27,9 @@
       <button 
         wx:for="{{ buttons }}" 
         wx:key="index"
+        data-index="{{ index }}"
         class="ui-dialog__button {{ item.class }}" 
-        style="{{ textColor ? 'color:' + textColor  : '' }}"
+        style="{{ item.textColor ? 'color:' + item.textColor  : '' }}"
         hover-class="{{ item.hoverclass || 'ui-dialog__button--hover'}}"
         disabled="{{ item.disabled }}"
         loading="{{ item.loading }}"
@@ -42,13 +45,13 @@
         send-message-img="{{ item.sendMessageImg }}"
         app-parameter="{{ item.appParameter }}"
         show-message-card="{{ item.showMessageCard }}"
-        bindgetuserinfo="{{ item.onGetUserInfo }}"
-        bindcontact="{{ item.onContact }}"
-        bindgetphonenumber="{{ item.onGetPhoneNumber }}"
-        binderror="{{ item.onError }}"
-        bindopensetting="{{ item.onOpenSetting }}"
-        bindlaunchapp="{{ item.onLaunchApp }}"
-        bindtap="{{ item.onTap }}">
+        bindgetuserinfo="bindgetuserinfo"
+        bindcontact="bindcontact"
+        bindgetphonenumber="bindgetphonenumber"
+        binderror="binderror"
+        bindopensetting="bindopensetting"
+        bindlaunchapp="bindlaunchapp"
+        bindtap="bindtap">
         {{ item.text }}
       </button>
     </view>

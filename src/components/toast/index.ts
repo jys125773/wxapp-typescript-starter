@@ -1,15 +1,47 @@
+import { defaultToastOptions } from './toast';
+
 Component({
-  data: {
-    show: false,
-    message: '',
-    mask: false,
-    maskClosable: false,
-    zIndex: 0,
-    position: '',
-    duration: 0,
-    icon: '',
-    spinner: '',
-    maskColor: '',
+  properties: {
+    show: {
+      type: Boolean,
+      value: false,
+    },
+    message: {
+      type: String,
+      value: defaultToastOptions.message,
+    },
+    mask: {
+      type: Boolean,
+      value: defaultToastOptions.mask,
+    },
+    maskClosable: {
+      type: Boolean,
+      value: defaultToastOptions.maskClosable,
+    },
+    zIndex: {
+      type: Number,
+      value: defaultToastOptions.zIndex,
+    },
+    position: {
+      type: String,
+      value: defaultToastOptions.position,
+    },
+    duration: {
+      type: null,
+      value: defaultToastOptions.duration,
+    },
+    icon: {
+      type: String,
+      value: defaultToastOptions.icon,
+    },
+    spinner: {
+      type: String,
+      value: defaultToastOptions.spinner,
+    },
+    maskColor: {
+      type: String,
+      value: defaultToastOptions.maskColor,
+    },
   },
   methods: {
     show(options) {

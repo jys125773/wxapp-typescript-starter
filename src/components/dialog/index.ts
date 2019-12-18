@@ -1,3 +1,6 @@
+import { isFunction } from '../../utils/util';
+import { defaultDialogOptions } from './dialog';
+
 Component({
   externalClasses: [
     'custom-class',
@@ -11,77 +14,67 @@ Component({
   properties: {
     show: {
       type: Boolean,
-      value: true,
+      value: false,
     },
     transition: {
       type: String,
-      value: '',
+      value: defaultDialogOptions.transition,
     },
     zIndex: {
       type: Number,
-      value: 10,
+      value: defaultDialogOptions.zIndex,
     },
     duration: {
       type: Object,
-      value: { enter: 300, leave: 200 },
+      value: defaultDialogOptions.duration,
     },
     timingFunction: {
       type: String,
-      value: 'ease',
+      value: defaultDialogOptions.timingFunction,
     },
     mask: {
       type: Boolean,
-      value: true,
+      value: defaultDialogOptions.mask,
     },
     maskClosable: {
       type: Boolean,
-      value: true,
+      value: defaultDialogOptions.maskClosable,
     },
     maskColor: {
       type: String,
-      value: 'rgba(0,0,0,0.5)',
+      value: defaultDialogOptions.maskColor,
     },
     destroyOnClose: {
       type: Boolean,
-      value: false,
+      value: defaultDialogOptions.destroyOnClose,
     },
     preventScroll: {
       type: Boolean,
-      value: true,
+      value: defaultDialogOptions.preventScroll,
     },
     title: {
       type: String,
-      value: '标题',
+      value: defaultDialogOptions.title,
     },
     content: {
       type: String,
-      value: '文字内文字内文字内文字内文字内',
+      value: defaultDialogOptions.content,
     },
     verticalButtons: {
       type: Boolean,
-      value: false,
+      value: defaultDialogOptions.verticalButtons,
     },
     buttons: {
       type: Array,
-      value: [
-        {
-          text: '退出',
-        },
-        {
-          text: '取消',
-        },
-        {
-          text: '确定',
-        }
-      ],
+      value: defaultDialogOptions.buttons,
     },
     closable: {
       type: Boolean,
-      value: true,
+      value: defaultDialogOptions.closable,
     },
     popupStyle: {
       type: String,
-      value: '',
+      value: defaultDialogOptions.popupStyle,
     },
     useSlot: {
       type: Boolean,
@@ -94,6 +87,51 @@ Component({
     },
     hide() {
       this.setData({ show: false });
+    },
+    bindgetuserinfo(e) {
+      this.performEvent(e, 'getuserinfo', 'onGetUserInfo');
+    },
+    bindcontact(e) {
+      this.performEvent(e, 'contact', 'onContact');
+    },
+    bindgetphonenumber(e) {
+      this.performEvent(e, 'getphonenumber', 'onGetPhoneNumber');
+    },
+    binderror(e) {
+      this.performEvent(e, 'error', 'onError');
+    },
+    bindopensetting(e) {
+      this.performEvent(e, 'opensetting', 'onOpenSetting');
+    },
+    bindtap(e) {
+      this.performEvent(e, 'tap', 'onTap');
+    },
+    performEvent(e: any, eventName: string, callbackName: string) {
+      const { index } = e.target.dataset;
+      const { buttons } = this.data;
+      const button = buttons[index];
+      this.triggerEvent(eventName, e.detail);
+      if (button) {
+        const { hold, async } = button;
+        const callback = button[callbackName];
+        if (isFunction(callback)) {
+          const callbackOpts = {
+            index,
+            event: e,
+            hide: () => this.hide(),
+            stopLoading: () => { },
+          };
+          if (async) {
+            callbackOpts.stopLoading = () =>
+              this.setData({ [`buttons[${index}].loading`]: false });
+            this.setData({ [`buttons[${index}].loading`]: true });
+          }
+          callback(callbackOpts);
+          if (!hold && !async) {
+            this.hide();
+          }
+        }
+      }
     }
   },
 });
