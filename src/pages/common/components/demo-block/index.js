@@ -5,5 +5,5 @@ Component({
       type: Boolean,
       value: true,
     },
-  }
+  },
 });

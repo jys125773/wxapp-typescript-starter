@@ -10,9 +10,9 @@ interface ToastOptions {
   duration?: number | { enter: number; leave: number };
   stayTime?: number;
   selector?: string;
-  icon?: String;
-  spinner?: String;
-  maskColor?: String;
+  icon?: string;
+  spinner?: string;
+  maskColor?: string;
   onClose?: () => void;
 }
 export const defaultToastOptions = {
@@ -27,7 +27,7 @@ export const defaultToastOptions = {
   icon: '',
   spinner: '',
   maskColor: '',
-  onClose: () => { },
+  onClose: () => {},
 };
 function toast(options: ToastOptions | string) {
   if (typeof options === 'string') {

@@ -1,3 +1,0 @@
-<view class="tab" style="width:{{ width }}px;">
-  <slot wx:if="{{ inited }}"></slot>
-</view>

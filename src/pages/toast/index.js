@@ -6,12 +6,13 @@ Page({
   },
   longTextToast() {
     toast({
-      message: '这是一段很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长的文字',
+      message:
+        '这是一段很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长的文字',
       position: 'top',
       duration: {
         enter: 200,
-        leave: 1000
-      }
+        leave: 1000,
+      },
     });
   },
   successToast() {
@@ -21,7 +22,7 @@ Page({
       duration: {
         enter: 200,
         leave: 100,
-      }
+      },
     });
   },
   failToast() {
@@ -31,7 +32,7 @@ Page({
       duration: {
         enter: 200,
         leave: 100,
-      }
+      },
     });
   },
   loadToast() {
@@ -43,7 +44,7 @@ Page({
       duration: {
         enter: 200,
         leave: 400,
-      }
+      },
     });
   },
   asyncToast() {
@@ -67,5 +68,5 @@ Page({
         });
       }
     }, 1000);
-  }
+  },
 });

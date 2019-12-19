@@ -11,6 +11,7 @@
     "build-dev": "gulp build --env=dev",
     "build-qa": "gulp build --env=qa",
     "build-prod": "gulp build --env=prod",
+    "lint": "eslint --ext .ts --ext .js --fix src/",
     "prettier": "prettier --write --config .prettierrc src/**/*.{ts,js}"
   },
   "author": "",
@@ -30,6 +31,7 @@
     "gulp-eslint": "^6.0.0",
     "gulp-htmlmin": "^5.0.1",
     "gulp-imagemin": "^6.0.0",
+    "gulp-insert": "^0.5.0",
     "gulp-jsonminify2": "^1.0.2",
     "gulp-less": "^4.0.1",
     "gulp-load-plugins": "^2.0.1",
@@ -49,10 +51,10 @@
     "uglify-es": "^3.3.9"
   },
   "dependencies": {
-    "fecha": "^3.0.3",
     "miniprogram-recycle-view": "^0.1.5",
     "query-string": "^6.9.0",
     "redux": "^4.0.4",
-    "redux-thunk": "^2.3.0"
+    "redux-thunk": "^2.3.0",
+    "throttle-debounce": "^2.1.0"
   }
 }

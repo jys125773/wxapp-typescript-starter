@@ -112,7 +112,7 @@ declare namespace Page {
   interface PageInstance<
     D extends IAnyObject = any,
     T extends IAnyObject = any
-    > extends PageInstanceBaseProps<D> {
+  > extends PageInstanceBaseProps<D> {
     /** 生命周期回调—监听页面加载
      *
      * 页面加载时触发。一个页面只会调用一次，可以在 onLoad 的参数中获取打开当前页面路径中的参数。
@@ -214,6 +214,7 @@ declare const getCurrentPages: Page.GetCurrentPages;
 declare type WxPage<
   D extends IAnyObject = {},
   T extends IAnyObject & Page.PageInstance = {}
-  > = Page.PageInstance<D, T> & T & {
-    mixins?: Page.PageInstance<any, any>[]
+> = Page.PageInstance<D, T> &
+  T & {
+    mixins?: Page.PageInstance<any, any>[];
   };

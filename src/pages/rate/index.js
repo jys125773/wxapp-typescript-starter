@@ -6,7 +6,12 @@ Page({
     rate4: 2,
   },
   change(e) {
-    const { target: { dataset: { key } }, detail: { value } } = e;
+    const {
+      target: {
+        dataset: { key },
+      },
+      detail: { value },
+    } = e;
     this.setData({ [key]: value });
-  }
-})
+  },
+});

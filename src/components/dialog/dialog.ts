@@ -1,25 +1,25 @@
 import { getCurrentPage } from '../../utils/helper';
 
 interface DialogButton {
-  text: String;
-  textColor: String;
+  text: string;
+  textColor: string;
   hold?: boolean;
   async?: boolean;
-  class?: String;
-  hoverclass?: String;
+  class?: string;
+  hoverclass?: string;
   disabled?: boolean;
   loading?: boolean;
-  formType?: String;
-  openType?: String;
+  formType?: string;
+  openType?: string;
   hoverStopPropagation?: boolean;
   hoverStartTime?: number;
   hoverStayTime?: number;
-  lang?: String;
-  sessionFrom?: String;
-  sendMessageTitle?: String;
-  sendMessagePath?: String;
-  sendMessageImg?: String;
-  appParameter?: String;
+  lang?: string;
+  sessionFrom?: string;
+  sendMessageTitle?: string;
+  sendMessagePath?: string;
+  sendMessageImg?: string;
+  appParameter?: string;
   showMessageCard?: boolean;
   onGetUserInfo?: Function;
   onContact?: Function;
@@ -30,30 +30,30 @@ interface DialogButton {
 }
 
 interface DialogShowOptions {
-  title?: String;
-  content: String;
+  title?: string;
+  content: string;
   transition?: string;
   zIndex?: number;
   duration?: number | { enter: number; leave: number };
-  timingFunction?: String;
+  timingFunction?: string;
   mask?: boolean;
   maskClosable?: boolean;
-  maskColor?: String;
+  maskColor?: string;
   destroyOnClose?: boolean;
   preventScroll?: boolean;
   verticalButtons?: boolean;
   closable?: boolean;
-  popupStyle?: String;
+  popupStyle?: string;
   buttons: DialogButton[];
   context?: any;
   selector: string;
 }
 
 interface DialogAlertOptions {
-  title?: String;
-  content: String;
-  confirmText?: String;
-  confirmTextColor?: String;
+  title?: string;
+  content: string;
+  confirmText?: string;
+  confirmTextColor?: string;
   confirmAsync?: boolean;
   onConfirm: Function;
   context?: any;
@@ -61,10 +61,10 @@ interface DialogAlertOptions {
 }
 
 interface DialogComfirmOptions extends DialogAlertOptions {
-  cancelText?: String;
-  cancelTextColor?: String;
+  cancelText?: string;
+  cancelTextColor?: string;
   cancelAsync?: boolean;
-  onCancel?: String;
+  onCancel?: string;
 }
 
 export const defaultDialogOptions = {
@@ -85,7 +85,7 @@ export const defaultDialogOptions = {
   buttons: [],
 };
 
-function getInstance(selector: string = '#custom-dialog', context?: any) {
+function getInstance(selector = '#custom-dialog', context?: any) {
   const ctx = context || getCurrentPage();
   const instance = ctx && ctx.selectComponent(selector);
   if (!instance) {
@@ -177,4 +177,4 @@ export default {
   show,
   confirm,
   alert,
-}
+};

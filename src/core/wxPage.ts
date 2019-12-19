@@ -11,7 +11,7 @@ function wxPage(PageInstance: any) {
   instance.setData = function(
     updates: IAnyObject,
     callback: Function | boolean,
-    doDiff: boolean = false,
+    doDiff = false,
   ) {
     if (isBoolean(callback)) {
       doDiff = callback as boolean;

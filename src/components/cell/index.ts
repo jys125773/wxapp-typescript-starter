@@ -29,12 +29,12 @@ Component({
     useLabelSlot: Boolean,
     border: {
       type: Boolean,
-      value: true
+      value: true,
     },
     url: String,
     linkType: {
       type: String,
-      value: 'navigateTo'
+      value: 'navigateTo',
     },
   },
   methods: {

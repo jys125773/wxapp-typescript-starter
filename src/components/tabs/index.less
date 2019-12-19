@@ -1,47 +1,44 @@
 @import '../common/styles/var.less';
 
-.tabs {
+.ui-tabs {
+  width: 100%;
+  height: auto;
+  -webkit-tap-highlight-color: transparent;
 
-  &__nav {
-    height: 100rpx;
-    box-sizing: content-box;
-    border-bottom: 1rpx solid @border-color;
+  &__header {
+    width: 100%;
   }
 
-  &__nav-track {
+  &__scroll--border {
+    border-top: 1rpx solid #eee;
+    border-bottom: 1rpx solid #eee;
+  }
+
+  &__scroll-belt {
+    background-color: white;
     display: flex;
-    flex-wrap: nowrap;
-    height: 100rpx;
     position: relative;
+    box-sizing: content-box;
+    user-select: none;
   }
 
-  &__nav-line {
-    position: absolute;
-    height: 4rpx;
-    bottom: 0rpx;
-    background-color: @red;
-  }
-
-  &__nav-item {
+  &__scroll-thumb {
     flex: 1;
     text-align: center;
-    line-height: 100rpx;
+    padding: 20rpx 0;
   }
 
-  &__nav-text {
-    color: @text-color;
+  &__underline {
+    position: absolute;
+    bottom: 0;
+    transform: translateX(-50%);
+    transition-property: left;
+    transition-timing-function: ease;
+    z-index: 1;
   }
 
-  &__nav-text--active {
-    color: @red;
-  }
-
-  &__content {
+  &__track {
     width: 100%;
-    overflow: hidden;
-  }
-
-  &__content-track {
-    display: flex;
+    height: auto;
   }
 }

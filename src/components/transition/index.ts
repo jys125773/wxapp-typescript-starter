@@ -14,7 +14,7 @@ const LEAVED_STATUS = 4;
 
 function nextTick(callback) {
   setTimeout(callback, 16);
-};
+}
 
 Component({
   externalClasses: ['custom-class'],
@@ -33,7 +33,7 @@ Component({
             this.performLeave();
           }
         }
-      }
+      },
     },
     appear: {
       type: Boolean,
@@ -84,16 +84,19 @@ Component({
     const { show, appear, mountOnEnter } = this.data;
     const inited = show && mountOnEnter;
     if (show && appear) {
-      this.setData({
-        inited,
-        hasAttached: true,
-        status: ENTERED_STATUS,
-        classes: this.getClasses(LEAVE_TO_CLASS),
-      }, () => {
-        nextTick(() => {
-          this.performEnter();
-        });
-      });
+      this.setData(
+        {
+          inited,
+          hasAttached: true,
+          status: ENTERED_STATUS,
+          classes: this.getClasses(LEAVE_TO_CLASS),
+        },
+        () => {
+          nextTick(() => {
+            this.performEnter();
+          });
+        },
+      );
     } else {
       this.setData({
         inited,
@@ -110,22 +113,25 @@ Component({
         return;
       }
       this.triggerEvent('before-enter');
-      this.setData({
-        hidden: false,
-        inited: true,
-        classes: this.getClasses(ENTER_CLASS, ENTER_ACTIVE_CLASS),
-        durationStyle: this.getDurationStyle(ENTERING_STATUS),
-        status: ENTERING_STATUS,
-      }, () => {
-        nextTick(() => {
-          if (this.data.status === ENTERING_STATUS) {
-            this.setData({
-              hidden: false,
-              classes: this.getClasses(ENTER_ACTIVE_CLASS, ENTER_TO_CLASS),
-            });
-          }
-        });
-      });
+      this.setData(
+        {
+          hidden: false,
+          inited: true,
+          classes: this.getClasses(ENTER_CLASS, ENTER_ACTIVE_CLASS),
+          durationStyle: this.getDurationStyle(ENTERING_STATUS),
+          status: ENTERING_STATUS,
+        },
+        () => {
+          nextTick(() => {
+            if (this.data.status === ENTERING_STATUS) {
+              this.setData({
+                hidden: false,
+                classes: this.getClasses(ENTER_ACTIVE_CLASS, ENTER_TO_CLASS),
+              });
+            }
+          });
+        },
+      );
     },
     performEntered() {
       this.triggerEvent('after-enter');
@@ -142,21 +148,24 @@ Component({
         return;
       }
       this.triggerEvent('before-leave');
-      this.setData({
-        hidden: false,
-        inited: true,
-        classes: this.getClasses(LEAVE_CLASS, LEAVE_ACTIVE_CLASS),
-        durationStyle: this.getDurationStyle(LEAVEING_STATUS),
-        status: LEAVEING_STATUS,
-      }, () => {
-        nextTick(() => {
-          if (this.data.status === LEAVEING_STATUS) {
-            this.setData({
-              classes: this.getClasses(LEAVE_ACTIVE_CLASS, LEAVE_TO_CLASS),
-            });
-          }
-        });
-      });
+      this.setData(
+        {
+          hidden: false,
+          inited: true,
+          classes: this.getClasses(LEAVE_CLASS, LEAVE_ACTIVE_CLASS),
+          durationStyle: this.getDurationStyle(LEAVEING_STATUS),
+          status: LEAVEING_STATUS,
+        },
+        () => {
+          nextTick(() => {
+            if (this.data.status === LEAVEING_STATUS) {
+              this.setData({
+                classes: this.getClasses(LEAVE_ACTIVE_CLASS, LEAVE_TO_CLASS),
+              });
+            }
+          });
+        },
+      );
     },
     performLeaved() {
       const { unMountOnLeave } = this.data;
@@ -211,6 +220,6 @@ Component({
       if (current < 0) return '';
       return `${type}-duration:${current}ms;-webkit-${type}-duration:${current}ms;`;
     },
-    noop() { },
+    noop() {},
   },
 });

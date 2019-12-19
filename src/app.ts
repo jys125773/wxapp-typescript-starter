@@ -8,10 +8,9 @@
 // request.get('/api5');
 
 App({
-  onLaunch() { },
+  onLaunch() {},
   globalData: {},
 });
-
 
 // request.get('https://cnodejs.org/api/v1/topics')
 //   .then(res => {

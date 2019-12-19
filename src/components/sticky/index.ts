@@ -1,4 +1,3 @@
-
 import { isFunction } from '../../utils/util';
 const CONTAINER_CLASS = '.ui-sticky';
 
@@ -22,7 +21,6 @@ Component({
       type: Boolean,
       observer(value) {
         if (this.mounted) {
-          //@ts-ignore
           value ? this.disconnectObserver() : this.connectObserver();
         }
       },
@@ -48,7 +46,6 @@ Component({
     this.mounted = true;
   },
   detached() {
-    //@ts-ignore
     this.disconnectObserver();
   },
   methods: {
@@ -69,32 +66,37 @@ Component({
       if (isFunction(container)) {
         const containerRef = container();
         if (containerRef) {
-          containerRef.boundingClientRect(rect => {
-            this.containerHeight = rect.height;
-            const containerObserver = this.createIntersectionObserver({
-              thresholds: [0, 1],
-            });
-            this.disconnectObserver('containerObserver');
-            this.containerObserver = containerObserver;
-            containerObserver.relativeToViewport({
-              top: this.containerHeight - this.contentHeight,
-            });
-            containerObserver.observe(CONTAINER_CLASS, res => {
-              this.setFixed(res.boundingClientRect.top);
-            });
-          }).exec();
+          containerRef
+            .boundingClientRect(rect => {
+              this.containerHeight = rect.height;
+              const containerObserver = this.createIntersectionObserver({
+                thresholds: [0, 1],
+              });
+              this.disconnectObserver('containerObserver');
+              this.containerObserver = containerObserver;
+              containerObserver.relativeToViewport({
+                top: this.containerHeight - this.contentHeight,
+              });
+              containerObserver.observe(CONTAINER_CLASS, res => {
+                this.setFixed(res.boundingClientRect.top);
+              });
+            })
+            .exec();
         }
       }
     },
     connectObserver() {
       const selQuery = this.createSelectorQuery();
-      selQuery.select(CONTAINER_CLASS).boundingClientRect(rect => {
-        this.contentHeight = rect.height;
-        this.observeContent();
-        this.observeContainer();
-      }).exec();
+      selQuery
+        .select(CONTAINER_CLASS)
+        .boundingClientRect(rect => {
+          this.contentHeight = rect.height;
+          this.observeContent();
+          this.observeContainer();
+        })
+        .exec();
     },
-    disconnectObserver(observerName) {
+    disconnectObserver(observerName?: string) {
       if (observerName) {
         const observer = this[observerName];
         if (observer) {
@@ -123,10 +125,12 @@ Component({
       if (fixed !== this.data.fixed) {
         this.setData({
           fixed,
-          containerStyle: fixed ? `height:${contentHeight}px;z-index:${zIndex};` : '',
-          contentStyle: fixed ? `position:fixed;top:${offsetTop}px` : '',
+          containerStyle: fixed ? `height:${contentHeight}px;` : '',
+          contentStyle: fixed
+            ? `position:fixed;top:${offsetTop}px;z-index:${zIndex};`
+            : '',
         });
       }
-    }
+    },
   },
 });

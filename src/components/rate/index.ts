@@ -62,18 +62,22 @@ Component({
       const touch = e.touches[0];
       const margin = rpx2px(_margin);
       const selQuery = this.createSelectorQuery();
-      selQuery.select('.ui-rate').boundingClientRect((rect: any) => {
-        const { width, left } = rect;
-        const starWidth = (width - (max - 1) * margin) / max;
-        const offsetX = touch.pageX - left;
-        const num = (offsetX + margin) / (starWidth + margin);
-        const remainder = num % 1;
-        const integral = num - remainder;
-        const value = (remainder <= 0.5 && allowHalf) ? integral + 0.5 : integral + 1;
-        if (value !== _value) {
-          this.triggerEvent('change', { value });
-        }
-      }).exec();
-    }
-  }
+      selQuery
+        .select('.ui-rate')
+        .boundingClientRect((rect: any) => {
+          const { width, left } = rect;
+          const starWidth = (width - (max - 1) * margin) / max;
+          const offsetX = touch.pageX - left;
+          const num = (offsetX + margin) / (starWidth + margin);
+          const remainder = num % 1;
+          const integral = num - remainder;
+          const value =
+            remainder <= 0.5 && allowHalf ? integral + 0.5 : integral + 1;
+          if (value !== _value) {
+            this.triggerEvent('change', { value });
+          }
+        })
+        .exec();
+    },
+  },
 });
