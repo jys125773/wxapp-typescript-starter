@@ -5,12 +5,8 @@ Page({
     Dialog.confirm({
       title: '请问需要反馈什么问题？',
       content: '你也可以在个人中心的反馈帮助中心里找到这个功能',
-      onConfirm: () => {
-
-      },
-      onCancel: () => {
-
-      },
+      onConfirm: () => {},
+      onCancel: () => {},
     });
   },
   aysncComfirm() {
@@ -24,9 +20,7 @@ Page({
           hide();
         }, 2000);
       },
-      onCancel: () => {
-
-      },
+      onCancel: () => {},
     });
   },
   closeIconComfirm() {
@@ -38,7 +32,7 @@ Page({
       buttons: [
         {
           text: '没啥事',
-          onTap: () => { },
+          onTap: () => {},
         },
       ],
     });
@@ -47,17 +41,13 @@ Page({
     Dialog.alert({
       title: '请问需要反馈什么问题？',
       content: '你也可以在个人中心的反馈帮助中心里找到这个功能',
-      onConfirm: () => {
-
-      },
+      onConfirm: () => {},
     });
   },
   noTitleAlert() {
     Dialog.alert({
       content: '你也可以在个人中心的反馈帮助中心里找到这个功能',
-      onConfirm: () => {
-
-      },
+      onConfirm: () => {},
     });
   },
   verticalShow() {
@@ -68,15 +58,15 @@ Page({
       buttons: [
         {
           text: '遇到问题',
-          onTap: () => { },
+          onTap: () => {},
         },
         {
           text: '意见建议',
-          onTap: () => { },
+          onTap: () => {},
         },
         {
           text: '没啥事',
-          onTap: () => { },
+          onTap: () => {},
         },
       ],
     });
@@ -91,7 +81,7 @@ Page({
           openType: 'getPhoneNumber',
           text: 'getPhoneNumber',
           textColor: 'red',
-          onGetPhoneNumber: (o) => {
+          onGetPhoneNumber: o => {
             console.log(o);
           },
         },
@@ -99,16 +89,16 @@ Page({
           openType: 'openSetting',
           text: 'openSetting',
           textColor: 'green',
-          onOpenSetting: (o) => {
+          onOpenSetting: o => {
             console.log(o);
           },
         },
         {
           text: '没啥事',
           textColor: 'blue',
-          onTap: () => { },
+          onTap: () => {},
         },
       ],
     });
-  }
+  },
 });

@@ -65,18 +65,23 @@ Component({
       const { format, useText } = this.data;
       let timeText = format;
       const o = {
-        'd+': Math.floor(timeDiff / 86400000), //日 
-        'h+': Math.floor((timeDiff % 86400000) / 3600000), //小时 
-        'm+': Math.floor((timeDiff % 3600000) / 60000), //分 
-        's+': Math.floor((timeDiff % 60000) / 1000), //秒 
-        'S+': Math.floor(timeDiff % 1000) //毫秒 
+        'd+': Math.floor(timeDiff / 86400000), //日
+        'h+': Math.floor((timeDiff % 86400000) / 3600000), //小时
+        'm+': Math.floor((timeDiff % 3600000) / 60000), //分
+        's+': Math.floor((timeDiff % 60000) / 1000), //秒
+        'S+': Math.floor(timeDiff % 1000), //毫秒
       };
       const timeList: { match: string; digit: string; unit: string }[] = [];
       for (const k in o) {
         if (new RegExp('(' + k + ')').test(timeText)) {
           timeText = timeText.replace(RegExp.$1, (match, offset, source) => {
             const v = o[k] + '';
-            const digit = match.length > 1 ? (match.replace(new RegExp(match[0], 'g'), '0') + v).substr(v.length) : v;
+            const digit =
+              match.length > 1
+                ? (match.replace(new RegExp(match[0], 'g'), '0') + v).substr(
+                    v.length,
+                  )
+                : v;
             if (!useText) {
               const unit = source.substr(offset + match.length);
               const last = timeList[timeList.length - 1];
@@ -93,8 +98,6 @@ Component({
         }
       }
       this.setData({ timeList, timeText, timeDiff });
-    }
+    },
   },
 });
-
-

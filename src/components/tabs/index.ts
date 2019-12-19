@@ -8,13 +8,8 @@ Component({
   relations: {
     '../tab/index': {
       type: 'child',
-      linked(target) {
-       
-      },
-      unlinked(target) {
-       
-      },
+      linked(target) {},
+      unlinked(target) {},
     },
   },
-  
 });

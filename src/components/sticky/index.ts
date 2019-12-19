@@ -1,4 +1,3 @@
-
 import { isFunction } from '../../utils/util';
 const CONTAINER_CLASS = '.ui-sticky';
 
@@ -69,30 +68,35 @@ Component({
       if (isFunction(container)) {
         const containerRef = container();
         if (containerRef) {
-          containerRef.boundingClientRect(rect => {
-            this.containerHeight = rect.height;
-            const containerObserver = this.createIntersectionObserver({
-              thresholds: [0, 1],
-            });
-            this.disconnectObserver('containerObserver');
-            this.containerObserver = containerObserver;
-            containerObserver.relativeToViewport({
-              top: this.containerHeight - this.contentHeight,
-            });
-            containerObserver.observe(CONTAINER_CLASS, res => {
-              this.setFixed(res.boundingClientRect.top);
-            });
-          }).exec();
+          containerRef
+            .boundingClientRect(rect => {
+              this.containerHeight = rect.height;
+              const containerObserver = this.createIntersectionObserver({
+                thresholds: [0, 1],
+              });
+              this.disconnectObserver('containerObserver');
+              this.containerObserver = containerObserver;
+              containerObserver.relativeToViewport({
+                top: this.containerHeight - this.contentHeight,
+              });
+              containerObserver.observe(CONTAINER_CLASS, res => {
+                this.setFixed(res.boundingClientRect.top);
+              });
+            })
+            .exec();
         }
       }
     },
     connectObserver() {
       const selQuery = this.createSelectorQuery();
-      selQuery.select(CONTAINER_CLASS).boundingClientRect(rect => {
-        this.contentHeight = rect.height;
-        this.observeContent();
-        this.observeContainer();
-      }).exec();
+      selQuery
+        .select(CONTAINER_CLASS)
+        .boundingClientRect(rect => {
+          this.contentHeight = rect.height;
+          this.observeContent();
+          this.observeContainer();
+        })
+        .exec();
     },
     disconnectObserver(observerName) {
       if (observerName) {
@@ -123,10 +127,12 @@ Component({
       if (fixed !== this.data.fixed) {
         this.setData({
           fixed,
-          containerStyle: fixed ? `height:${contentHeight}px;z-index:${zIndex};` : '',
+          containerStyle: fixed
+            ? `height:${contentHeight}px;z-index:${zIndex};`
+            : '',
           contentStyle: fixed ? `position:fixed;top:${offsetTop}px` : '',
         });
       }
-    }
+    },
   },
 });

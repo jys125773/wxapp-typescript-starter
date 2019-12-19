@@ -41,7 +41,7 @@ declare namespace wx {
         TProperty extends Partial<PropertyOption>,
         TMethod extends MethodOption
       >(
-        options: Options<TData, TProperty, TMethod>
+        options: Options<TData, TProperty, TMethod>,
       ): string;
     }
     type MethodOption = Record<string, (...args: any[]) => any>;
@@ -72,7 +72,7 @@ declare namespace wx {
       observer?(
         newVal: ValueType<T>,
         oldVal: ValueType<T>,
-        changedPath: Array<string | number>
+        changedPath: Array<string | number>,
       ): void;
       /** 属性的类型（可以指定多个） */
       optionalTypes?: ShortProperty[];
@@ -99,15 +99,15 @@ declare namespace wx {
     type PropertyToData<T extends AllProperty> = T extends ShortProperty
       ? ValueType<T>
       : FullPropertyToData<Exclude<T, ShortProperty>>;
-    type FullPropertyToData<T extends AllFullProperty> = ValueType<T["type"]>;
+    type FullPropertyToData<T extends AllFullProperty> = ValueType<T['type']>;
     type _PropertyOptionToData<P extends PropertyOption> = {
-      [name in keyof P["properties"]]: PropertyToData<P["properties"][name]>;
+      [name in keyof P['properties']]: PropertyToData<P['properties'][name]>;
     };
     type PropertyOptionToData<
       P extends Partial<PropertyOption>
-    > = P["properties"] extends undefined
+    > = P['properties'] extends undefined
       ? {}
-      : _PropertyOptionToData<{ properties: NonNullable<P["properties"]> }>;
+      : _PropertyOptionToData<{ properties: NonNullable<P['properties']> }>;
 
     interface InstanceProperties {
       /** 组件的文件路径 */
@@ -138,7 +138,7 @@ declare namespace wx {
          */
         data: IAnyObject,
         /** setData引起的界面更新渲染完毕后的回调函数，最低基础库： `1.5.0` */
-        callback?: () => void
+        callback?: () => void,
       ): void;
 
       /** 检查组件是否具有 `behavior` （检查时会递归检查被直接或间接引入的所有behavior） */
@@ -147,13 +147,13 @@ declare namespace wx {
       triggerEvent(
         name: string,
         detail?: object,
-        options?: TriggerEventOption
+        options?: TriggerEventOption,
       ): void;
       /** 创建一个 SelectorQuery 对象，选择器选取范围为这个组件实例内 */
       createSelectorQuery(): wx.SelectorQuery;
       /** 创建一个 IntersectionObserver 对象，选择器选取范围为这个组件实例内 */
       createIntersectionObserver(
-        options: wx.CreateIntersectionObserverOption
+        options: wx.CreateIntersectionObserverOption,
       ): wx.IntersectionObserver;
       /** 使用选择器选择组件实例节点，返回匹配到的第一个组件实例对象（会被 `wx://component-export` 影响） */
       selectComponent(selector: string): TrivialInstance;
@@ -207,7 +207,7 @@ declare namespace wx {
 
     interface RelationOption {
       /** 目标组件的相对关系 */
-      type: "parent" | "child" | "ancestor" | "descendant";
+      type: 'parent' | 'child' | 'ancestor' | 'descendant';
       /** 关系生命周期函数，当关系被建立在页面节点树中时触发，触发时机在组件attached生命周期之后 */
       linked?(target: TrivialInstance): void;
       /** 关系生命周期函数，当关系在页面节点树中发生改变时触发，触发时机在组件moved生命周期之后 */
@@ -240,7 +240,7 @@ declare namespace wx {
       /** 使用该 behavior 的 component/behavior 的定义对象 */
       defFields: TrivialOption,
       /** 该 behavior 所使用的 behavior 的 definitionFilter 函数列表 */
-      definitionFilterArr?: DefinitionFilter[]
+      definitionFilterArr?: DefinitionFilter[],
     ) => void;
 
     interface Lifetimes {

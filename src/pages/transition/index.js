@@ -15,7 +15,5 @@ Page({
       this.setData({ in: false });
     }, 600);
   },
-  afterLeave() {
-
-  }
+  afterLeave() {},
 });

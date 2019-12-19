@@ -34,7 +34,7 @@ Component({
     },
     timingFunction: {
       type: String,
-      value: 'ease',
+      value: 'cubic-bezier(.17,.67,.22,.9)',
     },
     mask: {
       type: Boolean,
@@ -60,7 +60,7 @@ Component({
     contentStyle: String,
     safeAreaInsetBottom: {
       type: Boolean,
-      value: true
+      value: true,
     },
     safeAreaInsetTop: {
       type: Boolean,
@@ -69,7 +69,7 @@ Component({
     safeTabbar: {
       type: Boolean,
       value: false,
-    }
+    },
   },
   data: {
     inited: false,
@@ -103,11 +103,10 @@ Component({
       }
       const config = `${show ? 'enter' : 'leave'} ${
         duration.enter ? (show ? duration.enter : duration.leave) : duration
-        }ms ${timingFunction} both`;
+      }ms ${timingFunction} both`;
       const maskAnimationStyle = `fade-${config}`;
-      const contentAnimationStyle = `${
-        transition || (position === 'center' ? 'fade' : 'slide-' + position)
-        }-${config}`;
+      const contentAnimationStyle = `${transition ||
+        (position === 'center' ? 'fade' : 'slide-' + position)}-${config}`;
       return {
         mask: `animation:${maskAnimationStyle};-webkit-animation:${maskAnimationStyle};`,
         content: `animation:${contentAnimationStyle};-webkit-animation:${contentAnimationStyle};`,
@@ -128,6 +127,6 @@ Component({
         this.triggerEvent('afterClose');
       }
     },
-    noop() { },
+    noop() {},
   },
 });

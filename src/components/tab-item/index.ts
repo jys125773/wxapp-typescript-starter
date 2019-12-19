@@ -4,13 +4,7 @@ Component({
       type: 'parent',
     },
   },
-  properties: {
-   
-  },
-  data: {
-    
-  },
-  methods: {
-   
-  },
+  properties: {},
+  data: {},
+  methods: {},
 });

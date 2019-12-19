@@ -1,7 +1,7 @@
 export default function(delay, noTrailing, callback, debounceMode) {
-  var timeoutID;
-  var cancelled = false;
-  var lastExec = 0;
+  let timeoutID;
+  let cancelled = false;
+  let lastExec = 0;
   function clearExistingTimeout() {
     if (timeoutID) {
       clearTimeout(timeoutID);
@@ -17,9 +17,9 @@ export default function(delay, noTrailing, callback, debounceMode) {
     noTrailing = undefined;
   }
   function wrapper() {
-    var self = this;
-    var elapsed = Date.now() - lastExec;
-    var args = arguments;
+    const self = this;
+    const elapsed = Date.now() - lastExec;
+    const args = arguments;
     if (cancelled) {
       return;
     }

@@ -12,7 +12,7 @@ Page({
         topY: pageY - 60,
         gforce: 3000,
         frameInterval: 20,
-      })
+      });
     }
-  }
-})
+  },
+});

@@ -119,7 +119,7 @@ Component({
             index,
             event: e,
             hide: () => this.hide(),
-            stopLoading: () => { },
+            stopLoading: () => {},
           };
           if (async) {
             callbackOpts.stopLoading = () =>
@@ -132,6 +132,6 @@ Component({
           }
         }
       }
-    }
+    },
   },
 });

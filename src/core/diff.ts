@@ -13,12 +13,7 @@ function setDiff(target: TAnyObject, propName: string, propValue: any) {
   }
 }
 
-function syncDiff(
-  to: any,
-  from: any,
-  result: TAnyObject = {},
-  path: string = '',
-) {
+function syncDiff(to: any, from: any, result: TAnyObject = {}, path = '') {
   //全等 => 跳过
   if (to === from) {
     return;

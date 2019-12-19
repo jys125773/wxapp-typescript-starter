@@ -2712,6 +2712,14 @@ gulp-imagemin@^6.0.0:
     imagemin-optipng "^7.0.0"
     imagemin-svgo "^7.0.0"
 
+gulp-insert@^0.5.0:
+  version "0.5.0"
+  resolved "https://registry.npm.taobao.org/gulp-insert/download/gulp-insert-0.5.0.tgz#32313f13e4a23cf5acca5ce5f0c080923c778602"
+  integrity sha1-MjE/E+SiPPWsylzl8MCAkjx3hgI=
+  dependencies:
+    readable-stream "^1.0.26-4"
+    streamqueue "0.0.6"
+
 gulp-jsonminify2@^1.0.2:
   version "1.0.2"
   resolved "https://registry.npm.taobao.org/gulp-jsonminify2/download/gulp-jsonminify2-1.0.2.tgz#9360241957ed5ca107d03ceef89e796419e8e17f"
@@ -5205,6 +5213,16 @@ read-pkg@^2.0.0:
     isarray "0.0.1"
     string_decoder "~0.10.x"
 
+readable-stream@^1.0.26-2, readable-stream@^1.0.26-4, readable-stream@~1.1.9:
+  version "1.1.14"
+  resolved "https://registry.npm.taobao.org/readable-stream/download/readable-stream-1.1.14.tgz?cache=0&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Freadable-stream%2Fdownload%2Freadable-stream-1.1.14.tgz#7cf4c54ef648e3813084c636dd2079e166c081d9"
+  integrity sha1-fPTFTvZI44EwhMY23SB54WbAgdk=
+  dependencies:
+    core-util-is "~1.0.0"
+    inherits "~2.0.1"
+    isarray "0.0.1"
+    string_decoder "~0.10.x"
+
 readable-stream@^2.0.0, readable-stream@^2.0.1, readable-stream@^2.0.2, readable-stream@^2.0.5, readable-stream@^2.0.6, readable-stream@^2.1.5, readable-stream@^2.2.2, readable-stream@^2.3.0, readable-stream@^2.3.3, readable-stream@^2.3.5, readable-stream@^2.3.6, readable-stream@~2.3.6:
   version "2.3.6"
   resolved "https://registry.npm.taobao.org/readable-stream/download/readable-stream-2.3.6.tgz?cache=0&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Freadable-stream%2Fdownload%2Freadable-stream-2.3.6.tgz#b11c27d88b8ff1fbe070643cf94b0c79ae1b0aaf"
@@ -5217,16 +5235,6 @@ readable-stream@^2.0.0, readable-stream@^2.0.1, readable-stream@^2.0.2, readable
     safe-buffer "~5.1.1"
     string_decoder "~1.1.1"
     util-deprecate "~1.0.1"
-
-readable-stream@~1.1.9:
-  version "1.1.14"
-  resolved "https://registry.npm.taobao.org/readable-stream/download/readable-stream-1.1.14.tgz?cache=0&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Freadable-stream%2Fdownload%2Freadable-stream-1.1.14.tgz#7cf4c54ef648e3813084c636dd2079e166c081d9"
-  integrity sha1-fPTFTvZI44EwhMY23SB54WbAgdk=
-  dependencies:
-    core-util-is "~1.0.0"
-    inherits "~2.0.1"
-    isarray "0.0.1"
-    string_decoder "~0.10.x"
 
 readdirp@^2.2.1:
   version "2.2.1"
@@ -5781,6 +5789,13 @@ stream-shift@^1.0.0:
   version "1.0.0"
   resolved "https://registry.npm.taobao.org/stream-shift/download/stream-shift-1.0.0.tgz#d5c752825e5367e786f78e18e445ea223a155952"
   integrity sha1-1cdSgl5TZ+eG944Y5EXqIjoVWVI=
+
+streamqueue@0.0.6:
+  version "0.0.6"
+  resolved "https://registry.npm.taobao.org/streamqueue/download/streamqueue-0.0.6.tgz#66f5f5ec94e9b8af249e4aec2dd1f741bfe94de3"
+  integrity sha1-ZvX17JTpuK8knkrsLdH3Qb/pTeM=
+  dependencies:
+    readable-stream "^1.0.26-2"
 
 strict-uri-encode@^1.0.0:
   version "1.1.0"

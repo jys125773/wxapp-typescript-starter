@@ -33,16 +33,14 @@ declare namespace wx {
         TProperty extends Partial<PropertyOption>,
         TMethod extends MethodOption
       >(
-        options: Options<TData, TProperty, TMethod>
+        options: Options<TData, TProperty, TMethod>,
       ): string;
     }
 
     type Data<DataType> = wx.Component.Data<DataType>;
     type PropertyOption = wx.Component.PropertyOption;
     type MethodOption = wx.Component.MethodOption;
-    type Methods<M extends MethodOption> = wx.Component.Methods<
-      M
-    >;
+    type Methods<M extends MethodOption> = wx.Component.Methods<M>;
     type DefinitionFilter = wx.Component.DefinitionFilter;
     type Lifetimes = wx.Component.Lifetimes;
 

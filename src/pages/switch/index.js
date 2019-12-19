@@ -7,7 +7,11 @@ Page({
     checked5: true,
   },
   change(e) {
-    const { target: { dataset: { key } } } = e;
+    const {
+      target: {
+        dataset: { key },
+      },
+    } = e;
     this.setData({ [key]: !this.data[key] });
-  }
-})
+  },
+});
