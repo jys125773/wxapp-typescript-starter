@@ -28,7 +28,7 @@ const knownOptions = {
 
 const processOptions = minimist(process.argv.slice(2), knownOptions);
 const isBuild = processOptions._.indexOf('build') !== -1;
-const componentStyleFilePattern = /src\/components\/[a-z-]{1,}\/index.wxss/;
+const componentStyleFilePattern = /src\/components\/[a-z-]{1,}\/index/;
 const insertComponentCommonStyle = $.insert.transform((contents, file) => {
   if (componentStyleFilePattern.test(file.path)) {
     contents = `@import '../common/styles/index.wxss';${ isBuild ? '' : ' \n '  }${contents}`;
@@ -109,7 +109,7 @@ gulp.task('compile-less', function () {
       .pipe($.postcss(postcssOptions))
       .pipe($.rename({ extname: '.wxss' }))
       .pipe(minifyWxss())
-      .pipe(insertComponentCommonStyle)
+      // .pipe(insertComponentCommonStyle)
       .pipe(gulp.dest(pathsConfig.dist));
   }
   return gulp
@@ -120,8 +120,8 @@ gulp.task('compile-less', function () {
     .pipe($.less().on('error', logError))
     .pipe($.postcss(postcssOptions))
     .pipe($.sourcemaps.write())
+    // .pipe(insertComponentCommonStyle)
     .pipe($.rename({ extname: '.wxss' }))
-    .pipe(insertComponentCommonStyle)
     .pipe(gulp.dest(pathsConfig.dist));
 });
 

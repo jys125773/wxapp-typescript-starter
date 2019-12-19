@@ -1,4 +1,4 @@
-export default function(delay, noTrailing, callback, debounceMode) {
+function throttle(delay, noTrailing, callback, debounceMode) {
   let timeoutID;
   let cancelled = false;
   let lastExec = 0;
@@ -46,3 +46,11 @@ export default function(delay, noTrailing, callback, debounceMode) {
   wrapper.cancel = cancel;
   return wrapper;
 }
+
+function debounce(delay, atBegin, callback) {
+  return callback === undefined
+    ? throttle(delay, atBegin, false)
+    : throttle(delay, callback, atBegin !== false);
+}
+
+export { throttle, debounce };

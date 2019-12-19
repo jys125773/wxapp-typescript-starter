@@ -1,3 +1,15 @@
 <view class="ui-tabs custom-class">
-  
+  <ui-sticky disabled="{{ !sticky }}" z-index="{{ zIndex }}" offset-top="{{ offsetTop }}" container="{{ stickyContainer }}" custom-class="ui-tabs__header">
+    <scroll-view class="ui-tabs__scroll {{ border ? 'ui-tabs__scroll--border' : '' }}" scroll-x="{{ scrollable }}" scroll-into-view="{{ scrollIntoViewId }}" scroll-with-animation>
+      <view class="ui-tabs__scroll-belt" style="width:{{ scrollable ? 100 * tabs.length / scrollableThreshold : 100 }}%;">
+        <view class="ui-tabs__scroll-thumb" wx:for="{{ tabs }}" wx:key="index" id="scroll-thumb-{{ index }}" data-index="{{ index }}" bind:tap="bindThumbTap">
+          {{ item.title }}
+        </view>
+        <view style="left:{{ 100 * (active + 0.5) / tabs.length }}%;width:{{ lineWidth || 50 / tabs.length + '%' }};height:{{ lineHeight || '6rpx' }};background-color:{{ lineColor }};transition-duration:{{ duration }}ms;-webkit-transition-duration:{{ duration }}ms;" class="ui-tabs__underline" />
+      </view>
+    </scroll-view>
+  </ui-sticky>
+  <view class="ui-tabs__track">
+    <slot />
+  </view>
 </view>

@@ -71,15 +71,15 @@ export default [
       },
     ],
   },
-  // {
-  //   name: '导航组件',
-  //   items: [
-  //     {
-  //       name: 'Tab 标签页',
-  //       path: '/pages/tabs/index',
-  //     },
-  //   ],
-  // },
+  {
+    name: '导航组件',
+    items: [
+      {
+        name: 'Tabs 标签页',
+        path: '/pages/tabs/index',
+      },
+    ],
+  },
   {
     name: '业务组件',
     items: [

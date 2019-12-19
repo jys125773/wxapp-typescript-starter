@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "demo-block": "../common/components/demo-block/index",
+    "ui-tabs": "../../components/tabs/index",
+    "ui-tab-item": "../../components/tab-item/index"
+  }
+}

@@ -1,0 +1,21 @@
+<view class="container">
+  <demo-block title="基础用法" active="{{ 1 }}" padding="{{ false }}">
+    <ui-tabs active="{{ activeTab }}" bind:change="change">
+      <ui-tab-item title="标签1">
+        <view style="height:400rpx;background-color:blanchedalmond">1</view>
+      </ui-tab-item>
+      <ui-tab-item title="标签2">
+        <view style="height:400rpx;background-color:sienna">2</view>
+      </ui-tab-item>
+      <ui-tab-item title="标签3">
+        <view style="height:400rpx;background-color:goldenrod">3</view>
+      </ui-tab-item>
+      <ui-tab-item title="标签4">
+        <view style="height:400rpx;background-color:lightseagreen">4</view>
+      </ui-tab-item>
+      <ui-tab-item title="标签5">
+        <view style="height:400rpx;background-color:brown">5</view>
+      </ui-tab-item>
+    </ui-tabs>
+  </demo-block>
+</view>

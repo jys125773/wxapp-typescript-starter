@@ -21,7 +21,6 @@ Component({
       type: Boolean,
       observer(value) {
         if (this.mounted) {
-          //@ts-ignore
           value ? this.disconnectObserver() : this.connectObserver();
         }
       },
@@ -47,7 +46,6 @@ Component({
     this.mounted = true;
   },
   detached() {
-    //@ts-ignore
     this.disconnectObserver();
   },
   methods: {
@@ -98,7 +96,7 @@ Component({
         })
         .exec();
     },
-    disconnectObserver(observerName) {
+    disconnectObserver(observerName?: string) {
       if (observerName) {
         const observer = this[observerName];
         if (observer) {
@@ -127,10 +125,10 @@ Component({
       if (fixed !== this.data.fixed) {
         this.setData({
           fixed,
-          containerStyle: fixed
-            ? `height:${contentHeight}px;z-index:${zIndex};`
+          containerStyle: fixed ? `height:${contentHeight}px;` : '',
+          contentStyle: fixed
+            ? `position:fixed;top:${offsetTop}px;z-index:${zIndex};`
             : '',
-          contentStyle: fixed ? `position:fixed;top:${offsetTop}px` : '',
         });
       }
     },

@@ -11,7 +11,8 @@
     "pages/switch/index",
     "pages/sticky/index",
     "pages/dialog/index",
-    "pages/cell/index"
+    "pages/cell/index",
+    "pages/tabs/index"
   ],
   "window":{
     "backgroundTextStyle":"light",

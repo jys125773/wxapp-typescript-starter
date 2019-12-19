@@ -37,7 +37,6 @@ Component({
     timeList: [],
     timeText: '',
   },
-  //@ts-ignore
   ready() {
     this.mounted = true;
   },

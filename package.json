@@ -54,6 +54,7 @@
     "miniprogram-recycle-view": "^0.1.5",
     "query-string": "^6.9.0",
     "redux": "^4.0.4",
-    "redux-thunk": "^2.3.0"
+    "redux-thunk": "^2.3.0",
+    "throttle-debounce": "^2.1.0"
   }
 }

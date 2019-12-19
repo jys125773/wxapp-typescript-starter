@@ -1,6 +1,42 @@
 @import '../common/styles/var.less';
 
 .ui-tabs {
+  width: 100%;
+  height: auto;
 
-  
+  &__header {
+    width: 100%;
+  }
+
+  &__scroll--border {
+    border-top: 1rpx solid #eee;
+    border-bottom: 1rpx solid #eee;
+  }
+
+  &__scroll-belt {
+    background-color: white;
+    display: flex;
+    position: relative;
+    box-sizing: content-box;
+  }
+
+  &__scroll-thumb {
+    flex: 1;
+    text-align: center;
+    padding: 20rpx 0;
+  }
+
+  &__underline {
+    position: absolute;
+    bottom: 0;
+    transform: translateX(-50%);
+    transition-property: left;
+    transition-timing-function: ease;
+    z-index: 1;
+  }
+
+  &__track {
+    width: 100%;
+    height: auto;
+  }
 }
