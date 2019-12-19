@@ -2,8 +2,10 @@
   <block wx:if="{{ useText }}">{{ timeText }}</block>
   <block wx:else>
     <block wx:for="{{ timeList }}" wx:key="index">
-      <text class="digit digit-{{ item.match }}">{{ item.digit }}</text>
-      <text wx:if="{{ item.unit }}" class="unit unit-{{ item.match }}">{{ item.unit }}</text>
+      <text class="ui-countdown__digit ui-countdown__digit-{{ item.match }}">{{ item.digit }}</text>
+      <text wx:if="{{ item.unit }}" class="ui-countdown__unit ui-countdown__unit-{{ item.match }}">
+        {{ item.unit }}
+      </text>
     </block>
   </block>
 </view>
