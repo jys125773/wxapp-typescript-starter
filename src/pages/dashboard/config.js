@@ -28,6 +28,10 @@ export default [
     name: '表单组件',
     items: [
       {
+        name: 'Form 表单',
+        path: '/pages/form/index',
+      },
+      {
         name: 'Rate 评分',
         path: '/pages/rate/index',
       },
