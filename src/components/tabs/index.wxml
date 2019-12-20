@@ -27,7 +27,11 @@
       </view>
     </scroll-view>
   </ui-sticky>
-  <view class="ui-tabs__track">
+  <view 
+    class="ui-tabs__track track-class"
+    bind:touchstart="{{ swipeable ? 'bindTrackTouchStart' : '' }}" 
+    bind:touchmove="{{ swipeable ? 'bindTrackTouchMove' : '' }}" 
+    bind:touchend="{{ swipeable ? 'bindTrackTouchEnd' : '' }}">
     <slot />
   </view>
 </view>

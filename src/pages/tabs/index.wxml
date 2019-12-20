@@ -66,4 +66,20 @@
       </ui-tab-item>
     </ui-tabs>
   </demo-block>
+  <demo-block title="滑动切换" padding="{{ false }}">
+    <ui-tabs active="{{ activeTab4 }}" data-index="{{ 4 }}" swipeable bind:change="change">
+      <ui-tab-item title="标签1">
+        <view class="box">内容1</view>
+      </ui-tab-item>
+      <ui-tab-item title="标签2" disabled>
+        <view class="box">内容2</view>
+      </ui-tab-item>
+      <ui-tab-item title="标签3">
+        <view class="box">内容3</view>
+      </ui-tab-item>
+      <ui-tab-item title="标签4">
+        <view class="box">内容4</view>
+      </ui-tab-item>
+    </ui-tabs>
+  </demo-block>
 </view>

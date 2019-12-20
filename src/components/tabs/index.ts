@@ -6,6 +6,7 @@ Component({
     'line-class',
     'tab-class',
     'tab-active-class',
+    'track-class',
   ],
   relations: {
     '../tab-item/index': {
@@ -37,6 +38,10 @@ Component({
       },
     },
     swipeable: Boolean,
+    swipeableThreshold: {
+      type: Number,
+      value: 20,
+    },
     lineWidth: String,
     lineHeight: String,
     thumbHeight: String,
@@ -87,7 +92,7 @@ Component({
   },
   created() {
     this.children = [];
-    this.updateTabs = debounce(10, function (this: any) {
+    this.updateTabs = debounce(10, function(this: any) {
       this.setData({
         tabs: this.children.map(child => child.data),
         scrollable: this.getScrollable(),
@@ -135,6 +140,49 @@ Component({
         return;
       }
       this.triggerEvent('change', { active: index });
+    },
+    bindTrackTouchStart(e) {
+      const touch = e.touches[0];
+      this.startX = touch.clientX;
+      this.startY = touch.clientY;
+    },
+    bindTrackTouchMove(e) {
+      const touch = e.touches[0];
+      this.deltaX = touch.clientX - this.startX;
+      this.deltaY = touch.clientY - this.startY;
+    },
+    bindTrackTouchEnd() {
+      const {
+        data: { swipeableThreshold, tabs, active },
+        deltaX,
+        deltaY,
+      } = this;
+      if (
+        Math.abs(deltaX) < swipeableThreshold ||
+        Math.abs(deltaX / deltaY) < 0.8
+      ) {
+        return;
+      }
+      const len = tabs.length;
+      let index = active;
+      if (deltaX < 0) {
+        while (index < len - 1) {
+          index++;
+          if (!(tabs[index] as any).disabled) {
+            break;
+          }
+        }
+      } else if (deltaX > 0) {
+        while (index > 0) {
+          index--;
+          if (!(tabs[index] as any).disabled) {
+            break;
+          }
+        }
+      }
+      if (index !== active) {
+        this.triggerEvent('change', { active: index });
+      }
     },
   },
 });
