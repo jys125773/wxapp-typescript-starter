@@ -1,13 +1,14 @@
 Page({
   data: {
-    activeTab: 1,
+
   },
   change(e) {
     const {
       detail: { active },
+      target: { dataset: { index } }
     } = e;
     this.setData({
-      activeTab: active,
+      [`activeTab${index}`]: active,
     });
   },
 });

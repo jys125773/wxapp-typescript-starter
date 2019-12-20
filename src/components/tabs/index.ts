@@ -29,7 +29,7 @@ Component({
   properties: {
     active: {
       type: Number,
-      optionalTypes: [String],
+      value: 0,
       observer() {
         if (this.data.mounted) {
           this.updateChildren();
@@ -74,7 +74,7 @@ Component({
     },
     sticky: {
       type: Boolean,
-      value: true,
+      value: false,
     },
   },
   data: {
@@ -87,6 +87,12 @@ Component({
   },
   created() {
     this.children = [];
+    this.updateTabs = debounce(10, function (this: any) {
+      this.setData({
+        tabs: this.children.map(child => child.data),
+        scrollable: this.getScrollable(),
+      });
+    });
   },
   ready() {
     this.setData({
@@ -96,12 +102,6 @@ Component({
     this.updateChildren();
   },
   methods: {
-    updateTabs: debounce(6, function(this: any) {
-      this.setData({
-        tabs: this.children.map(child => child.data),
-        scrollable: this.getScrollable(),
-      });
-    }),
     getScrollable() {
       const {
         children = [],
@@ -129,9 +129,11 @@ Component({
       }
     },
     bindThumbTap(e) {
-      const {
-        dataset: { index },
-      } = e.target;
+      const { index } = e.target.dataset;
+      const { tabs } = this.data;
+      if ((tabs[index] as any).disabled) {
+        return;
+      }
       this.triggerEvent('change', { active: index });
     },
   },

@@ -4,6 +4,9 @@ Component({
       type: 'parent',
       linked(target) {
         this.parent = target;
+        if (!this.data.inited && !target.data.lazy) {
+          this.setData({ inited: true });
+        }
       },
       unlinked() {
         this.parent = null;
@@ -11,23 +14,18 @@ Component({
     },
   },
   properties: {
-    dot: Boolean,
-    info: null,
     title: String,
     disabled: Boolean,
     titleStyle: String,
-    name: {
-      type: String,
-      optionalTypes: [Number],
-      value: '',
-    },
   },
   data: {
     active: false,
+    inited: false,
   },
   methods: {
     update(active) {
-      this.setData({ active });
+      const inited = this.data.inited || active;
+      this.setData({ active, inited });
     },
   },
 });

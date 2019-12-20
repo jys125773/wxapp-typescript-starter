@@ -1,20 +1,68 @@
 <view class="container">
-  <demo-block title="基础用法" active="{{ 1 }}" padding="{{ false }}">
-    <ui-tabs active="{{ activeTab }}" bind:change="change">
+  <demo-block title="基础用法" padding="{{ false }}">
+    <ui-tabs active="{{ activeTab0 }}" data-index="{{ 0 }}" bind:change="change">
       <ui-tab-item title="标签1">
-        <view style="height:400rpx;background-color:blanchedalmond">1</view>
+        <view class="box">内容1</view>
       </ui-tab-item>
       <ui-tab-item title="标签2">
-        <view style="height:400rpx;background-color:sienna">2</view>
+        <view class="box">内容2</view>
       </ui-tab-item>
       <ui-tab-item title="标签3">
-        <view style="height:400rpx;background-color:goldenrod">3</view>
+        <view class="box">内容3</view>
       </ui-tab-item>
       <ui-tab-item title="标签4">
-        <view style="height:400rpx;background-color:lightseagreen">4</view>
+        <view class="box">内容4</view>
+      </ui-tab-item>
+    </ui-tabs>
+  </demo-block>
+  <demo-block title="吸顶" padding="{{ false }}">
+    <ui-tabs active="{{ activeTab1 }}" sticky data-index="{{ 1 }}" bind:change="change">
+      <ui-tab-item title="标签1">
+        <view class="box">内容1</view>
+      </ui-tab-item>
+      <ui-tab-item title="标签2">
+        <view class="box">内容2</view>
+      </ui-tab-item>
+      <ui-tab-item title="标签3">
+        <view class="box">内容3</view>
+      </ui-tab-item>
+      <ui-tab-item title="标签4">
+        <view class="box">内容4</view>
+      </ui-tab-item>
+    </ui-tabs>
+  </demo-block>
+  <demo-block title="横向滚动" padding="{{ false }}">
+    <ui-tabs active="{{ activeTab2 }}" data-index="{{ 2 }}" bind:change="change">
+      <ui-tab-item title="标签1">
+        <view class="box">内容1</view>
+      </ui-tab-item>
+      <ui-tab-item title="标签2">
+        <view class="box">内容2</view>
+      </ui-tab-item>
+      <ui-tab-item title="标签3">
+        <view class="box">内容3</view>
+      </ui-tab-item>
+      <ui-tab-item title="标签4">
+        <view class="box">内容4</view>
       </ui-tab-item>
       <ui-tab-item title="标签5">
-        <view style="height:400rpx;background-color:brown">5</view>
+        <view class="box">内容5</view>
+      </ui-tab-item>
+    </ui-tabs>
+  </demo-block>
+  <demo-block title="禁用" padding="{{ false }}">
+    <ui-tabs active="{{ activeTab3 }}" data-index="{{ 3 }}" bind:change="change">
+      <ui-tab-item title="标签1">
+        <view class="box">内容1</view>
+      </ui-tab-item>
+      <ui-tab-item title="标签2" disabled>
+        <view class="box">内容2</view>
+      </ui-tab-item>
+      <ui-tab-item title="标签3">
+        <view class="box">内容3</view>
+      </ui-tab-item>
+      <ui-tab-item title="标签4">
+        <view class="box">内容4</view>
       </ui-tab-item>
     </ui-tabs>
   </demo-block>

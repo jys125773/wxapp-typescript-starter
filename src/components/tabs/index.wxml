@@ -15,9 +15,9 @@
         <view 
           wx:for="{{ tabs }}" 
           wx:key="index" 
-          class="ui-tabs__scroll-thumb tab-class {{ active === index ? 'ui-tabs__scroll-thumb--active tab-active-class' : '' }}" 
+          class="ui-tabs__scroll-thumb tab-class {{ active === index ? 'ui-tabs__scroll-thumb--active tab-active-class' : '' }} {{ item.disabled ? 'ui-tabs__scroll-thumb--disabled' : '' }}" 
           id="scroll-thumb-{{ index }}" data-index="{{ index }}" 
-          style="{{ active === index ? ( titleActiveColor ? 'color:' + titleActiveColor : '' ) : ( titleInactiveColor ? 'color:' + titleInactiveColor : '' ) }}"
+          style="{{ active === index ? ( titleActiveColor ? 'color:' + titleActiveColor : '' ) : ( titleInactiveColor ? 'color:' + titleInactiveColor : '' ) }}{{ item.titleStyle }}"
           bind:tap="bindThumbTap">
           {{ item.title }}
         </view>
