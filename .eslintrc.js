@@ -36,6 +36,7 @@ module.exports = {
     "@typescript-eslint/no-use-before-define": ["warn", { "functions": false }],
     "@typescript-eslint/no-empty-function": "off",
     "@typescript-eslint/interface-name-prefix": "off",
+    "@typescript-eslint/no-this-alias": "off",
     "camelcase": ["error", { "ignoreDestructuring": true }],
     "@typescript-eslint/camelcase": ["error", { "ignoreDestructuring": true }],
     "no-console": ["warn", { allow: ["warn", "error"] }],

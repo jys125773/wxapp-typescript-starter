@@ -59,6 +59,14 @@ function merge(target: IAnyObject, source: IAnyObject) {
   return target;
 }
 
+function mergeAll(...args: IAnyObject[]) {
+  const result = {};
+  args.forEach(target => {
+    merge(result, target);
+  });
+  return result;
+}
+
 function compose(funcs: Function[]) {
   if (funcs.length === 0) {
     return (arg: any) => arg;
@@ -74,17 +82,6 @@ function getType(source: any) {
   return match && match[1] ? match[1].toLowerCase() : '';
 }
 
-function throttle(func: Function, wait = 100) {
-  const last = 0;
-  return function throttled(this: any) {
-    const now = Date.now();
-    if (now - last >= wait) {
-      // eslint-disable-next-line prefer-rest-params
-      return func.apply(this, arguments);
-    }
-  };
-}
-
 export {
   isObject,
   isArray,
@@ -97,7 +94,6 @@ export {
   merge,
   compose,
   getType,
-  throttle,
 };
 
 export default {
@@ -109,7 +105,7 @@ export default {
   isNull,
   get,
   merge,
+  mergeAll,
   compose,
   getType,
-  throttle,
 };

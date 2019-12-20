@@ -15,9 +15,9 @@ const pageLifeTimesMap = {
 };
 
 function compose(...funcs: Function[]) {
-  return function(this: any) {
+  return function(this: any, ...args) {
+    // tslint:disable-next-line
     const ctx = this;
-    const args = arguments;
     return funcs
       .slice(1)
       .reduce(

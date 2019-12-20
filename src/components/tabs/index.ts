@@ -1,4 +1,4 @@
-import { throttle } from '../../utils/throttle-debounce';
+import { debounce } from '../../utils/throttle-debounce';
 
 Component({
   externalClasses: [
@@ -31,16 +31,18 @@ Component({
       type: Number,
       optionalTypes: [String],
       observer() {
-        this.updateChildren();
+        if (this.data.mounted) {
+          this.updateChildren();
+        }
       },
     },
     swipeable: Boolean,
     lineWidth: String,
     lineHeight: String,
-    lineColor: {
-      type: String,
-      value: 'red',
-    },
+    thumbHeight: String,
+    lineColor: String,
+    titleActiveColor: String,
+    titleInactiveColor: String,
     scrollableThreshold: {
       type: Number,
       value: 4,
@@ -74,43 +76,38 @@ Component({
       type: Boolean,
       value: true,
     },
-    ellipsis: {
-      type: Boolean,
-      value: true,
-    },
   },
   data: {
     tabs: [],
     scrollable: false,
     trackTranslateX: 0,
-    currentIndex: -1,
     stickyContainer: () => null,
     scrollIntoViewId: '',
+    mounted: false,
   },
   created() {
     this.children = [];
   },
   ready() {
     this.setData({
+      mounted: true,
       stickyContainer: () => this.createSelectorQuery().select('.ui-tabs'),
     });
     this.updateChildren();
   },
   methods: {
-    updateTabs: throttle(6, function() {
-      //@ts-ignore
-      const that = this;
-      that.setData({
-        tabs: that.children.map(child => child.data),
-        scrollable: that.getScrollable(),
+    updateTabs: debounce(6, function(this: any) {
+      this.setData({
+        tabs: this.children.map(child => child.data),
+        scrollable: this.getScrollable(),
       });
     }),
     getScrollable() {
       const {
         children = [],
-        data: { scrollableThreshold, ellipsis },
+        data: { scrollableThreshold },
       } = this;
-      return children.length > scrollableThreshold || !ellipsis;
+      return children.length > scrollableThreshold;
     },
     updateChildren() {
       const { active, tabs } = this.data;

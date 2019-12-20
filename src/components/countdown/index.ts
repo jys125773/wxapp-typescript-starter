@@ -78,8 +78,8 @@ Component({
             const digit =
               match.length > 1
                 ? (match.replace(new RegExp(match[0], 'g'), '0') + v).substr(
-                    v.length,
-                  )
+                  v.length,
+                )
                 : v;
             if (!useText) {
               const unit = source.substr(offset + match.length);

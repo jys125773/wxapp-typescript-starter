@@ -9,6 +9,10 @@
     width: 100%;
   }
 
+  &__scroll {
+    height: 80rpx;
+  }
+
   &__scroll--border {
     border-top: 1rpx solid #eee;
     border-bottom: 1rpx solid #eee;
@@ -20,12 +24,18 @@
     position: relative;
     box-sizing: content-box;
     user-select: none;
+    height: 100%;
   }
 
   &__scroll-thumb {
     flex: 1;
-    text-align: center;
-    padding: 20rpx 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &--active {
+      color: red;
+    }
   }
 
   &__underline {
@@ -35,6 +45,7 @@
     transition-property: left;
     transition-timing-function: ease;
     z-index: 1;
+    background-color: red;
   }
 
   &__track {

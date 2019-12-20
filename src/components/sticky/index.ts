@@ -62,7 +62,7 @@ Component({
       });
     },
     observeContainer() {
-      const { container } = this.data;
+      const { container, offsetTop } = this.data;
       if (isFunction(container)) {
         const containerRef = container();
         if (containerRef) {
@@ -75,7 +75,7 @@ Component({
               this.disconnectObserver('containerObserver');
               this.containerObserver = containerObserver;
               containerObserver.relativeToViewport({
-                top: this.containerHeight - this.contentHeight,
+                top: this.containerHeight - this.contentHeight - offsetTop,
               });
               containerObserver.observe(CONTAINER_CLASS, res => {
                 this.setFixed(res.boundingClientRect.top);
@@ -120,8 +120,13 @@ Component({
       if (disabled) return;
       const fixed =
         containerHeight && contentHeight
-          ? top > contentHeight - containerHeight && top < offsetTop
+          ? top >= contentHeight - containerHeight + offsetTop &&
+            top < offsetTop
           : top < offsetTop;
+      // console.log('top', top);
+      // console.log('containerHeight', containerHeight);
+      // console.log('contentHeight', contentHeight);
+      // console.log('offsetTop', offsetTop);
       if (fixed !== this.data.fixed) {
         this.setData({
           fixed,
