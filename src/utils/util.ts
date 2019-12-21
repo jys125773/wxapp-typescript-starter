@@ -28,6 +28,10 @@ function isBoolean(value: any) {
   return typeof value === 'boolean';
 }
 
+function isString(value: any) {
+  return typeof value === 'string';
+}
+
 function get(source: any, paths: string[] | string, defaultValue?: any) {
   if (typeof paths === 'string') {
     paths = paths
@@ -90,6 +94,7 @@ export {
   isNumer,
   isNull,
   isBoolean,
+  isString,
   get,
   merge,
   compose,
@@ -103,6 +108,8 @@ export default {
   isNaN,
   isNumer,
   isNull,
+  isBoolean,
+  isString,
   get,
   merge,
   mergeAll,

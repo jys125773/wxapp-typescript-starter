@@ -1,0 +1,22 @@
+<view class="container">
+  <ui-form id="ui-form">
+    <ui-form-item label="namexx" prop="name" trigger="input" rules="{{ formRules.name }}">
+      <view class="box">
+        <label class="label">name</label>
+        <input data-prop="name" class="form-component" type="text" value="{{ formData.name }}" bindinput="onFeildChange" />
+      </view>
+    </ui-form-item>
+    <ui-form-item label="agexx" prop="age" rules="{{ formRules.age }}">
+      <view class="box">
+        <label>age</label>
+        <slider data-prop="age" class="form-component" value="{{ formData.age }}" bindchange="onFeildChange" />
+      </view>
+    </ui-form-item>
+    <ui-form-item label="address[0]xx" prop="address[0]" trigger="input" rules="{{ formRules.address[0] }}">
+      <view class="box">
+        <label>address[0]</label>
+        <input data-prop="address[0]" class="form-component" type="text" value="{{ formData.address[0] }}" bindinput="onFeildChange" />
+      </view>
+    </ui-form-item>
+  </ui-form>
+</view>

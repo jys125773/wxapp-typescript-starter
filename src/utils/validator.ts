@@ -436,7 +436,14 @@ class Xvalidator {
     let { descriptor } = this;
     if (fullField) {
       descriptor = {
-        [fullField]: get(descriptor, fullField.split('.').join('.fields.')),
+        [fullField]: get(
+          descriptor,
+          fullField
+            .replace(/\[/g, '.')
+            .replace(/\]/g, '')
+            .split('.')
+            .join('.fields.'),
+        ),
       };
       source = { [fullField]: source };
     }
