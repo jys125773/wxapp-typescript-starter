@@ -1,4 +1,4 @@
-import { isNumer, isObject } from '../../utils/util';
+import { isNumber, isObject } from '../../utils/util';
 
 const ENTER_CLASS = 'enter';
 const ENTER_ACTIVE_CLASS = 'enter-active';
@@ -207,13 +207,13 @@ Component({
       const { duration, type } = this.data;
       if (!duration) return '';
       let current = -1;
-      if (isNumer(duration)) {
+      if (isNumber(duration)) {
         current = duration;
       } else if (isObject(duration)) {
         const { enter, leave } = duration;
-        if (status === 1 && isNumer(enter)) {
+        if (status === 1 && isNumber(enter)) {
           current = enter;
-        } else if (status === LEAVEING_STATUS && isNumer(leave)) {
+        } else if (status === LEAVEING_STATUS && isNumber(leave)) {
           current = leave;
         }
       }

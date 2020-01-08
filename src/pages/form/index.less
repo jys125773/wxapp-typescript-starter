@@ -1,20 +1,87 @@
 .container {
-  padding-top: 100rpx;
+  padding-bottom: 60rpx;
+  .cell-title {
+    width: 160rpx;
+    flex: none;
+  }
 
-  .box {
+  .cell-content {
+    text-align: left;
+  }
+
+  input {
+    width: 100%;
+  }
+
+  button {
+    height: 80rpx;
+    font-size: 34rpx;
+    line-height: 80rpx;
+  }
+
+  .reset-button {
+    margin: 20rpx 40rpx 0 400rpx;
+  }
+
+  .submit-button {
+    background-color: #07c160;
+    color: white;
+  }
+
+  .custom-form {
+    background-color: white;
+    padding: 40rpx 0 0;
+  }
+
+  .form-item {
     display: flex;
-    padding: 40rpx 0;
+    padding: 0 40rpx 40rpx 0;
 
-    .form-component {
+    .label {
+      width: 200rpx;
+      padding-right: 30rpx;
+      text-align: right;
+    }
+
+    .err-message {
+      color: red;
+    }
+
+    .required {
+      position: relative;
+
+      &::before {
+        position: absolute;
+        content: "*";
+        display: block;
+        color: red;
+        right: 8rpx;
+      }
+    }
+
+    .content {
       flex: 1;
-    }
 
-    label {
-      margin-right: 40rpx;
-    }
+      input,
+      textarea {
+        border: 1rpx solid #ccc;
+        width: 400rpx;
+        border-radius: 8rpx;
+      }
 
-    input {
-      border-bottom: 1rpx solid #ccc;
+      textarea {
+        height: 120rpx;
+      }
+
+      .checkbox {
+        margin-bottom: 10rpx;
+      }
+
+      .radio {
+        margin-right: 20rpx;
+        margin-bottom: 10rpx;
+      }
     }
   }
+
 }

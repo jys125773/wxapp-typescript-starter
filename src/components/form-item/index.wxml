@@ -1,3 +1,9 @@
-<view class="ui-form-item">
-  <slot />
+<view class="ui-form-item custom-class {{ errMessage ? 'invalid-class' : 'valid-class' }} {{ dirty ? 'dirty-class' : '' }} {{ pristine ? 'pristine-class' : '' }}">
+  <view wx:if="{{ showLabel && label }}" class="ui-form-item__label label-class">{{ label }}</view>
+  <view class="ui-form-item__content">
+    <slot />
+    <view wx:if="{{ errMessage && showMessage }}" class="ui-form-item__message message-class">
+      {{ errMessage }}
+    </view>
+  </view>
 </view>

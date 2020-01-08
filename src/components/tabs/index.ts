@@ -1,4 +1,4 @@
-import { debounce } from '../../utils/throttle-debounce';
+import { debounce } from 'throttle-debounce';
 
 Component({
   externalClasses: [

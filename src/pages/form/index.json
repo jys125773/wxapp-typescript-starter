@@ -2,6 +2,7 @@
   "usingComponents": {
     "demo-block": "../common/components/demo-block/index",
     "ui-form": "../../components/form/index",
-    "ui-form-item": "../../components/form-item/index"
+    "ui-form-item": "../../components/form-item/index",
+    "ui-cell": "../../components/cell/index"
   }
 }

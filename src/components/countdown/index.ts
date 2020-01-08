@@ -75,12 +75,12 @@ Component({
         if (new RegExp('(' + k + ')').test(timeText)) {
           timeText = timeText.replace(RegExp.$1, (match, offset, source) => {
             const v = o[k] + '';
-            const digit =
-              match.length > 1
-                ? (match.replace(new RegExp(match[0], 'g'), '0') + v).substr(
-                  v.length,
-                )
-                : v;
+            let digit = v;
+            if (match.length > 1) {
+              digit = (
+                match.replace(new RegExp(match[0], 'g'), '0') + v
+              ).substr(v.length);
+            }
             if (!useText) {
               const unit = source.substr(offset + match.length);
               const last = timeList[timeList.length - 1];
@@ -96,6 +96,7 @@ Component({
           });
         }
       }
+      //@ts-ignore
       this.setData({ timeList, timeText, timeDiff });
     },
   },

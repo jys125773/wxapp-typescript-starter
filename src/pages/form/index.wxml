@@ -1,22 +1,155 @@
+<wxs module="contains">
+  module.exports = function(list, item){
+    if(!list){
+      return false;
+    }
+    var len = list.length;
+    for(var i = 0; i < len; i++){
+      if(list[i] === item){
+        return true;
+      }
+    }
+    return false;
+  }
+</wxs>
 <view class="container">
-  <ui-form id="ui-form">
-    <ui-form-item label="namexx" prop="name" trigger="input" rules="{{ formRules.name }}">
-      <view class="box">
-        <label class="label">name</label>
-        <input data-prop="name" class="form-component" type="text" value="{{ formData.name }}" bindinput="onFeildChange" />
+  <demo-block title="普通用法" padding="{{ false }}">
+    <ui-form id="ordinary-form">
+      <ui-cell title-class="cell-title" value-class="cell-content" title="账号" required size="large">
+        <ui-form-item label="账号" prop="account" trigger="input" rules="{{ ordinaryFormRules.account }}">
+          <input data-prop="account" type="text" value="{{ ordinaryFormData.account }}" bindinput="onOrdinaryFormFieldChange" />
+        </ui-form-item>
+      </ui-cell>
+      <ui-cell title-class="cell-title" value-class="cell-content" title="密码" required size="large">
+        <ui-form-item label="密码" prop="password" trigger="input" rules="{{ ordinaryFormRules.password }}">
+          <input data-prop="password" type="text" value="{{ ordinaryFormData.password }}" bindinput="onOrdinaryFormFieldChange" bindblur="onOrdinaryFormPassordBlur" />
+        </ui-form-item>
+      </ui-cell>
+      <ui-cell title-class="cell-title" value-class="cell-content" title="确认密码" required size="large">
+        <ui-form-item label="确认密码" prop="comfirmPassword" trigger="input" rules="{{ ordinaryFormRules.comfirmPassword }}">
+          <input data-prop="comfirmPassword" type="text" disabled="{{ !ordinaryFormData.password }}" value="{{ ordinaryFormData.comfirmPassword }}" bindinput="onOrdinaryFormFieldChange" />
+        </ui-form-item>
+      </ui-cell>
+    </ui-form>
+    <view>
+      <button class="reset-button" bindtap="onOrdinaryFormReset">重置</button>
+      <button class="submit-button" bindtap="onOrdinaryFormSubmit">提交</button>
+    </view>
+  </demo-block>
+  <demo-block title="自定义用法" padding="{{ false }}">
+    <ui-form id="custom-form">
+      <view class="custom-form">
+        <view class="form-item">
+          <label class="label required">活动名称</label>
+          <view class="content">
+            <input type="text" data-prop="name" data-trigger="{{ ['input', 'blur'] }}" bindinput="onCustomFormFieldChange" bindblur="onCustomFormFieldChange" value="{{ customFormData.name }}" />
+            <view class="err-message" wx:if="{{ customFormErrors.name }}">
+              {{ customFormErrors.name }}
+            </view>
+          </view>
+        </view>
+        <view class="form-item">
+          <label class="label required">活动区域</label>
+          <view class="content">
+            <input type="text" data-prop="region" data-trigger="input" bindinput="onCustomFormFieldChange" value="{{ customFormData.region }}" />
+            <view class="err-message" wx:if="{{ customFormErrors.region }}">
+              {{ customFormErrors.region }}
+            </view>
+          </view>
+        </view>
+        <view class="form-item">
+          <label class="label required">活动开始时间</label>
+          <view class="content">
+            <picker mode="date" end="{{ customFormData.date[1] }}" data-prop="date[0]" bindchange="onCustomFormFieldChange" value="{{ customFormData.date[0] }}">
+              <view>{{customFormData.date[0] || '请选择'}}</view>
+            </picker>
+            <view class="err-message" wx:if="{{ customFormErrors['date[0]'] }}">
+              {{  customFormErrors['date[0]'] }}
+            </view>
+          </view>
+        </view>
+        <view class="form-item">
+          <label class="label required">活动结束时间</label>
+          <view class="content">
+            <picker mode="date" start="{{ customFormData.date[0] }}" data-prop="date[1]" bindchange="onCustomFormFieldChange" value="{{ customFormData.date[1] }}">
+              <view>{{customFormData.date[1] || '请选择'}}</view>
+            </picker>
+            <view class="err-message" wx:if="{{  customFormErrors['date[1]'] }}">
+              {{  customFormErrors['date[1]'] }}
+            </view>
+          </view>
+        </view>
+        <view class="form-item">
+          <label class="label">及时配送</label>
+          <view class="content">
+            <switch data-prop="delivery" checked="{{ customFormData.delivery }}" type="switch" bindchange="onCustomFormFieldChange"></switch>
+            <view class="err-message" wx:if="{{ customFormErrors.delivery }}">
+              {{ customFormErrors.delivery }}
+            </view>
+          </view>
+        </view>
+        <view class="form-item">
+          <label class="label required">活动性质</label>
+          <view class="content">
+            <checkbox-group data-prop="type" bindchange="onCustomFormFieldChange">
+              <view class="checkbox">
+                <checkbox value="0" checked="{{ contains(customFormData.type,'0') }}" />
+                美食/餐厅线上活动
+              </view>
+              <view class="checkbox">
+                <checkbox value="1" checked="{{ contains(customFormData.type,'1') }}" />
+                地推活动
+              </view>
+              <view class="checkbox">
+                <checkbox value="2" checked="{{ contains(customFormData.type,'2') }}" />
+                线下主题活动
+              </view>
+              <view class="checkbox">
+                <checkbox value="3" checked="{{ contains(customFormData.type,'3') }}" />
+                单纯品牌曝光
+              </view>
+            </checkbox-group>
+            <view class="err-message" wx:if="{{ customFormErrors.type }}">
+              {{ customFormErrors.type }}
+            </view>
+          </view>
+        </view>
+        <view class="form-item">
+          <label class="label">特殊资源</label>
+          <view class="content">
+            <radio-group data-prop="resource" value="{{ customFormData.resource }}" bindchange="onCustomFormFieldChange">
+              <radio class="radio" value="0" checked="{{ customFormData.resource === '0' }}">
+                <text>线上品牌赞助</text>
+              </radio>
+              <radio class="radio" value="1" checked="{{ customFormData.resource === '1' }}">
+                <text>线下场地免费</text>
+              </radio>
+            </radio-group>
+            <view class="err-message" wx:if="{{ customFormErrors.resource }}">
+              {{ customFormErrors.resource }}
+            </view>
+          </view>
+        </view>
+        <view class="form-item">
+          <label style="width:200rpx;" class="label required">活动内容</label>
+          <view class="content">
+            <textarea data-prop="desc" data-trigger="input" value="{{ customFormData.desc }}" bindinput="onCustomFormFieldChange" cols="30" rows="10"></textarea>
+            <view class="err-message" wx:if="{{ customFormErrors.desc }}">
+              {{ customFormErrors.desc }}
+            </view>
+          </view>
+        </view>
       </view>
-    </ui-form-item>
-    <ui-form-item label="agexx" prop="age" rules="{{ formRules.age }}">
-      <view class="box">
-        <label>age</label>
-        <slider data-prop="age" class="form-component" value="{{ formData.age }}" bindchange="onFeildChange" />
-      </view>
-    </ui-form-item>
-    <ui-form-item label="address[0]xx" prop="address[0]" trigger="input" rules="{{ formRules.address[0] }}">
-      <view class="box">
-        <label>address[0]</label>
-        <input data-prop="address[0]" class="form-component" type="text" value="{{ formData.address[0] }}" bindinput="onFeildChange" />
-      </view>
-    </ui-form-item>
-  </ui-form>
+    </ui-form>
+    <view>
+      <button style="margin-left:200rpx" class="reset-button" bindtap="onCustomFormFormReset">
+        重置
+      </button>
+      <button style="margin-right:20rpx" class="submit-button" bindtap="onCustomFormFormSubmit">
+        提交
+      </button>
+      <button class="submit-button" bindtap="onCustomFormFormPartSubmit">部分验证</button>
+    </view>
+  </demo-block>
+  <demo-block title="动态表单" padding="{{ false }}"></demo-block>
 </view>

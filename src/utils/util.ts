@@ -16,7 +16,7 @@ function isNaN(value: any) {
   return value !== value;
 }
 
-function isNumer(value: any) {
+function isNumber(value: any) {
   return typeof value === 'number' && !isNaN(value);
 }
 
@@ -32,19 +32,48 @@ function isString(value: any) {
   return typeof value === 'string';
 }
 
-function get(source: any, paths: string[] | string, defaultValue?: any) {
-  if (typeof paths === 'string') {
-    paths = paths
+function caskPath(path: string[] | string): string[] {
+  if (typeof path === 'string') {
+    return path
       .replace(/\[/g, '.')
       .replace(/\]/g, '')
       .split('.');
   }
+  return path;
+}
+
+function get(source: any, path: string[] | string, defaultValue?: any) {
+  const paths = caskPath(path);
   const { length } = paths;
   let index = 0;
   while (source != null && index < length) {
     source = source[paths[index++]];
   }
   return source === undefined || index === 0 ? defaultValue : source;
+}
+
+function set(source: any, path: string[] | string, value?: any) {
+  const paths = caskPath(path),
+    { length } = paths,
+    lastIndex = length - 1;
+  let index = -1,
+    nested = source;
+  while (nested != null && ++index < length) {
+    const key = paths[index];
+    let newValue = value;
+    if (index !== lastIndex) {
+      const objValue = nested[key];
+      newValue =
+        isObject(objValue) || isArray(objValue)
+          ? objValue
+          : isIndex(paths[index + 1])
+          ? []
+          : {};
+    }
+    nested[key] = newValue;
+    nested = nested[key];
+  }
+  return source;
 }
 
 function merge(target: IAnyObject, source: IAnyObject) {
@@ -81,9 +110,26 @@ function compose(funcs: Function[]) {
   return funcs.reduce((a, b) => (...args: any[]) => a(b(...args)));
 }
 
-function getType(source: any) {
-  const match = toStr.call(source).match(/\[object\s(\w+)\]/);
-  return match && match[1] ? match[1].toLowerCase() : '';
+const TO_STRING_REG = /\[object\s(\w+)\]/;
+const TO_STRING_MEMORIZE_MAP: Record<string, string> = {};
+function getType(value: any) {
+  const typeKey = toStr.call(value);
+  let type = TO_STRING_MEMORIZE_MAP[typeKey];
+  if (!type) {
+    const match = typeKey.match(TO_STRING_REG);
+    type = match && match[1] ? match[1].toLowerCase() : '';
+    if (type) {
+      TO_STRING_MEMORIZE_MAP[typeKey] = type;
+    }
+  }
+  return type;
+}
+
+const NATURAL_NUM_REG = /^(?:0|[1-9]\d*)$/;
+function isIndex(value: string | number) {
+  return typeof value === 'string'
+    ? NATURAL_NUM_REG.test(value)
+    : value >= 0 && value % 1 === 0;
 }
 
 export {
@@ -91,14 +137,16 @@ export {
   isArray,
   isFunction,
   isNaN,
-  isNumer,
+  isNumber,
   isNull,
   isBoolean,
   isString,
   get,
+  set,
   merge,
   compose,
   getType,
+  isIndex,
 };
 
 export default {
@@ -106,13 +154,15 @@ export default {
   isArray,
   isFunction,
   isNaN,
-  isNumer,
+  isNumber,
   isNull,
   isBoolean,
   isString,
   get,
+  set,
   merge,
   mergeAll,
   compose,
   getType,
+  isIndex,
 };
