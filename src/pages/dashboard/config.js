@@ -91,6 +91,10 @@ export default [
         name: 'Parabola 抛物线动画',
         path: '/pages/parabola/index',
       },
+      {
+        name: 'VirtualList 长列表',
+        path: '/pages/virtual-list/index',
+      },
     ],
   },
 ];

@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "demo-block": "../common/components/demo-block/index",
+    "virtual-list": "../../components/virtual-list/index"
+  }
+}

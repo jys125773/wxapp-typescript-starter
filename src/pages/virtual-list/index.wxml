@@ -1,0 +1,7 @@
+<view class="container">
+  <virtual-list scrollToIndex="{{ 16 }}" height="{{ 600 }}" item-count="{{ 10000 }}" itemSize="{{ itemSize }}" bind:render="slice">
+    <view wx:if="{{styleItems}}">
+      <view wx:for="{{ list }}" wx:key="index" style="{{ styleItems[index] }};line-height:50px;border-bottom:1rpx solid #ccc;padding-left:30rpx">{{ item }}</view>
+    </view>
+  </virtual-list>
+</view>

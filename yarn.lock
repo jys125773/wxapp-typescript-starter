@@ -5948,6 +5948,11 @@ strip-outer@^1.0.0:
   dependencies:
     escape-string-regexp "^1.0.2"
 
+style-object-to-string@^1.0.0:
+  version "1.0.0"
+  resolved "http://npm.weimob.com/style-object-to-string/-/style-object-to-string-1.0.0.tgz#799af5c05921eae7d84869a6adccd1df8a1754cf"
+  integrity sha1-eZr1wFkh6ufYSGmmrczR34oXVM8=
+
 supports-color@^2.0.0:
   version "2.0.0"
   resolved "https://registry.npm.taobao.org/supports-color/download/supports-color-2.0.0.tgz#535d045ce6b6363fa40117084629995e9df324c7"

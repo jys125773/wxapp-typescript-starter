@@ -52,11 +52,11 @@
   },
   "dependencies": {
     "clonedeeply": "^1.0.2",
-    "lodash.set": "^4.3.2",
     "miniprogram-recycle-view": "^0.1.5",
     "query-string": "^6.9.0",
     "redux": "^4.0.4",
     "redux-thunk": "^2.3.0",
+    "style-object-to-string": "^1.0.0",
     "throttle-debounce": "^2.1.0"
   }
 }

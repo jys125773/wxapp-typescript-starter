@@ -1,0 +1,21 @@
+
+  <scroll-view 
+    class="mo-virtual-list custom-class" 
+    style="width:{{ width ? width + 'px' : '100%' }};height:{{ height ? height + 'px' : '100%' }};{{ customStyle }}"
+    scroll-y="{{ scrollDirection === 'vertical' }}"
+    scroll-x="{{ scrollDirection === 'horizontal' }}"
+    upper-threshold="{{ upperThreshold }}" 
+    lower-threshold="{{ lowerThreshold }}" 
+    scroll-top="{{ scrollDirection === 'vertical' ? offset : '' }}" 
+    scroll-left="{{ scrollDirection === 'horizontal' ? offset : '' }}" 
+    scroll-with-animation="{{ scrollAnimate ? scrollWithAnimation : 0 }}"
+    enable-back-to-top="{{ enableBackToTop }}" 
+    bindscrolltoupper="onScrollToUpper" 
+    bindscrolltolower="onScrollToLower" 
+    bindscroll="onScroll">
+    <view 
+      class="mo-virtual-list__scroll-inner"
+      style="{{ scrollDirection === 'vertical' ? ('height:' + totalSize + 'px') : '' }};{{ scrollDirection === 'horizontal' ? ('width:' + totalSize + 'px') : '' }}">
+      <slot></slot>
+    </view>
+  </scroll-view>

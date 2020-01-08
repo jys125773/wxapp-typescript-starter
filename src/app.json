@@ -13,7 +13,8 @@
     "pages/dialog/index",
     "pages/cell/index",
     "pages/tabs/index",
-    "pages/form/index"
+    "pages/form/index",
+    "pages/virtual-list/index"
   ],
   "window":{
     "backgroundTextStyle":"light",
