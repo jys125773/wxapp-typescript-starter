@@ -1,0 +1,13 @@
+<view class="container">
+  <ui-alphabeta-list>
+    <block wx:for="{{ list }}" wx:key="index">
+      <ui-alphabeta-anchor alphabeta="{{ item.initial }}"/>
+      <ui-cell 
+       title="{{ item.name }}" 
+       arrow-direction="right" 
+       clickable 
+       wx:for="{{ item.list }}" 
+       wx:key="index"/>
+    </block>
+  </ui-alphabeta-list>
+</view>

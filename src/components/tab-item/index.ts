@@ -3,13 +3,9 @@ Component({
     '../tabs/index': {
       type: 'parent',
       linked(target) {
-        this.parent = target;
         if (!this.data.inited && !target.data.lazy) {
           this.setData({ inited: true });
         }
-      },
-      unlinked() {
-        this.parent = null;
       },
     },
   },

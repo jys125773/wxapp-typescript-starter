@@ -13,7 +13,7 @@
     <block wx:if="{{ value || value === 0 }}">{{ value }}</block>
     <slot wx:else />
   </view>
-  <ui-icon wx:if="{{ isLink }}" name="{{ arrowDirection ? 'arrow' + '-' + arrowDirection : 'arrow-right' }}" class="ui-cell__right-icon-c right-icon-class" custom-class="ui-cell__right-icon" />
+  <ui-icon wx:if="{{ isLink || arrowDirection }}" name="{{ arrowDirection ? 'arrow' + '-' + arrowDirection : 'arrow-right' }}" class="ui-cell__right-icon-c right-icon-class" custom-class="ui-cell__right-icon" />
   <slot wx:else name="right-icon" />
   <slot name="extra" />
 </view>

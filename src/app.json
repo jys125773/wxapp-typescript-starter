@@ -14,7 +14,8 @@
     "pages/cell/index",
     "pages/tabs/index",
     "pages/form/index",
-    "pages/virtual-list/index"
+    "pages/virtual-list/index",
+    "pages/alphabeta-list/index"
   ],
   "window":{
     "backgroundTextStyle":"light",

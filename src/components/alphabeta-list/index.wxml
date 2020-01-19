@@ -1,0 +1,31 @@
+<view class="ui-alphabeta-list custom-class">
+  <scroll-view 
+    class="ui-alphabeta-list__sroll" 
+    scroll-y
+    scroll-top="{{ scrollTop }}" 
+    scroll-with-animation="{{ scrollWithAnimation }}" 
+    bindscroll="bindScroll">
+      <slot />
+  </scroll-view>
+  <view 
+    bind:touchmove="bindSlideBarTouchMove"
+    class="ui-alphabeta-list__slidebar slidebar-class">
+    <view 
+      class="ui-alphabeta-list__slidebar-item" 
+      wx:for="{{ alphabetaList }}" 
+      data-index="{{ index }}"
+      bind:touchstart="bindSlideBarTouchStart"
+      bind:touchend="bindSlideBarTouchEnd"
+      bind:tap="bindSlideBarItemTap"
+      wx:key="index"
+      style="{{ active === index ? 'color:' + highlightColor + ';font-weight:bold;' : '' }}">
+      {{ item.alphabeta }}
+    </view>
+  </view>
+  <view 
+    wx:if="{{ toast }}" 
+    hidden="{{ toastHidden }}" 
+    class="ui-alphabeta-list__toast toast-class">
+    {{ alphabetaList[active].alphabeta }}
+  </view>
+</view>

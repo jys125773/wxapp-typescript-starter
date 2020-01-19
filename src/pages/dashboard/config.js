@@ -95,6 +95,10 @@ export default [
         name: 'VirtualList 长列表',
         path: '/pages/virtual-list/index',
       },
+      {
+        name: 'AlphabetaList 字母索引列表',
+        path: '/pages/alphabeta-list/index',
+      },
     ],
   },
 ];

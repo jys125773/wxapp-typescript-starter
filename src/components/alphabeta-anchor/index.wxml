@@ -1,0 +1,10 @@
+<view 
+  class="ui-alphabeta-anchor custom-class" 
+  style="height:{{ height }};line-height:{{ height }};">
+  <view 
+    class="ui-alphabeta-anchor__sticky"
+    style="{{ stickyStyle }}">
+    <slot wx:if="{{ useSlot }}" />
+    <text wx:else>{{ alphabeta }}</text>
+  </view>
+</view>

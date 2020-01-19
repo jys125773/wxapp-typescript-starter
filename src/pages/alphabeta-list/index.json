@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+    "demo-block": "../common/components/demo-block/index",
+    "ui-alphabeta-list": "../../components/alphabeta-list/index",
+    "ui-alphabeta-anchor": "../../components/alphabeta-anchor/index",
+    "ui-cell": "../../components/cell/index"
+  }
+}

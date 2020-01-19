@@ -1,0 +1,39 @@
+.ui-alphabeta-list {
+  height: 100%;
+  position: relative;
+
+  &__sroll {
+    height: 100%;
+  }
+
+  &__slidebar {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: #fff;
+
+    &-item {
+      width: 80rpx;
+      text-align: center;
+    }
+  }
+
+  &__toast {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate3d(-50%, -50%, 0);
+    background-color: #000;
+    opacity: 0.8;
+    color: #fff;
+    font-size: 76rpx;
+    text-align: center;
+    width: 140rpx;
+    height: 140rpx;
+    line-height: 140rpx;
+    border-radius: 10rpx;
+  }
+}
