@@ -99,6 +99,10 @@ export default [
         name: 'AlphabetaList 字母索引列表',
         path: '/pages/alphabeta-list/index',
       },
+      {
+        name: 'SortableList 拖拽排序列表',
+        path: '/pages/sortable-list/index',
+      },
     ],
   },
 ];

@@ -1,0 +1,13 @@
+<view class="ui-sortable-list custom-class">
+  <view 
+    wx:for="{{ items }}" 
+    wx:key="{{ item.sortId }}" 
+    bind:longpress="onItemlongPress"
+    bind:touchmove="onItemTouchMove"
+    data-index="{{ index }}"
+    style="{{ index === dragIndex ? ('transform:translate3d(' + translateX + 'px,' +  translateY + 'px,' + '0)') : (transforms[index] || '') }};width:{{ 100 / columns }}%;height:{{ itemHeight }}px"
+    class="ui-sortable-item item-{{ item.sortId }}">
+    <slot name="{{ item.sortId }}" />
+  </view>
+</view>
+<!-- <view>translateX:{{ translateX }}; translateY:{{ translateY }}</view> -->

@@ -1,0 +1,5 @@
+{
+  "usingComponents": {
+    "ui-sortable-list": "../../components/sortable-list/index"
+  }
+}

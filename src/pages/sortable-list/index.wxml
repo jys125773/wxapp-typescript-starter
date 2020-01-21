@@ -1,0 +1,12 @@
+<view class="container">
+  <ui-sortable-list items="{{ sortableList }}">
+    <view 
+      class="sortable-item"
+      wx:for="{{ sortableList }}" 
+      wx:key="index" 
+      style="background-color: rgba({{ 255 - index * 40 }}, {{ index * 30 }}, {{ index * 40 }}, 1);"
+      slot="{{ item.sortId }}">
+      {{item.sortId}}
+    </view>
+  </ui-sortable-list>
+</view>

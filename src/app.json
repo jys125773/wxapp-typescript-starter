@@ -15,7 +15,8 @@
     "pages/tabs/index",
     "pages/form/index",
     "pages/virtual-list/index",
-    "pages/alphabeta-list/index"
+    "pages/alphabeta-list/index",
+    "pages/sortable-list/index"
   ],
   "window":{
     "backgroundTextStyle":"light",
