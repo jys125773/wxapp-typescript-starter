@@ -1,12 +1,37 @@
+<wxs module="touchMove">
+  var DRAGGING_CLASS = '.ui-sortable-item__dragging';
+  module.exports = function(event, instance) {
+    var dragInstance = instance.selectComponent(DRAGGING_CLASS);
+    var touch = event.touches[0] || event.changedTouches[0];
+    var pageX = touch.pageX;
+    var pageY = touch.pageY;
+    if (dragInstance) {
+      var dataset = dragInstance.getDataset();
+      var start = dataset.start;
+      if (start) {
+        var translateX = start.translateX + pageX - start.pageX;
+        var translateY = start.translateY + pageY - start.pageY;
+        var transform = 'translate3d(' + translateX + 'px,' + translateY + 'px,' + '0)';
+        dragInstance.setStyle({
+          '-webkit-transform': transform,
+          'transform': transform
+        });
+      }
+    }
+    instance.callMethod('observeTouchMove', { translateX, translateY });
+  }
+</wxs>
 <view class="ui-sortable-list custom-class">
   <view 
     wx:for="{{ items }}" 
     wx:key="{{ item.sortId }}" 
-    bind:longpress="onItemlongPress"
-    bind:touchmove="onItemTouchMove"
+    catch:longpress="onLongPress"
+    catch:touchmove="{{touchMove}}"
+    catch:touchend="onTouchEnd"
     data-index="{{ index }}"
-    style="{{ index === dragIndex ? ('transform:translate3d(' + translateX + 'px,' +  translateY + 'px,' + '0)') : (transforms[index] || '') }};width:{{ 100 / columns }}%;height:{{ itemHeight }}px"
-    class="ui-sortable-item item-{{ item.sortId }}">
+    data-start="{{ startTouch }}"
+    style="{{ index === dragIndex ? 'transform:translate3d(' + translateX + 'px,' + translateY + 'px,' + '0);z-index:1;' : (positions[index].transform || '') }};width:{{ 100 / columns }}%;height:{{ itemHeight }}px"
+    class="ui-sortable-item {{ index === dragIndex ? 'ui-sortable-item__dragging' : '' }} {{ widthTransition && index !== dragIndex ? 'ui-sortable-item__transition' : '' }} ui-sortable-item-{{ index }}">
     <slot name="{{ item.sortId }}" />
   </view>
 </view>

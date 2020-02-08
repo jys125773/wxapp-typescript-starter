@@ -9,6 +9,7 @@ Page({
       },
       {
         sortId: 2,
+        // fixed: true,
       },
       {
         sortId: 3,

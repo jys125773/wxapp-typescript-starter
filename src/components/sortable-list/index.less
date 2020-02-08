@@ -1,9 +1,15 @@
 .ui-sortable-list {
   width: 100%;
-  display: flex;
-  flex-wrap: wrap;
-}
-.ui-sortable-item {
   position: relative;
-  z-index: 1;
+}
+
+.ui-sortable-item {
+  position: absolute;
+  left: 0;
+  right: 0;
+  z-index: 0;
+
+  &__transition {
+    transition: transform ease .3s;
+  }
 }
