@@ -12,13 +12,11 @@
         var translateX = start.translateX + pageX - start.pageX;
         var translateY = start.translateY + pageY - start.pageY;
         var transform = 'translate3d(' + translateX + 'px,' + translateY + 'px,' + '0)';
-        dragInstance.setStyle({
-          '-webkit-transform': transform,
-          'transform': transform
-        });
+       
+        instance.callMethod('observeTouchMove', { translateX, translateY, transform });
       }
     }
-    instance.callMethod('observeTouchMove', { translateX, translateY });
+    
   }
 </wxs>
 <view class="ui-sortable-list custom-class">
@@ -30,7 +28,7 @@
     catch:touchend="onTouchEnd"
     data-index="{{ index }}"
     data-start="{{ startTouch }}"
-    style="{{ index === dragIndex ? 'transform:translate3d(' + translateX + 'px,' + translateY + 'px,' + '0);z-index:1;' : (positions[index].transform || '') }};width:{{ 100 / columns }}%;height:{{ itemHeight }}px"
+    style="{{ positions[index].transform }};{{ index === dragIndex ? 'z-index:1' : ''  }};width:{{ 100 / columns }}%;height:{{ itemHeight }}px"
     class="ui-sortable-item {{ index === dragIndex ? 'ui-sortable-item__dragging' : '' }} {{ widthTransition && index !== dragIndex ? 'ui-sortable-item__transition' : '' }} ui-sortable-item-{{ index }}">
     <slot name="{{ item.sortId }}" />
   </view>

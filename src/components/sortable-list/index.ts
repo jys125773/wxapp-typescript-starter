@@ -7,18 +7,34 @@ Component({
     items: {
       type: Array,
       value: [],
+      observer() {
+        if (this.mounted) {
+          this.setPositions();
+        }
+      },
     },
     columns: {
       type: Number,
       value: 4,
+      observer() {
+        if (this.mounted) {
+          this.setContainerRect();
+        }
+      },
     },
     itemHeight: {
       type: Number,
       value: 100,
+      observer() {
+        if (this.mounted) {
+          this.setPositions();
+        }
+      },
     },
   },
   data: {
     dragIndex: -1,
+    targetIndex: -1,
     previousTargetIndex: -1,
     translateX: 0,
     translateY: 0,
@@ -31,6 +47,7 @@ Component({
   },
   ready() {
     this.setContainerRect();
+    this.mounted = true;
   },
   methods: {
     setContainerRect() {
@@ -53,6 +70,8 @@ Component({
           index,
         });
       });
+      // console.log('positions', positions);
+
       this.setData({ positions });
     },
     getCoordinate(index, columns) {
@@ -87,26 +106,33 @@ Component({
         translateY: startTranslateY,
         widthTransition: false,
       });
+      wx.vibrateShort();
     },
     onTouchEnd() {
-      this.setData({
-        startTouch: null,
-        widthTransition: false,
+      const { items, positions } = this.data;
+      this.setData({  widthTransition: false, startTouch: null });
+      const sortItems: any[] = [];
+      positions.forEach(({ index }, i) => {
+        sortItems[index] = items[i];
       });
+      this.triggerEvent('change', { items: sortItems });
     },
-    observeTouchMove({ translateX, translateY }) {
+    observeTouchMove({ translateX, translateY, transform }) {
       const { previousTargetIndex, dragIndex } = this.data;
       const targetIndex = this.calculateTargetIndex(translateX, translateY);
+
+      this.setData({
+        [`positions[${dragIndex}].transform`]: 'transform:' + transform,
+      });
+
       if (targetIndex !== previousTargetIndex) {
         this.data.previousTargetIndex = targetIndex;
         this.insert(dragIndex, targetIndex);
       }
     },
     insert(start, end) {
-      const { positions, items, widthTransition } = this.data as any;
-      if (!widthTransition) {
-        this.setData({ widthTransition: true });
-      }
+      const { positions, items } = this.data as any;
+      this.setData({ widthTransition: true, targetIndex: end });
       if (start < end) {
         const sorts = positions.map((_, index) => {
           if (items[index].fixed) {
@@ -134,6 +160,7 @@ Component({
       } else {
         this.setPositions();
       }
+      // wx.vibrateShort();
     },
     getNextIndex(index, start) {
       if (index === start) {
