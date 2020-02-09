@@ -1,6 +1,7 @@
 <view class="container">
   <ui-sortable-list 
     bind:change="bindSortChange"
+    columns="{{ 1 }}"
     items="{{ sortableList }}">
     <view 
       class="sortable-item"

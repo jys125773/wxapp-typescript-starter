@@ -1,36 +1,73 @@
-<wxs module="touchMove">
-  var DRAGGING_CLASS = '.ui-sortable-item__dragging';
-  module.exports = function(event, instance) {
-    var dragInstance = instance.selectComponent(DRAGGING_CLASS);
-    var touch = event.touches[0] || event.changedTouches[0];
-    var pageX = touch.pageX;
-    var pageY = touch.pageY;
-    if (dragInstance) {
-      var dataset = dragInstance.getDataset();
+<wxs module="helpers">
+  var DRAGGING_CLASS = '.ui-sortable__movable-view';
+  var dragInstance = null;
+  module.exports = {
+    touchMove: function (event, instance) {
+      if (!dragInstance) return;
+      var dataset = event.target.dataset;
+      var touch = event.touches[0] || event.changedTouches[0];
       var start = dataset.start;
-      if (start) {
-        var translateX = start.translateX + pageX - start.pageX;
-        var translateY = start.translateY + pageY - start.pageY;
-        var transform = 'translate3d(' + translateX + 'px,' + translateY + 'px,' + '0)';
-       
-        instance.callMethod('observeTouchMove', { translateX, translateY, transform });
-      }
+      if (!start) return;
+      var translateX = start.translateX + touch.pageX - start.pageX;
+      var translateY = start.translateY + touch.pageY - start.pageY;
+      var tranform = 'translate3d(' + translateX + 'px,' + translateY + 'px,0)';
+      dragInstance.setStyle({
+        'transform': tranform,
+        '-webkit-transform': tranform
+      });
+      instance.callMethod('onTouchMove', { translateX, translateY });
+    },
+    longPress: function (event, instance) {
+      dragInstance = instance.selectComponent(DRAGGING_CLASS);
+      var touch = event.touches[0] || event.changedTouches[0];
+      var pageX = touch.pageX;
+      var pageY = touch.pageY;
+      var dataset = event.target.dataset;
+      if (dataset.fixed) return;
+      var columns = dataset.columns;
+      var rect = dataset.wraprect;
+      var itemWidth = rect.width / columns;
+      var startTranslateX = columns > 1 ? pageX - rect.left - 0.5 * itemWidth : 0;
+      var startTranslateY = pageY - rect.top - 0.5 * dataset.height;
+      var tranform = 'translate3d(' + startTranslateX + 'px,' + startTranslateY + 'px,0)';
+      dragInstance.setStyle({
+        'transform': tranform,
+        '-webkit-transform': tranform
+      });
+      instance.callMethod('onLongPress', {
+        index: dataset.index,
+        pageX: pageX,
+        pageY: pageY,
+        translateX: startTranslateX,
+        translateY: startTranslateY
+      });
     }
-    
   }
 </wxs>
-<view class="ui-sortable-list custom-class">
+<view 
+  class="ui-sortable {{ transition ? 'ui-sortable--transition' : '' }} custom-class"
+  style="height:{{ wrapHeight }};">
   <view 
     wx:for="{{ items }}" 
     wx:key="{{ item.sortId }}" 
-    catch:longpress="onLongPress"
-    catch:touchmove="{{touchMove}}"
-    catch:touchend="onTouchEnd"
+    wx:if="{{ index !== dragIndex }}"
+    catch:longpress="{{ helpers.longPress }}"
     data-index="{{ index }}"
-    data-start="{{ startTouch }}"
-    style="{{ positions[index].transform }};{{ index === dragIndex ? 'z-index:1' : ''  }};width:{{ 100 / columns }}%;height:{{ itemHeight }}px"
-    class="ui-sortable-item {{ index === dragIndex ? 'ui-sortable-item__dragging' : '' }} {{ widthTransition && index !== dragIndex ? 'ui-sortable-item__transition' : '' }} ui-sortable-item-{{ index }}">
+    data-fixed="{{ item.fixed }}"
+    data-columns="{{ columns }}"
+    data-wraprect="{{ wrapRect }}"
+    data-height="{{ itemHeight }}"
+    style="{{ positions[index].transform }};width:{{ 100 / columns }}%;height:{{ itemHeight }}px;"
+    class="ui-sortable-item">
     <slot name="{{ item.sortId }}" />
   </view>
+  <view 
+    hidden="{{ dragIndex < 0 }}"
+    catch:touchmove="{{ helpers.touchMove }}"
+    catch:touchend="onTouchEnd"
+    style="width:{{ 100 / columns }}%;height:{{ itemHeight }}px;"
+    data-start="{{ start }}"
+    class="ui-sortable__movable-view">
+    <slot wx:if="{{ dragIndex >= 0 }}" name="{{ items[dragIndex].sortId }}" />
+  </view>
 </view>
-<!-- <view>translateX:{{ translateX }}; translateY:{{ translateY }}</view> -->

@@ -12,7 +12,7 @@ Page({
       {
         sortId: 2,
         color: 'rgba(175, 60, 80, 1)',
-        // fixed: true,
+        fixed: true,
       },
       {
         sortId: 3,
