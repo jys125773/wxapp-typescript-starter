@@ -1,9 +1,44 @@
+<wxs module="helpers">
+  var DRAGGING_CLASS = '.ui-swipeout__view';
+  module.exports = {
+    touchStart: function(event, instance){
+      var state = instance.getState();
+      var touch = event.touches[0] || event.changedTouches[0];
+      state.start = touch;
+      state.dragInstance = instance.selectComponent(DRAGGING_CLASS);
+    },
+    touchMove: function(event, instance){
+      var state = instance.getState();
+      var start = state.start;
+      if(!start) return;
+      var dragInstance = state.dragInstance;
+      var touch = event.touches[0] || event.changedTouches[0];
+      var distance = event.target.dataset.distance;
+      var offsetX = -180 + touch.pageX - start.pageX;
+      var offsetY = touch.pageY - start.pageY;
+      console.log(touch.pageX - start.pageX)
+      if(Math.abs(offsetY / offsetX) > 1)return;
+      if( offsetX < -distance){
+        offsetX = -distance;
+      } else if(offsetX > 0){
+        offsetX = 0;
+      }
+       var tranform = 'translateX(' + offsetX + 'px)';
+        dragInstance.setStyle({
+          'transform': tranform,
+          '-webkit-transform': tranform
+        });
+    }
+  }
+</wxs>
 <view class="ui-swipeout custom-class">
-  <view class="ui-swipeout__view" bind:touchstart="{{ disabled ? '' : 'bindTouchStart' }}" bind:touchmove="{{ disabled ? '' : 'bindTouchMove' }}" bind:touchend="{{ disabled ? '' : 'bindTouchEnd' }}" style="-webkit-transform:translateX({{ -offsetX }}px);transform:translateX({{ -offsetX }}px);{{ touchMoving ? '' : 'transition:transform ' + transitionDration + 'ms;' + '-webkit-transition:transform ' + transitionDration + 'ms;'  }}">
-    <view class="ui-swipeout__left">
-      <slot name="left"></slot>
-    </view>
-    <view class="ui-swipeout__content" bind:tap="close">
+  <view 
+    class="ui-swipeout__view" 
+    data-distance="{{ slideDistance }}"
+    catch:touchstart="{{ helpers.touchStart }}" 
+    catch:touchmove="{{ helpers.touchMove }}" 
+    catch:touchend="">
+    <view class="ui-swipeout__content">
       <slot></slot>
     </view>
     <view class="ui-swipeout__right">
