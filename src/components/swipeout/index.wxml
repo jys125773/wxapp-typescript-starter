@@ -1,43 +1,90 @@
 <wxs module="helpers">
-  var DRAGGING_CLASS = '.ui-swipeout__view';
+ var DRAGGING_CLASS = '.ui-swipeout__view';
   module.exports = {
-    touchStart: function(event, instance){
+    observeExpanded: function (newValue, oldValue, ownerInstance, instance) {
+      var state = ownerInstance.getState();
+      var dataset = instance.getDataset();
+      var tranformX = newValue ? -dataset.limit : 0;
+      var tranform = 'translateX(' + tranformX + 'px)';
+      var transitionDuration = (typeof oldValue === 'undefined' ? 0 : dataset.duration) + 'ms';
+      state.startTransformX = tranformX;
+      instance.setStyle({
+        'transform': tranform,
+        '-webkit-transform': tranform,
+        'transition-duration': transitionDuration,
+        '-webkit-transition-duration': transitionDuration
+      });
+    },
+    touchStart: function (event, instance) {
       var state = instance.getState();
       var touch = event.touches[0] || event.changedTouches[0];
+      var dragInstance = instance.selectComponent(DRAGGING_CLASS);
       state.start = touch;
-      state.dragInstance = instance.selectComponent(DRAGGING_CLASS);
+      state.dragInstance = dragInstance;
     },
-    touchMove: function(event, instance){
+    touchMove: function (event, instance) {
       var state = instance.getState();
       var start = state.start;
-      if(!start) return;
+      if (!start) return;
       var dragInstance = state.dragInstance;
       var touch = event.touches[0] || event.changedTouches[0];
-      var distance = event.target.dataset.distance;
-      var offsetX = -180 + touch.pageX - start.pageX;
-      var offsetY = touch.pageY - start.pageY;
-      console.log(touch.pageX - start.pageX)
-      if(Math.abs(offsetY / offsetX) > 1)return;
-      if( offsetX < -distance){
-        offsetX = -distance;
-      } else if(offsetX > 0){
-        offsetX = 0;
+      var dataset = event.target.dataset;
+      var limit = dataset.limit;
+      var deltaX = touch.pageX - start.pageX;
+      var deltaY = touch.pageY - start.pageY;
+      var tranformX = state.startTransformX + deltaX;
+      if (Math.abs(deltaY / deltaX) > 1) return;
+      if (tranformX < -limit) {
+        tranformX = -limit;
+      } else if (tranformX > 0) {
+        tranformX = 0;
       }
-       var tranform = 'translateX(' + offsetX + 'px)';
+      state.deltaX = deltaX;
+      state.tranformX = tranformX;
+      var tranform = 'translateX(' + tranformX + 'px)';
+      dragInstance.setStyle({
+        'transform': tranform,
+        '-webkit-transform': tranform
+      });
+    },
+    touchEnd: function (event, instance) {
+      var dataset = event.target.dataset;
+      var duration = dataset.duration;
+      var threshold = dataset.threshold;
+      var expanded = dataset.expanded;
+      var limit = dataset.limit;
+      var state = instance.getState();
+      var dragInstance = state.dragInstance;
+      var deltaX = state.deltaX;
+      var shouldChange = Math.abs(deltaX / limit / threshold) > 1;
+      var ratio = Math.abs(deltaX / limit);
+      var tranformX = (deltaX < 0 && shouldChange || deltaX > 0 && !shouldChange) ? -limit : 0;
+      var tranform = 'translateX(' + tranformX + 'px)';
+      var transitionDuration = duration * (shouldChange ? (1 - ratio) : ratio) + 'ms';
+      if (expanded && deltaX > 0 || !expanded && deltaX < 0) {
         dragInstance.setStyle({
           'transform': tranform,
-          '-webkit-transform': tranform
+          '-webkit-transform': tranform,
+          'transition-duration': transitionDuration,
+          '-webkit-transition-duration': transitionDuration
         });
+        shouldChange && instance.triggerEvent('change', { expanded: !expanded });
+      }
     }
   }
 </wxs>
 <view class="ui-swipeout custom-class">
   <view 
     class="ui-swipeout__view" 
-    data-distance="{{ slideDistance }}"
+    data-limit="{{ operateWidth }}"
+    data-expanded="{{ expanded }}"
+    data-threshold="{{ threshold }}"
+    data-duration="{{ duration }}"
+    expanded="{{ expanded }}"
+    change:expanded="{{ helpers.observeExpanded }}"
     catch:touchstart="{{ helpers.touchStart }}" 
     catch:touchmove="{{ helpers.touchMove }}" 
-    catch:touchend="">
+    catch:touchend="{{ helpers.touchEnd }}">
     <view class="ui-swipeout__content">
       <slot></slot>
     </view>

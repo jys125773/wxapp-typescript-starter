@@ -1,8 +1,7 @@
 <view class="container">
   <demo-block title="基础用法">
     <view>
-      <ui-swipeout custom-class="swipeout" status="{{swipeStatus}}" leftWidth="{{80}}" rightWidth="{{80}}">
-        <view class="swipeout-left" slot="left">隐藏</view>
+      <ui-swipeout custom-class="swipeout" expanded="{{expanded}}" bind:change="onChange">
         <view class="swipeout-content">单元格</view>
         <view class="swipeout-right" slot="right">删除</view>
       </ui-swipeout>

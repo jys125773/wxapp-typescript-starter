@@ -9,9 +9,9 @@ Component({
       type: Boolean,
       value: false,
     },
-    slideDistance: {
+    operateWidth: {
       type: Number,
-      value: 180,
+      value: 80,
     },
     threshold: {
       type: Number,
@@ -21,17 +21,10 @@ Component({
       type: Number,
       value: 300,
     },
-    open: {
+    expanded: {
       type: Boolean,
       value: false,
-      observer() {
-      },
     },
   },
-  data: {
-   
-  },
-  methods: {
-   
-  }
 });
+
