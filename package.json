@@ -44,7 +44,7 @@
     "gulp-watch": "^5.0.1",
     "gulp-wxa-copy-npm": "^0.1.4",
     "imagemin-pngquant": "^8.0.0",
-    "minimist": "^1.2.0",
+    "minimist": "^1.2.6",
     "prettier": "^1.18.2",
     "tslib": "^1.10.0",
     "typescript": "^3.5.3",
